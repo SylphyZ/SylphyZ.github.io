@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>My Personal Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px auto;
+            display: block;
+            border: 3px solid #3498db;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>Welcome to my GitHub Pages site.</p>
+    <header>
+        <!-- 替换为你的照片或删除这一行 -->
+        <img src="profile.jpg" alt="个人照片" class="profile-img">
+        <h1>张三</h1>
+        <p>网页开发者 | 设计师 | 自由职业者</p>
+    </header>
+
+    <div class="section">
+        <h2>个人简介</h2>
+        <p>学习</p>
+<!--         <p>在我的空闲时间，我喜欢摄影、旅行和学习新技能。</p> -->
+    </div>
+
+    <div class="section">
+        <h2>联系信息</h2>
+        <ul>
+            <li><strong>邮箱：</strong> zhangsan@example.com</li>
+            <li><strong>电话：</strong> +86 138 1234 5678</li>
+            <li><strong>GitHub：</strong> <a href="https://github.com/yourusername">github.com/yourusername</a></li>
+            <li><strong>地址：</strong> 中国北京市海淀区</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>技能</h2>
+        <ul>
+            <li>HTML5, CSS3, JavaScript</li>
+            <li>React, Vue.js</li>
+            <li>UI/UX设计</li>
+            <li>Photoshop, Illustrator</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>简历下载</h2>
+        <p>你可以下载我的完整简历了解更多详细信息：</p>
+        <a href="resume.pdf" class="download-btn" download="张三_个人简历.pdf">下载简历 (PDF)</a>
+        <!-- 确保你的PDF文件名为resume.pdf并放在同一目录下 -->
+    </div>
+
+    <footer>
+        <p>© 2023 张三. 保留所有权利。</p>
+    </footer>
 </body>
 </html>
