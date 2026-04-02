@@ -63,6 +63,11 @@
         <button class="dpad-btn" onclick="snakeDir(1,0)">→</button>
       </div>
     </div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:0.75rem;color:var(--muted);">
+      速度
+      <input type="range" id="snake-speed" min="1" max="5" value="3" style="width:80px;" oninput="updateSnakeSpeed(this.value)">
+      <span id="snake-speed-label">3</span>
+    </div>
     <div class="hint">方向键 / WASD 控制</div>
   </div>
 
@@ -100,18 +105,21 @@
 <script>
 let activeGame = 'snake';
 
+let g2048Inited = false;
 function switchGame(name, btn) {
   document.querySelectorAll('.game-area').forEach(e => e.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
   document.getElementById('g-' + name).classList.add('active');
   btn.classList.add('active');
   activeGame = name;
+  if(name === 'g2048' && !g2048Inited) { g2048Inited = true; g2048Start(); }
 }
 
 // ── 贪吃蛇 ──
 const SC = document.getElementById('snake-canvas');
 const sx = SC.getContext('2d');
 const CELL=15, COLS=20, ROWS=20;
+let snakeInterval = 130;
 let snake=[], sdir={x:1,y:0}, sfood={x:5,y:5}, stimer=null, sScore=0, sBest=0, sRunning=false;
 
 function snakeStart() {
@@ -120,7 +128,7 @@ function snakeStart() {
   sdir = {x:1,y:0}; sScore=0;
   document.getElementById('snake-score').textContent=0;
   sfoodPlace(); sRunning=true;
-  stimer = setInterval(snakeTick, 130);
+  stimer = setInterval(snakeTick, snakeInterval);
 }
 
 function snakeDir(dx, dy) {
@@ -299,9 +307,16 @@ function g2048Draw(){
 }
 
 // 初始化画面
-g2048Start();
 snakeDraw();
 tetDraw();
+// 2048 延迟初始化，等 canvas 可见
+
+function updateSnakeSpeed(v) {
+  const speeds = [220, 170, 130, 90, 55];
+  snakeInterval = speeds[v-1];
+  document.getElementById('snake-speed-label').textContent = v;
+  if(sRunning) { clearInterval(stimer); stimer = setInterval(snakeTick, snakeInterval); }
+}
 
 // 键盘
 document.addEventListener('keydown', e=>{
@@ -311,10 +326,10 @@ document.addEventListener('keydown', e=>{
     const d=map[e.key]; if(d){snakeDir(d.x,d.y); e.preventDefault();}
   }
   if(activeGame==='tetris'){
-    if(e.key==='ArrowLeft')tMove(-1,0);
-    else if(e.key==='ArrowRight')tMove(1,0);
-    else if(e.key==='ArrowDown')tMove(0,1);
-    else if(e.key==='ArrowUp')tRotate();
+    if(e.key==='ArrowLeft'||e.key==='a')tMove(-1,0);
+    else if(e.key==='ArrowRight'||e.key==='d')tMove(1,0);
+    else if(e.key==='ArrowDown'||e.key==='s')tMove(0,1);
+    else if(e.key==='ArrowUp'||e.key==='w')tRotate();
     if(prevent.includes(e.key))e.preventDefault();
   }
   if(activeGame==='g2048'){
