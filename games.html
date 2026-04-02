@@ -4,128 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games · SylphyZ</title>
-  <style>
-    :root {
-      --ink: #1a1612;
-      --paper: #f5f0e8;
-      --accent: #8b6f47;
-      --accent-light: #c4a882;
-      --muted: #9a9080;
-      --rule: #d4c9b8;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Noto Serif SC", Georgia, serif;
-      min-height: 100vh;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.08) 27px, rgba(180,160,120,0.08) 28px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 60px 40px 100px;
-    }
-    .back {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 40px;
-      transition: color 0.2s;
-    }
-    .back:hover { color: var(--accent); }
-    h1 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.2em;
-      margin-bottom: 40px;
-    }
-    .rule { width: 48px; height: 1px; background: var(--accent); margin-bottom: 40px; }
-    .tabs {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 32px;
-    }
-    .tab {
-      padding: 8px 20px;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-    .tab:hover { color: var(--ink); }
-    .game-area { display: none; flex-direction: column; align-items: center; gap: 16px; }
-    .game-area.active { display: flex; }
-    .score-bar {
-      display: flex;
-      gap: 32px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      width: 100%;
-      justify-content: center;
-    }
-    .score-val { color: var(--ink); font-weight: 500; }
-    canvas {
-      border: 1px solid var(--rule);
-      display: block;
-      background: #faf7f2;
-    }
-    .hint {
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-    .btn-row { display: flex; gap: 8px; }
-    .g-btn {
-      padding: 6px 18px;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-    .g-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    @media (max-width: 500px) {
-      .wrap { padding: 40px 16px 80px; }
-      h1 { font-size: 2rem; }
-    }
-  </style>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#1a1612; --paper:#f5f0e8; --accent:#8b6f47; --accent-light:#c4a882; --muted:#9a9080; --rule:#d4c9b8; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--paper); color:var(--ink); font-family:"Noto Serif SC",Georgia,serif; min-height:100vh; }
+    body::before { content:''; position:fixed; inset:0; background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(180,160,120,0.08) 27px,rgba(180,160,120,0.08) 28px); pointer-events:none; z-index:0; }
+    .wrap { position:relative; z-index:1; max-width:600px; margin:0 auto; padding:60px 40px 100px; }
+    .back { font-size:0.75rem; letter-spacing:0.2em; color:var(--muted); text-decoration:none; text-transform:uppercase; display:inline-block; margin-bottom:40px; transition:color 0.2s; }
+    .back:hover { color:var(--accent); }
+    h1 { font-family:"Cormorant Garamond",Georgia,serif; font-size:2.8rem; font-weight:300; letter-spacing:0.08em; margin-bottom:8px; }
+    .subtitle { font-size:0.8rem; color:var(--muted); letter-spacing:0.2em; margin-bottom:40px; }
+    .rule { width:48px; height:1px; background:var(--accent); margin-bottom:40px; }
+    .tabs { display:flex; border-bottom:1px solid var(--rule); margin-bottom:32px; }
+    .tab { padding:8px 20px; font-size:0.8rem; letter-spacing:0.15em; color:var(--muted); background:transparent; border:none; border-bottom:2px solid transparent; margin-bottom:-1px; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+    .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .tab:hover { color:var(--ink); }
+    .game-area { display:none; flex-direction:column; align-items:center; gap:16px; }
+    .game-area.active { display:flex; }
+    .score-bar { display:flex; gap:32px; font-size:0.8rem; color:var(--muted); letter-spacing:0.1em; justify-content:center; }
+    .score-val { color:var(--ink); font-weight:500; }
+    canvas { border:1px solid var(--rule); display:block; background:#faf7f2; }
+    .hint { font-size:0.72rem; color:var(--muted); letter-spacing:0.1em; }
+    .btn-row { display:flex; gap:8px; }
+    .g-btn { padding:6px 18px; font-size:0.72rem; letter-spacing:0.15em; border:1px solid var(--rule); background:transparent; color:var(--muted); cursor:pointer; font-family:inherit; transition:all 0.2s; }
+    .g-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+    /* 移动端方向键 */
+    .dpad { display:none; flex-direction:column; align-items:center; gap:4px; margin-top:8px; }
+    .dpad-row { display:flex; gap:4px; }
+    .dpad-btn { width:44px; height:44px; border:1px solid var(--rule); background:rgba(255,255,255,0.5); color:var(--muted); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .dpad-btn:active { background:var(--accent-light); color:white; }
+    @media (max-width:600px) { .wrap{padding:40px 16px 80px;} h1{font-size:2rem;} .dpad{display:flex;} }
+  </style>
 </head>
 <body>
 <div class="wrap">
@@ -135,86 +46,122 @@
   <div class="rule"></div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchGame('snake')">贪吃蛇</button>
-    <button class="tab" onclick="switchGame('tetris')">俄罗斯方块</button>
-    <button class="tab" onclick="switchGame('g2048')">2048</button>
+    <button class="tab active" onclick="switchGame('snake',this)">贪吃蛇</button>
+    <button class="tab" onclick="switchGame('tetris',this)">俄罗斯方块</button>
+    <button class="tab" onclick="switchGame('g2048',this)">2048</button>
   </div>
 
-  <!-- 贪吃蛇 -->
   <div class="game-area active" id="g-snake">
     <div class="score-bar">分数 <span class="score-val" id="snake-score">0</span> &nbsp; 最高 <span class="score-val" id="snake-best">0</span></div>
     <canvas id="snake-canvas" width="300" height="300"></canvas>
     <div class="btn-row"><button class="g-btn" onclick="snakeStart()">开始 / 重开</button></div>
+    <div class="dpad">
+      <div class="dpad-row"><button class="dpad-btn" onclick="snakeDir(0,-1)">↑</button></div>
+      <div class="dpad-row">
+        <button class="dpad-btn" onclick="snakeDir(-1,0)">←</button>
+        <button class="dpad-btn" onclick="snakeDir(0,1)">↓</button>
+        <button class="dpad-btn" onclick="snakeDir(1,0)">→</button>
+      </div>
+    </div>
     <div class="hint">方向键 / WASD 控制</div>
   </div>
 
-  <!-- 俄罗斯方块 -->
   <div class="game-area" id="g-tetris">
     <div class="score-bar">分数 <span class="score-val" id="tet-score">0</span> &nbsp; 行数 <span class="score-val" id="tet-lines">0</span></div>
     <canvas id="tet-canvas" width="200" height="400"></canvas>
     <div class="btn-row"><button class="g-btn" onclick="tetStart()">开始 / 重开</button></div>
+    <div class="dpad">
+      <div class="dpad-row"><button class="dpad-btn" onclick="tRotate()">↑旋</button></div>
+      <div class="dpad-row">
+        <button class="dpad-btn" onclick="tMove(-1,0)">←</button>
+        <button class="dpad-btn" onclick="tMove(0,1)">↓</button>
+        <button class="dpad-btn" onclick="tMove(1,0)">→</button>
+      </div>
+    </div>
     <div class="hint">← → 移动 &nbsp; ↑ 旋转 &nbsp; ↓ 加速</div>
   </div>
 
-  <!-- 2048 -->
   <div class="game-area" id="g-2048">
     <div class="score-bar">分数 <span class="score-val" id="g2048-score">0</span> &nbsp; 最高 <span class="score-val" id="g2048-best">0</span></div>
     <canvas id="g2048-canvas" width="304" height="304"></canvas>
     <div class="btn-row"><button class="g-btn" onclick="g2048Start()">开始 / 重开</button></div>
+    <div class="dpad">
+      <div class="dpad-row"><button class="dpad-btn" onclick="gMove('up')">↑</button></div>
+      <div class="dpad-row">
+        <button class="dpad-btn" onclick="gMove('left')">←</button>
+        <button class="dpad-btn" onclick="gMove('down')">↓</button>
+        <button class="dpad-btn" onclick="gMove('right')">→</button>
+      </div>
+    </div>
     <div class="hint">方向键 移动合并</div>
   </div>
 </div>
 
 <script>
 let activeGame = 'snake';
-function switchGame(name) {
+
+function switchGame(name, btn) {
   document.querySelectorAll('.game-area').forEach(e => e.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
   document.getElementById('g-' + name).classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
   activeGame = name;
 }
 
 // ── 贪吃蛇 ──
 const SC = document.getElementById('snake-canvas');
 const sx = SC.getContext('2d');
-const CELL = 15, COLS = 20, ROWS = 20;
-let snake, sdir, sfood, stimer, sScore, sBest = 0, sRunning = false;
+const CELL=15, COLS=20, ROWS=20;
+let snake=[], sdir={x:1,y:0}, sfood={x:5,y:5}, stimer=null, sScore=0, sBest=0, sRunning=false;
+
 function snakeStart() {
   clearInterval(stimer);
   snake = [{x:10,y:10},{x:9,y:10},{x:8,y:10}];
-  sdir = {x:1,y:0}; sScore = 0;
-  document.getElementById('snake-score').textContent = 0;
-  sfoodPlace(); sRunning = true;
-  stimer = setInterval(snakeTick, 120);
+  sdir = {x:1,y:0}; sScore=0;
+  document.getElementById('snake-score').textContent=0;
+  sfoodPlace(); sRunning=true;
+  stimer = setInterval(snakeTick, 130);
 }
-function sfoodPlace() { sfood = {x:Math.floor(Math.random()*COLS), y:Math.floor(Math.random()*ROWS)}; }
+
+function snakeDir(dx, dy) {
+  if(!sRunning) return;
+  if(dx===-sdir.x && dy===0) return;
+  if(dy===-sdir.y && dx===0) return;
+  sdir = {x:dx, y:dy};
+}
+
+function sfoodPlace() {
+  do { sfood={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)}; }
+  while(snake.some(s=>s.x===sfood.x&&s.y===sfood.y));
+}
+
 function snakeTick() {
-  const head = {x: snake[0].x + sdir.x, y: snake[0].y + sdir.y};
-  if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS||snake.some(s=>s.x===head.x&&s.y===head.y)) {
-    sRunning = false; clearInterval(stimer); snakeDraw('GAME OVER'); return;
+  const head={x:snake[0].x+sdir.x, y:snake[0].y+sdir.y};
+  if(head.x<0||head.x>=COLS||head.y<0||head.y>=ROWS||snake.some(s=>s.x===head.x&&s.y===head.y)){
+    sRunning=false; clearInterval(stimer); snakeDraw('GAME OVER'); return;
   }
   snake.unshift(head);
-  if(head.x===sfood.x&&head.y===sfood.y) {
-    sScore += 10; sBest = Math.max(sBest, sScore);
-    document.getElementById('snake-score').textContent = sScore;
-    document.getElementById('snake-best').textContent = sBest;
+  if(head.x===sfood.x&&head.y===sfood.y){
+    sScore+=10; sBest=Math.max(sBest,sScore);
+    document.getElementById('snake-score').textContent=sScore;
+    document.getElementById('snake-best').textContent=sBest;
     sfoodPlace();
   } else { snake.pop(); }
   snakeDraw();
 }
+
 function snakeDraw(msg) {
   sx.clearRect(0,0,300,300);
-  snake.forEach((s,i) => {
-    sx.fillStyle = i===0 ? '#8b6f47' : '#c4a882';
-    sx.fillRect(s.x*CELL+1, s.y*CELL+1, CELL-2, CELL-2);
+  snake.forEach((s,i)=>{
+    sx.fillStyle=i===0?'#8b6f47':'#c4a882';
+    sx.fillRect(s.x*CELL+1,s.y*CELL+1,CELL-2,CELL-2);
   });
-  sx.fillStyle = '#D85A30';
-  sx.beginPath(); sx.arc(sfood.x*CELL+CELL/2, sfood.y*CELL+CELL/2, CELL/2-1, 0, Math.PI*2); sx.fill();
-  if(msg) {
-    sx.fillStyle = 'rgba(26,22,18,0.6)'; sx.fillRect(0,0,300,300);
-    sx.fillStyle = '#f5f0e8'; sx.font = '15px serif'; sx.textAlign = 'center';
-    sx.fillText(msg, 150, 150);
+  sx.fillStyle='#D85A30';
+  sx.beginPath(); sx.arc(sfood.x*CELL+CELL/2,sfood.y*CELL+CELL/2,CELL/2-1,0,Math.PI*2); sx.fill();
+  if(msg){
+    sx.fillStyle='rgba(26,22,18,0.55)'; sx.fillRect(0,0,300,300);
+    sx.fillStyle='#f5f0e8'; sx.font='15px serif'; sx.textAlign='center';
+    sx.fillText(msg,150,150);
   }
 }
 snakeDraw();
@@ -222,66 +169,81 @@ snakeDraw();
 // ── 俄罗斯方块 ──
 const TC = document.getElementById('tet-canvas');
 const tx = TC.getContext('2d');
-const TW=10, TH=20, TS=20;
-const PIECES = [[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[1,0],[1,0],[1,1]],[[0,1],[0,1],[1,1]],[[1,1,0],[0,1,1]],[[0,1,1],[1,1,0]]];
-const COLORS = ['#8b6f47','#c4a882','#9a9080','#D85A30','#BA7517','#534AB7','#1D9E75'];
-let tBoard, tPiece, tPx, tPy, tTimer, tScore=0, tLines=0, tRunning=false;
+const TW=10,TH=20,TS=20;
+const PIECES=[[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[1,0],[1,0],[1,1]],[[0,1],[0,1],[1,1]],[[1,1,0],[0,1,1]],[[0,1,1],[1,1,0]]];
+const TCOLORS=['#8b6f47','#c4a882','#9a9080','#D85A30','#BA7517','#534AB7','#1D9E75'];
+let tBoard=[], tPiece=null, tPx=0, tPy=0, tTimer=null, tScore=0, tLines=0, tRunning=false;
+
 function tetStart() {
-  clearInterval(tTimer); tBoard = Array.from({length:TH}, ()=>Array(TW).fill(0));
+  clearInterval(tTimer);
+  tBoard=Array.from({length:TH},()=>Array(TW).fill(0));
   tScore=0; tLines=0;
   document.getElementById('tet-score').textContent=0;
   document.getElementById('tet-lines').textContent=0;
-  tSpawn(); tRunning=true; tTimer=setInterval(tetTick,500);
+  tRunning=true; tSpawn();
+  tTimer=setInterval(tetTick,500);
 }
+
 function tSpawn() {
   const idx=Math.floor(Math.random()*PIECES.length);
-  tPiece={shape:PIECES[idx],color:COLORS[idx]};
+  tPiece={shape:PIECES[idx].map(r=>[...r]),color:TCOLORS[idx]};
   tPx=Math.floor((TW-tPiece.shape[0].length)/2); tPy=0;
   if(tCollide(tPx,tPy,tPiece.shape)){clearInterval(tTimer);tRunning=false;tetDraw('GAME OVER');}
+  else tetDraw();
 }
+
 function tCollide(px,py,shape){
-  return shape.some((row,r)=>row.some((c,col)=>c&&(py+r>=TH||px+col<0||px+col>=TW||tBoard[py+r][px+col])));
+  return shape.some((row,r)=>row.some((c,col)=>c&&(py+r>=TH||px+col<0||px+col>=TW||(tBoard[py+r]&&tBoard[py+r][px+col]))));
 }
+
 function tetTick(){ tMove(0,1); }
+
 function tMove(dx,dy){
-  if(!tRunning)return;
-  if(!tCollide(tPx+dx,tPy+dy,tPiece.shape)){tPx+=dx;tPy+=dy;}
-  else if(dy){
-    tPiece.shape.forEach((row,r)=>row.forEach((c,col)=>{if(c)tBoard[tPy+r][tPx+col]=tPiece.color;}));
+  if(!tRunning) return;
+  if(!tCollide(tPx+dx,tPy+dy,tPiece.shape)){
+    tPx+=dx; tPy+=dy; tetDraw();
+  } else if(dy){
+    tPiece.shape.forEach((row,r)=>row.forEach((c,col)=>{if(c&&tPy+r>=0)tBoard[tPy+r][tPx+col]=tPiece.color;}));
     let cleared=0;
-    for(let r=TH-1;r>=0;r--){if(tBoard[r].every(c=>c)){tBoard.splice(r,1);tBoard.unshift(Array(TW).fill(0));cleared++;r++;}}
+    for(let r=TH-1;r>=0;){
+      if(tBoard[r].every(c=>c)){tBoard.splice(r,1);tBoard.unshift(Array(TW).fill(0));cleared++;}
+      else r--;
+    }
     tLines+=cleared; tScore+=cleared*100;
     document.getElementById('tet-score').textContent=tScore;
     document.getElementById('tet-lines').textContent=tLines;
     tSpawn();
   }
-  tetDraw();
 }
+
 function tRotate(){
-  if(!tRunning)return;
+  if(!tRunning) return;
   const rot=tPiece.shape[0].map((_,i)=>tPiece.shape.map(r=>r[i]).reverse());
-  if(!tCollide(tPx,tPy,rot))tPiece.shape=rot;
-  tetDraw();
+  if(!tCollide(tPx,tPy,rot)){tPiece.shape=rot; tetDraw();}
 }
+
 function tetDraw(msg){
   tx.clearRect(0,0,200,400);
   tBoard.forEach((row,r)=>row.forEach((c,col)=>{if(c){tx.fillStyle=c;tx.fillRect(col*TS+1,r*TS+1,TS-2,TS-2);}}));
   if(tPiece) tPiece.shape.forEach((row,r)=>row.forEach((c,col)=>{if(c){tx.fillStyle=tPiece.color;tx.fillRect((tPx+col)*TS+1,(tPy+r)*TS+1,TS-2,TS-2);}}));
-  if(msg){tx.fillStyle='rgba(26,22,18,0.6)';tx.fillRect(0,0,200,400);tx.fillStyle='#f5f0e8';tx.font='15px serif';tx.textAlign='center';tx.fillText(msg,100,200);}
+  if(msg){tx.fillStyle='rgba(26,22,18,0.55)';tx.fillRect(0,0,200,400);tx.fillStyle='#f5f0e8';tx.font='15px serif';tx.textAlign='center';tx.fillText(msg,100,200);}
 }
 tetDraw();
 
 // ── 2048 ──
 const GC = document.getElementById('g2048-canvas');
 const gx = GC.getContext('2d');
-const GS=4, TILE=70, GAP=4;
-const TCOLORS = {0:'#e8e0d4',2:'#ede8df',4:'#e8dfc8',8:'#c4a882',16:'#ba9060',32:'#b07840',64:'#a06030',128:'#d4c490',256:'#cfc080',512:'#cabc70',1024:'#c5b860',2048:'#8b6f47'};
-let gBoard, gScore=0, gBest=0;
+const GS=4,TILE=70,GAP=4;
+const G2COLORS={0:'#e8e0d4',2:'#ede8df',4:'#e8dfc8',8:'#c4a882',16:'#ba9060',32:'#b07840',64:'#a06030',128:'#d4c490',256:'#cfc080',512:'#cabc70',1024:'#c5b860',2048:'#8b6f47'};
+let gBoard=[], gScore=0, gBest=0;
+
 function g2048Start(){
   gBoard=Array.from({length:GS},()=>Array(GS).fill(0));
-  gScore=0; document.getElementById('g2048-score').textContent=0;
-  gAddTile();gAddTile();g2048Draw();
+  gScore=0;
+  document.getElementById('g2048-score').textContent=0;
+  gAddTile(); gAddTile(); g2048Draw();
 }
+
 function gAddTile(){
   const empty=[];
   gBoard.forEach((r,ri)=>r.forEach((c,ci)=>{if(!c)empty.push([ri,ci]);}));
@@ -289,27 +251,44 @@ function gAddTile(){
   const [r,c]=empty[Math.floor(Math.random()*empty.length)];
   gBoard[r][c]=Math.random()<0.9?2:4;
 }
+
 function gSlide(row){
   let arr=row.filter(c=>c), merged=false;
-  for(let i=0;i<arr.length-1;i++){if(arr[i]===arr[i+1]&&!merged){arr[i]*=2;gScore+=arr[i];arr.splice(i+1,1);merged=true;}else merged=false;}
+  for(let i=0;i<arr.length-1;i++){
+    if(arr[i]===arr[i+1]&&!merged){arr[i]*=2;gScore+=arr[i];arr.splice(i+1,1);merged=true;}
+    else merged=false;
+  }
   while(arr.length<GS)arr.push(0);
   return arr;
 }
+
 function gMove(dir){
   let moved=false;
+  const prev=JSON.stringify(gBoard);
   let b=gBoard.map(r=>[...r]);
-  if(dir==='left'){b=b.map(r=>{const s=gSlide(r);if(s.join()!==r.join())moved=true;return s;});}
-  else if(dir==='right'){b=b.map(r=>{const rev=r.slice().reverse();const s=gSlide(rev).reverse();if(s.join()!==r.join())moved=true;return s;});}
-  else if(dir==='up'){for(let c=0;c<GS;c++){const col=b.map(r=>r[c]);const s=gSlide(col);s.forEach((v,r)=>{if(v!==b[r][c])moved=true;b[r][c]=v;});}}
-  else if(dir==='down'){for(let c=0;c<GS;c++){const col=b.map(r=>r[c]).reverse();const s=gSlide(col).reverse();s.forEach((v,r)=>{if(v!==b[r][c])moved=true;b[r][c]=v;});}}
-  if(moved){gBoard=b;gBest=Math.max(gBest,gScore);document.getElementById('g2048-score').textContent=gScore;document.getElementById('g2048-best').textContent=gBest;gAddTile();g2048Draw();}
+  if(dir==='left'){b=b.map(r=>gSlide(r));}
+  else if(dir==='right'){b=b.map(r=>gSlide(r.slice().reverse()).reverse());}
+  else if(dir==='up'){
+    for(let c=0;c<GS;c++){const col=b.map(r=>r[c]);const s=gSlide(col);s.forEach((v,r)=>b[r][c]=v);}
+  }
+  else if(dir==='down'){
+    for(let c=0;c<GS;c++){const col=b.map(r=>r[c]).reverse();const s=gSlide(col).reverse();s.forEach((v,r)=>b[r][c]=v);}
+  }
+  if(JSON.stringify(b)!==prev){
+    gBoard=b; moved=true;
+    gBest=Math.max(gBest,gScore);
+    document.getElementById('g2048-score').textContent=gScore;
+    document.getElementById('g2048-best').textContent=gBest;
+    gAddTile(); g2048Draw();
+  }
 }
+
 function g2048Draw(){
   gx.fillStyle='#d4c9b8'; gx.fillRect(0,0,304,304);
   for(let r=0;r<GS;r++)for(let c=0;c<GS;c++){
     const v=gBoard[r][c];
     const x=GAP+c*(TILE+GAP), y=GAP+r*(TILE+GAP);
-    gx.fillStyle=TCOLORS[v]||'#8b6f47'; gx.fillRect(x,y,TILE,TILE);
+    gx.fillStyle=G2COLORS[v]||'#8b6f47'; gx.fillRect(x,y,TILE,TILE);
     if(v){
       gx.fillStyle=v<=4?'#776e65':'#f5f0e8';
       gx.font=`${v>512?16:v>64?20:24}px serif`;
@@ -318,20 +297,25 @@ function g2048Draw(){
     }
   }
 }
-g2048Draw();
 
-document.addEventListener('keydown', e => {
+// 初始化画面
+g2048Start();
+snakeDraw();
+tetDraw();
+
+// 键盘
+document.addEventListener('keydown', e=>{
+  const prevent=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'];
   if(activeGame==='snake'){
     const map={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0},w:{x:0,y:-1},s:{x:0,y:1},a:{x:-1,y:0},d:{x:1,y:0}};
-    const d=map[e.key];
-    if(d&&!(d.x===-sdir.x&&d.y===-sdir.y)){sdir=d;e.preventDefault();}
+    const d=map[e.key]; if(d){snakeDir(d.x,d.y); e.preventDefault();}
   }
   if(activeGame==='tetris'){
     if(e.key==='ArrowLeft')tMove(-1,0);
     else if(e.key==='ArrowRight')tMove(1,0);
     else if(e.key==='ArrowDown')tMove(0,1);
     else if(e.key==='ArrowUp')tRotate();
-    if(['ArrowLeft','ArrowRight','ArrowDown','ArrowUp'].includes(e.key))e.preventDefault();
+    if(prevent.includes(e.key))e.preventDefault();
   }
   if(activeGame==='g2048'){
     const map={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down'};
