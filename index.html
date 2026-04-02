@@ -1,106 +1,277 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 20px auto;
-            display: block;
-            border: 3px solid #3498db;
-        }
-        .section {
-            margin-bottom: 25px;
-        }
-        .download-btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-        .download-btn:hover {
-            background-color: #2980b9;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SylphyZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #8b6f47;
+      --accent-light: #c4a882;
+      --muted: #9a9080;
+      --rule: #d4c9b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Serif SC", serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,160,120,0.08) 27px,
+          rgba(180,160,120,0.08) 28px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .rule-top {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.2s forwards;
+    }
+
+    header {
+      margin-bottom: 72px;
+      opacity: 0;
+      animation: slideUp 0.9s ease 0.4s forwards;
+    }
+
+    .name-zh {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .name-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 28px 0;
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: #4a4035;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    section {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: slideUp 0.9s ease 0.7s forwards;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .note-card {
+      display: block;
+      text-decoration: none;
+      border: 1px solid var(--rule);
+      padding: 28px 32px;
+      position: relative;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.4);
+      overflow: hidden;
+    }
+
+    .note-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      transform-origin: bottom;
+    }
+
+    .note-card:hover {
+      background: rgba(255,255,255,0.7);
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      box-shadow: -4px 0 0 var(--accent), 4px 4px 20px rgba(139,111,71,0.1);
+    }
+
+    .note-card:hover::before { transform: scaleY(1); }
+
+    .card-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--accent-light);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .note-card:hover .card-arrow {
+      transform: translateY(-50%) translateX(4px);
+      color: var(--accent);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 2px 8px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+      padding-top: 48px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 48px 24px 80px; }
+      .note-card { padding: 20px 48px 20px 20px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <!-- 替换为你的照片或删除这一行 -->
-        <img src="pic/white.jpg" alt="个人照片" class="profile-img">
-        <h1>不梦秋深</h1>
-        <p> CV | INTP | 摄影 </p>
-    </header>
 
-    <div class="section">
-        <h2>个人简介</h2>
-        <p>学习</p>
-<!--         <p>在我的空闲时间，我喜欢摄影、旅行和学习新技能。</p> -->
+<div class="wrap">
+  <div class="rule-top"></div>
+
+  <header>
+    <div class="name-zh">SylphyZ</div>
+    <div class="name-sub">不梦秋深 · 电子科技大学</div>
+    <div class="divider"></div>
+    <p class="bio">
+      记录学习的痕迹。<br>
+      Flow matching、扩散模型、随机微分方程……<br>
+      在没有结束前，总要做很多没有意义的事。
+    </p>
+  </header>
+
+  <section>
+    <div class="section-label">笔记</div>
+    <a class="note-card" href="https://sylphyz.github.io/NoteBook/">
+      <div class="card-tag">学习笔记</div>
+      <div class="card-title">学习笔记 · 生成式模型</div>
+      <p class="card-desc">
+        Flow Matching · Mean Flow · SDE · Fourier 分析 · 高斯过程<br>
+        MIT 6.S184 及相关课程笔记整理
+      </p>
+      <span class="card-arrow">→</span>
+    </a>
+  </section>
+
+  <footer>
+    <span class="footer-note">© 2025 SylphyZ · zhh.aca@foxmail.com</span>
+    <div class="footer-links">
+      <a href="https://github.com/SylphyZ">GitHub</a>
     </div>
+  </footer>
+</div>
 
-    <div class="section">
-        <h2>联系信息</h2>
-        <ul>
-            TODO
-<!--             <li><strong>邮箱：</strong> zhangsan@example.com</li>
-            <li><strong>电话：</strong> +86 138 1234 5678</li>
-            <li><strong>GitHub：</strong> <a href="https://github.com/yourusername">github.com/yourusername</a></li>
-            <li><strong>地址：</strong> 中国北京市海淀区</li> -->
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>技能</h2>
-        <ul>
-            TODO
-<!--             <li>HTML5, CSS3, JavaScript</li>
-            <li>React, Vue.js</li>
-            <li>UI/UX设计</li>
-            <li>Photoshop, Illustrator</li> -->
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>简历下载</h2>
-        TODO
-        <p>你可以下载我的完整简历了解更多详细信息：</p>
-        <a href="resume.pdf" class="download-btn" download="张三_个人简历.pdf">下载简历 (PDF)</a>
-        <!-- 确保你的PDF文件名为resume.pdf并放在同一目录下 -->
-    </div>
-
-    <footer>
-        <p>© 2023 张三. 保留所有权利。</p>
-    </footer>
 </body>
 </html>
