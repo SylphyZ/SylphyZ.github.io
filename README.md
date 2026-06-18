@@ -5,7 +5,6 @@
 ## 链接
 
 - **个人主页** → [sylphyz.github.io](https://sylphyz.github.io)
-- **学习笔记** → [sylphyz.github.io/notebook](https://sylphyz.github.io/notebook/)
 
 ## 仓库结构
 

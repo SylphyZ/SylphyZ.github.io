@@ -46,27 +46,23 @@
       z-index: 1;
       max-width: 760px;
       margin: 0 auto;
-      padding: 80px 40px 120px;
+      padding: 48px 40px 120px;
     }
 
     .rule-top {
       width: 100%;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin-bottom: 64px;
-      opacity: 0;
-      animation: fadeIn 1s ease 0.2s forwards;
+      margin-bottom: 32px;
     }
 
     header {
       margin-bottom: 72px;
-      opacity: 0;
-      animation: slideUp 0.9s ease 0.4s forwards;
     }
 
     .name-zh {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 300;
       letter-spacing: 0.08em;
       line-height: 1;
@@ -118,8 +114,6 @@
 
     section {
       margin-bottom: 56px;
-      opacity: 0;
-      animation: slideUp 0.9s ease 0.7s forwards;
     }
 
     .section-label {
@@ -214,8 +208,6 @@
     }
 
     footer {
-      opacity: 0;
-      animation: fadeIn 1s ease 1s forwards;
       padding-top: 48px;
       border-top: 1px solid var(--rule);
       display: flex;
@@ -244,12 +236,6 @@
 
     .footer-links a:hover { color: var(--accent); }
 
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 600px) {
       .wrap { padding: 48px 24px 80px; }
       .note-card { padding: 20px 48px 20px 20px; }
@@ -259,15 +245,12 @@
 <body>
 
 <div class="wrap">
-  <div class="rule-top"></div>
-
   <header>
-    <div class="name-zh">SylphyZ</div>
-    <div class="name-sub">不梦秋深 · 电子科技大学</div>
+    <div class="name-zh">不梦秋深</div>
+    <div class="name-sub">电子科技大学</div>
     <div class="divider"></div>
     <p class="bio">
-      在没有结束前，总要做很多没有意义的事，<br>
-      这样才可以在未来某一天，用这些无意义的事去堵住那些讨厌的缺口。
+      做想做的，看想看的。
     </p>
     <div class="tags">
       <span class="tag">Computer Vision</span>
@@ -283,12 +266,19 @@
 
   <section>
     <div class="section-label">笔记</div>
-    <a class="note-card" href="notebook/index.html">
-      <div class="card-tag">学习笔记</div>
-      <div class="card-title">NoteBook</div>
+    <a class="note-card" href="notebook/publish.pdf">
+      <div class="card-tag">PDF</div>
+      <div class="card-title">博士期间学习笔记</div>
       <p class="card-desc">
-        Bodie《Investments》 · Andrew Ang《Asset Management》<br>
-        生成式模型 · Flow Matching · Mean Flow · SDE
+        Flow Matching · Mean Flow · SDE · Fourier 分析 · 高斯过程
+      </p>
+      <span class="card-arrow">→</span>
+    </a>
+    <a class="note-card" href="notebook/index.html" style="margin-top: -1px;">
+      <div class="card-tag">量化笔记</div>
+      <div class="card-title">Quantitative Finance</div>
+      <p class="card-desc">
+        Bodie《Investments》 · Andrew Ang《Asset Management》
       </p>
       <span class="card-arrow">→</span>
     </a>
@@ -307,7 +297,7 @@
   </section>
 
   <footer>
-    <span class="footer-note">© 2025 SylphyZ · zhh.aca@foxmail.com</span>
+    <span class="footer-note">© 2025 不梦秋深 · zhh.aca@foxmail.com</span>
     <div class="footer-links">
       <a href="https://github.com/SylphyZ">GitHub</a>
     </div>
