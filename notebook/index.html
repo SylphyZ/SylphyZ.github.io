@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>笔记 · SylphyZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #8b6f47;
+      --accent-light: #c4a882;
+      --muted: #9a9080;
+      --rule: #d4c9b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Serif SC", serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,160,120,0.08) 27px,
+          rgba(180,160,120,0.08) 28px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 40px 120px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    header {
+      margin-bottom: 56px;
+    }
+
+    .page-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+    }
+
+    .page-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: 24px 0;
+    }
+
+    .book-section {
+      margin-bottom: 48px;
+    }
+
+    .book-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .book-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .note-list {
+      list-style: none;
+    }
+
+    .note-item a {
+      display: block;
+      text-decoration: none;
+      padding: 18px 48px 18px 24px;
+      border: 1px solid var(--rule);
+      margin-bottom: -1px;
+      position: relative;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .note-item:first-child a {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    .note-item:last-child a {
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+
+    .note-item a:hover {
+      background: rgba(255,255,255,0.7);
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      z-index: 1;
+    }
+
+    .note-title {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 300;
+    }
+
+    .note-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 300;
+    }
+
+    .note-arrow {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-light);
+      font-size: 1rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .note-item a:hover .note-arrow {
+      transform: translateY(-50%) translateX(4px);
+      color: var(--accent);
+    }
+
+    .pdf-card {
+      display: block;
+      text-decoration: none;
+      border: 1px solid var(--rule);
+      padding: 32px 36px;
+      margin-bottom: 48px;
+      position: relative;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.4);
+      overflow: hidden;
+    }
+
+    .pdf-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      transform-origin: bottom;
+    }
+
+    .pdf-card:hover {
+      background: rgba(255,255,255,0.7);
+      border-color: var(--accent-light);
+      transform: translateX(4px);
+      box-shadow: -4px 0 0 var(--accent), 4px 4px 20px rgba(139,111,71,0.1);
+    }
+
+    .pdf-card:hover::before { transform: scaleY(1); }
+
+    .pdf-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
+      padding: 2px 8px;
+      margin-bottom: 10px;
+    }
+
+    .pdf-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .pdf-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .pdf-arrow {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: var(--accent-light);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .pdf-card:hover .pdf-arrow {
+      transform: translateY(-50%) translateX(4px);
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 32px 20px 80px; }
+      .note-item a { padding: 14px 40px 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <a class="back-link" href="../index.html">&larr; 返回主页</a>
+
+  <header>
+    <div class="page-title">NoteBook</div>
+    <p class="page-sub">学习笔记整理</p>
+    <div class="divider"></div>
+  </header>
+
+  <a class="pdf-card" href="publish.pdf">
+    <div class="pdf-tag">PDF</div>
+    <div class="pdf-title">博士期间学习笔记</div>
+    <p class="pdf-desc">
+      Flow Matching · Mean Flow · SDE · Fourier 分析 · 高斯过程<br>
+      MIT 6.S184 及相关课程笔记整理
+    </p>
+    <span class="pdf-arrow">→</span>
+  </a>
+
+  <div class="book-section">
+    <div class="book-title">Bodie《Investments》第13版</div>
+    <ul class="note-list">
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter5_%E9%A3%8E%E9%99%A9%E6%94%B6%E7%9B%8A%E4%B8%8E%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95_%E6%80%BB%E7%BB%93.html">
+          <span class="note-title">Chapter 5 · 风险、收益与历史记录</span>
+          <p class="note-desc">HPR · EAR · APR · 连续复利 · Fisher假说 · Sharpe比率 · 正态分布 · VaR · ES</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter6_Capital%20Allocation%20to%20Risky%20Assets.html">
+          <span class="note-title">Chapter 6 · Capital Allocation to Risky Assets</span>
+          <p class="note-desc">风险厌恶 · 资本配置线 · 效用函数 · 最优风险配置</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter7_Efficient_Diversification.html">
+          <span class="note-title">Chapter 7 · Efficient Diversification</span>
+          <p class="note-desc">分散化 · 最优风险组合 · 有效前沿 · 马科维茨模型</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter8_index_models_notes.html">
+          <span class="note-title">Chapter 8 · Index Models</span>
+          <p class="note-desc">单因子模型 · 系统风险 · Beta · 回归分析</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter9_CAPM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html">
+          <span class="note-title">Chapter 9 · CAPM 学习笔记</span>
+          <p class="note-desc">资本资产定价模型 · CML · SML · Alpha</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter10_%E5%A5%97%E5%88%A9%E5%AE%9A%E4%BB%B7%E7%90%86%E8%AE%BA%E4%B8%8E%E5%A4%9A%E5%9B%A0%E5%AD%90%E6%A8%A1%E5%9E%8B_%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html">
+          <span class="note-title">Chapter 10 · 套利定价理论与多因子模型</span>
+          <p class="note-desc">APT · 多因子模型 · Fama-French</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="book-section">
+    <div class="book-title">Andrew Ang《Asset Management》</div>
+    <ul class="note-list">
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch3_mean_variance_investing.html">
+          <span class="note-title">Chapter 3 · 均值-方差投资</span>
+          <p class="note-desc">前沿 · 分散化 · 两基金分离 · KISS原则 · 策略赛马</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch6_factor_theory_notes.html">
+          <span class="note-title">Chapter 6 · 因子理论</span>
+          <p class="note-desc">因子 · 随机折现因子 · 风险溢价 · CAPM · 多因子</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch7_Factors_%E5%9B%A0%E5%AD%90.html">
+          <span class="note-title">Chapter 7 · Factors 因子</span>
+          <p class="note-desc">市场因子 · 价值因子 · 规模因子 · 动量因子</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch8_equities_notes.html">
+          <span class="note-title">Chapter 8 · Equities</span>
+          <p class="note-desc">股权投资 · 主动管理 · 股权风险溢价</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch10_alpha_and_low_risk_anomaly.html">
+          <span class="note-title">Chapter 10 · Alpha 与低风险异象</span>
+          <p class="note-desc">Alpha · 低波动率异象 · 杠杆约束</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch14_factor_investing.html">
+          <span class="note-title">Chapter 14 · Factor Investing</span>
+          <p class="note-desc">因子投资 · Smart Beta · 因子配置</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
