@@ -47,4 +47,4 @@ SylphyZ.github.io/
 ## Contributors
 
 - [SylphyZ](https://github.com/SylphyZ) — 内容创作、学习笔记与网站维护
-- **Codex（OpenAI）** — 页面优化、静态笔记生成、可访问性与站点校验
+- [**Codex（OpenAI）**](https://github.com/apps/chatgpt-codex-connector) — 页面优化、静态笔记生成、可访问性与站点校验
