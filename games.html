@@ -501,13 +501,16 @@ function handleGameDirection(game,dir){
 
 const controlFeedbackTimers=new WeakMap();
 document.querySelectorAll('.mobile-controls').forEach(controls=>{
-  const releaseButton=button=>{
+  const releaseButton=(button,delay=90)=>{
     if(!button)return;
     clearTimeout(controlFeedbackTimers.get(button));
     controlFeedbackTimers.set(button,setTimeout(()=>{
       button.classList.remove('is-pressed');
       controlFeedbackTimers.delete(button);
-    },100));
+    },delay));
+  };
+  const releaseAll=(delay=0)=>{
+    controls.querySelectorAll('.is-pressed').forEach(button=>releaseButton(button,delay));
   };
 
   controls.addEventListener('pointerdown',e=>{
@@ -515,22 +518,24 @@ document.querySelectorAll('.mobile-controls').forEach(controls=>{
     if(!button)return;
     clearTimeout(controlFeedbackTimers.get(button));
     button.classList.add('is-pressed');
-    if(button.setPointerCapture)button.setPointerCapture(e.pointerId);
+    releaseButton(button,260);
   });
 
   controls.addEventListener('pointerup',e=>{
-    releaseButton(e.target.closest('button[data-direction]'));
+    const button=e.target.closest('button[data-direction]');
+    button?releaseButton(button):releaseAll();
   });
 
-  controls.addEventListener('pointercancel',e=>{
-    releaseButton(e.target.closest('button[data-direction]'));
-  });
+  controls.addEventListener('pointercancel',()=>releaseAll());
+  controls.addEventListener('pointerleave',()=>releaseAll());
+  window.addEventListener('blur',()=>releaseAll());
 
   controls.addEventListener('click',e=>{
     const button=e.target.closest('button[data-direction]');
     if(!button)return;
     handleGameDirection(controls.dataset.game,button.dataset.direction);
     if(navigator.vibrate)navigator.vibrate(30);
+    releaseButton(button);
   });
 });
 
