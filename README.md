@@ -24,13 +24,13 @@ SylphyZ.github.io/
     ├── index.html      # 笔记目录
     ├── publish.pdf     # 博士期间学习笔记 (PDF)
     ├── Bodie《Investments》/
-    │   ├── Chapter5 ~ Chapter10 笔记 (.md + .html)
+    │   ├── Chapter5 ~ Chapter10 笔记 (.html)
     │   └── images/
     ├── Andrew Ang《Asset Management》/
-    │   ├── Ch3, Ch6 ~ Ch8, Ch10, Ch14 笔记 (.md + .html)
+    │   ├── Ch3, Ch6 ~ Ch8, Ch10, Ch14 笔记 (.html)
     │   └── images/
     └── 石川《因子投资方法与实践》/
-        ├── 第1章 ~ 第7章及 GMM 专题笔记 (.md + .html)
+        ├── 第1章 ~ 第7章及 GMM 专题笔记 (.html)
         └── images/
 ```
 
@@ -54,4 +54,4 @@ npm run build:notes
 npm run check
 ```
 
-`build:notes` 会从各文章同名的 `.md` 文件生成静态正文、图片懒加载属性和 `sitemap.xml`。生成后的 HTML 不依赖 Markdown CDN，即使脚本加载失败也能正常阅读。
+`build:notes` 会从本地各文章同名的 `.md` 文件生成静态正文、图片懒加载属性和 `sitemap.xml`。Markdown 源文件由 `.gitignore` 排除，不上传至 GitHub；生成后的 HTML 可直接阅读，不依赖 Markdown CDN。
