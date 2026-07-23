@@ -44,18 +44,6 @@ SylphyZ.github.io/
 - **Andrew Ang《Asset Management》** — 均值-方差投资、因子理论、因子投资
 - **石川《因子投资方法与实践》** — 因子方法论、主流因子、多因子模型、异象研究与投资实践
 
-## 本地维护
-
-安装 Node.js 20 或更高版本后：
-
-```bash
-npm install
-npm run build:notes
-npm run check
-```
-
-`build:notes` 会从本地各文章同名的 `.md` 文件生成静态正文、图片懒加载属性和 `sitemap.xml`。Markdown 源文件由 `.gitignore` 排除，不上传至 GitHub；生成后的 HTML 可直接阅读，不依赖 Markdown CDN。
-
 ## Contributors
 
 - [SylphyZ](https://github.com/SylphyZ) — 内容创作、学习笔记与网站维护
