@@ -516,7 +516,6 @@ document.querySelectorAll('.mobile-controls').forEach(controls=>{
     clearTimeout(controlFeedbackTimers.get(button));
     button.classList.add('is-pressed');
     if(button.setPointerCapture)button.setPointerCapture(e.pointerId);
-    if(e.pointerType==='touch'&&navigator.vibrate)navigator.vibrate(8);
   });
 
   controls.addEventListener('pointerup',e=>{
@@ -529,7 +528,9 @@ document.querySelectorAll('.mobile-controls').forEach(controls=>{
 
   controls.addEventListener('click',e=>{
     const button=e.target.closest('button[data-direction]');
-    if(button)handleGameDirection(controls.dataset.game,button.dataset.direction);
+    if(!button)return;
+    handleGameDirection(controls.dataset.game,button.dataset.direction);
+    if(navigator.vibrate)navigator.vibrate(30);
   });
 });
 
