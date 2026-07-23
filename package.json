@@ -1,0 +1,12 @@
+{
+  "name": "sylphyz-github-io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:notes": "node scripts/render-notes.mjs",
+    "check": "node scripts/check-site.mjs"
+  },
+  "devDependencies": {
+    "marked": "17.0.5"
+  }
+}

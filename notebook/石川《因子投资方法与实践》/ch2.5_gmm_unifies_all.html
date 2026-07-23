@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从 GMM 统一推导因子投资中的各种检验 · SylphyZ</title>
+  <!-- NOTE_META_START -->
+  <meta name="description" content="本文从ch2第9节介绍的 GMM 框架出发，逐一推导前面各节出现的检验方法，展示它们都是 GMM 在不同矩条件和权重矩阵选择下的特例。全部推导只依赖两件工具：谱密度矩阵 $S/T$（样本均值的方差） 和 delta 方法（一阶泰勒展开）。">
+  <meta name="author" content="SylphyZ">
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="canonical" href="https://sylphyz.github.io/notebook/%E7%9F%B3%E5%B7%9D%E3%80%8A%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5%E3%80%8B/ch2.5_gmm_unifies_all.html">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="从 GMM 统一推导因子投资中的各种检验 · SylphyZ">
+  <meta property="og:description" content="本文从ch2第9节介绍的 GMM 框架出发，逐一推导前面各节出现的检验方法，展示它们都是 GMM 在不同矩条件和权重矩阵选择下的特例。全部推导只依赖两件工具：谱密度矩阵 $S/T$（样本均值的方差） 和 delta 方法（一阶泰勒展开）。">
+  <meta property="og:url" content="https://sylphyz.github.io/notebook/%E7%9F%B3%E5%B7%9D%E3%80%8A%E5%9B%A0%E5%AD%90%E6%8A%95%E8%B5%84%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5%E3%80%8B/ch2.5_gmm_unifies_all.html">
+  <meta property="og:image" content="https://sylphyz.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SYLPHYZ · NOTES · VISION · MODELS">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- NOTE_META_END -->
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        processEscapes: true,
+        tags: 'ams'
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #765a35;
+      --accent-light: #786241;
+      --muted: #6f675b;
+      --rule: #d4c9b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: ui-serif, "Noto Serif SC", "Songti SC", STSong, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.08) 27px, rgba(180,160,120,0.08) 28px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 40px 120px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    #content {
+      line-height: 2;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: #4a4035;
+    }
+    #content h1 {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    #content h2 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    #content h3 {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    #content h4 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+    #content p { margin-bottom: 16px; }
+    #content a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      transition: border-color 0.2s;
+    }
+    #content a:hover { border-color: var(--accent); }
+    #content blockquote {
+      margin: 20px 0;
+      padding: 16px 24px;
+      border-left: 3px solid var(--accent);
+      background: rgba(255,255,255,0.4);
+      color: #5a5045;
+      font-size: 0.9rem;
+    }
+    #content blockquote p:last-child { margin-bottom: 0; }
+    #content img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+    }
+    #content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.4);
+    }
+    #content th, #content td {
+      padding: 10px 14px;
+      border: 1px solid var(--rule);
+      text-align: left;
+    }
+    #content th {
+      background: rgba(139,111,71,0.08);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    #content code {
+      font-family: "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.85em;
+      background: rgba(139,111,71,0.08);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--accent);
+    }
+    #content pre {
+      margin: 20px 0;
+      padding: 20px 24px;
+      background: rgba(26,22,18,0.04);
+      border: 1px solid var(--rule);
+      overflow-x: auto;
+    }
+    #content pre code {
+      background: none;
+      padding: 0;
+      color: var(--ink);
+    }
+    #content ul, #content ol { margin: 12px 0 16px 24px; }
+    #content li { margin-bottom: 6px; }
+    #content hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 48px 0;
+    }
+    #content strong { font-weight: 400; color: var(--ink); }
+    #content em { font-style: italic; color: #5a5045; }
+    mjx-container { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+    @media (max-width: 600px) {
+      .wrap { padding: 32px 20px 80px; }
+      #content table { font-size: 0.78rem; }
+      #content th, #content td { padding: 6px 8px; }
+    }
+      /* ACCESSIBILITY_STYLES */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <nav aria-label="面包屑"><a class="back-link" href="../index.html">&larr; 返回笔记目录</a></nav>
+  <article id="content">
+    <!-- NOTE_CONTENT_START -->
+    <h1>从 GMM 统一推导因子投资中的各种检验</h1>
+    <blockquote>
+    <p>本文从ch2第9节介绍的 GMM 框架出发，逐一推导前面各节出现的检验方法，展示它们都是 GMM 在不同矩条件和权重矩阵选择下的特例。全部推导只依赖两件工具：<strong>谱密度矩阵 $S/T$（样本均值的方差）</strong> 和 <strong>delta 方法（一阶泰勒展开）</strong>。</p>
+    </blockquote>
+    <hr>
+    <h2>0. GMM 速览</h2>
+    <p><strong>矩条件：</strong> $E[\boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b}_0)] = \boldsymbol{0}$，$n$ 个矩，$p$ 个参数。</p>
+    <p><strong>样本矩：</strong> $\boldsymbol{g}<em>T(\boldsymbol{b}) = \frac{1}{T}\sum</em>{t=1}^T \boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b})$</p>
+    <p><strong>GMM 估计量：</strong> $\hat{\boldsymbol{b}}<em>0 = \arg\min</em>{\boldsymbol{b}}\ \boldsymbol{g}_T(\boldsymbol{b})&#39;\boldsymbol{W}\boldsymbol{g}_T(\boldsymbol{b})$，或等价地 $\boldsymbol{a}\boldsymbol{g}_T(\hat{\boldsymbol{b}}_0) = \boldsymbol{0}$</p>
+    <p><strong>谱密度矩阵：</strong> $S = \sum_{j=-\infty}^{\infty} E[\boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b}<em>0)\boldsymbol{f}(\boldsymbol{x}</em>{t-j}, \boldsymbol{b}_0)&#39;]$</p>
+    <p><strong>雅可比矩阵：</strong> $\boldsymbol{d} = E!\left[\frac{\partial \boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b}_0)}{\partial \boldsymbol{b}&#39;}\right]$（$n \times p$）</p>
+    <p><strong>关键公式：</strong></p>
+    <p>$$\text{var}(\hat{\boldsymbol{b}}_0) = \frac{1}{T}(\boldsymbol{a}\boldsymbol{d})^{-1}\boldsymbol{a}S\boldsymbol{a}&#39;(\boldsymbol{a}\boldsymbol{d})^{-1\prime} \tag{A.1}$$</p>
+    <p>$$\text{var}(\boldsymbol{g}_T(\hat{\boldsymbol{b}}_0)) = \frac{1}{T}[\boldsymbol{I} - \boldsymbol{d}(\boldsymbol{a}\boldsymbol{d})^{-1}\boldsymbol{a}],S,[\boldsymbol{I} - \boldsymbol{d}(\boldsymbol{a}\boldsymbol{d})^{-1}\boldsymbol{a}]&#39; \tag{A.2}$$</p>
+    <p><strong>过度识别检验（$\boldsymbol{W} = S^{-1}$ 时）：</strong></p>
+    <p>$$J \equiv T,\boldsymbol{g}_T(\hat{\boldsymbol{b}}_0)&#39;S^{-1}\boldsymbol{g}_T(\hat{\boldsymbol{b}}<em>0) \sim \chi^2</em>{n-p} \tag{A.3}$$</p>
+    <p>以下对每种检验方法，只需做三件事：<strong>（1）写出 $\boldsymbol{f}$；（2）算出 $\boldsymbol{d}$ 和 $S$；（3）代入上面的公式。</strong></p>
+    <hr>
+    <h2>1. 时序回归 + GRS 检验（第4.1节）</h2>
+    <h3>1.1 问题设定</h3>
+    <p>$N$ 个资产，$K$ 个因子，因子收益率 $\boldsymbol{\lambda}_t$ 已知。对每个资产 $i$：</p>
+    <p>$$R_{it}^e = \alpha_i + \boldsymbol{\beta}_i&#39;\boldsymbol{\lambda}<em>t + \varepsilon</em>{it}$$</p>
+    <p>待估参数：$\boldsymbol{b} = (\alpha_1, \boldsymbol{\beta}_1&#39;, \alpha_2, \boldsymbol{\beta}_2&#39;, \cdots, \alpha_N, \boldsymbol{\beta}_N&#39;)&#39;$，共 $p = N(1+K)$ 个。</p>
+    <h3>1.2 构造矩条件</h3>
+    <p>时序回归 OLS 的一阶条件恰好可以写成矩条件。对每个资产 $i$，OLS 要求残差 $\varepsilon_{it}$ 与解释变量（常数1和 $\boldsymbol{\lambda}_t$）正交。定义 $(1+K)$ 维向量 $\boldsymbol{z}_t = (1,, \boldsymbol{\lambda}_t&#39;)&#39;$，则资产 $i$ 贡献 $1+K$ 个矩：</p>
+    <p>$$\boldsymbol{f}_i(\boldsymbol{x}_t, \boldsymbol{b}) = \boldsymbol{z}<em>t \cdot (R</em>{it}^e - \alpha_i - \boldsymbol{\beta}_i&#39;\boldsymbol{\lambda}_t) = \boldsymbol{z}<em>t \cdot \varepsilon</em>{it}$$</p>
+    <p>将 $N$ 个资产堆在一起，总的矩条件向量为：</p>
+    <p>$$\boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b}) = \begin{pmatrix} \boldsymbol{z}<em>t \varepsilon</em>{1t} \ \boldsymbol{z}<em>t \varepsilon</em>{2t} \ \vdots \ \boldsymbol{z}<em>t \varepsilon</em>{Nt} \end{pmatrix} \in \mathbb{R}^{N(1+K)}$$</p>
+    <p>矩的个数 $n = N(1+K)$ 等于参数个数 $p = N(1+K)$，这是<strong>恰好识别</strong>（exactly identified）的情况——所有样本矩都可以精确等于零，GMM 估计量就退化为 OLS。</p>
+    <h3>1.3 GMM 退化为 OLS</h3>
+    <p>恰好识别时，$\boldsymbol{a}\boldsymbol{g}_T(\hat{\boldsymbol{b}}) = \boldsymbol{0}$ 就是 $\boldsymbol{g}_T(\hat{\boldsymbol{b}}) = \boldsymbol{0}$（不需要选 $\boldsymbol{a}$ 或 $\boldsymbol{W}$）。对资产 $i$，样本矩为零意味着：</p>
+    <p>$$\frac{1}{T}\sum_{t=1}^T \boldsymbol{z}<em>t(R</em>{it}^e - \hat{\alpha}_i - \hat{\boldsymbol{\beta}}_i&#39;\boldsymbol{\lambda}_t) = \boldsymbol{0}$$</p>
+    <p>展开就是 $\boldsymbol{z}<em>t&#39;\hat{\varepsilon}</em>{it}$ 在时序上的均值为零，即残差与解释变量正交——这正是 OLS 的正规方程。因此<strong>时序回归 OLS 就是恰好识别的 GMM</strong>。</p>
+    <h3>1.4 推导参数的标准误</h3>
+    <p>由于 $N$ 个资产的回归是独立的（不同资产 $i, j$ 的参数不交叉），总的 $\boldsymbol{d}$ 矩阵和 $S$ 矩阵都是分块对角的。对资产 $i$：</p>
+    <p>$$\boldsymbol{d}_i = E!\left[\frac{\partial \boldsymbol{f}_i}{\partial (\alpha_i, \boldsymbol{\beta}_i&#39;)&#39;}\right] = -E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;] \tag{A.4}$$</p>
+    <p>$$S_i = \sum_{j=-\infty}^{\infty} E[\boldsymbol{z}<em>t\varepsilon</em>{it} \cdot \varepsilon_{i,t-j}\boldsymbol{z}_{t-j}&#39;] \tag{A.5}$$</p>
+    <p><strong>情况1：$\varepsilon_{it}$ 满足 IID。</strong> 则 $E[\varepsilon_{it}\varepsilon_{i,t-j}] = 0$（$j \neq 0$），求和只剩 $j=0$ 项：</p>
+    <p>$$S_i = E[\varepsilon_{it}^2 \boldsymbol{z}_t\boldsymbol{z}_t&#39;] = \sigma_i^2 E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;]$$</p>
+    <p>代入 $\text{var}(\hat{\boldsymbol{b}}_i) = \frac{1}{T}\boldsymbol{d}_i^{-1}S_i(\boldsymbol{d}_i^{-1})&#39;$，注意 $\boldsymbol{d}_i^{-1} = -(E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;])^{-1}$，化简得到：</p>
+    <p>$$\text{var}\begin{pmatrix}\hat{\alpha}_i \ \hat{\boldsymbol{\beta}}_i\end{pmatrix} = \frac{\sigma_i^2}{T}(E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;])^{-1}$$</p>
+    <p>这正是经典 OLS 的协方差矩阵公式 $\sigma^2(\boldsymbol{X}&#39;\boldsymbol{X}/T)^{-1}/T$。</p>
+    <p><strong>情况2：$\varepsilon_{it}$ 存在异方差和/或自相关。</strong> 直接用完整的 $S_i$（式（A.5））代入，$S_i$ 的样本估计就是 Newey–West 估计量（第2.5节式（2.63））。这就解释了为什么 Newey–West 调整后的标准误是&quot;正确的&quot;——它对应的是 GMM 框架下对 $S$ 的正确估计。</p>
+    <h3>1.5 推导 GRS 检验</h3>
+    <p>GRS 想检验的是 $\alpha_1 = \alpha_2 = \cdots = \alpha_N = 0$。这是对已估参数的<strong>联合约束</strong>。</p>
+    <p><strong>方法：追加矩条件。</strong> 在前面 $N(1+K)$ 个矩之上，追加 $N$ 个新矩来描述&quot;$\alpha_i = 0$&quot;这个约束。但更简洁的做法是直接从已估参数的分布出发。</p>
+    <p>由 GMM 已得到 $\hat{\alpha}_i$ 和 $\text{var}(\hat{\alpha}_i)$。将所有 $\hat{\alpha}_i$ 堆成向量 $\hat{\boldsymbol{\alpha}} = (\hat{\alpha}_1, \cdots, \hat{\alpha}_N)&#39;$，其联合协方差矩阵为 $\text{cov}(\hat{\boldsymbol{\alpha}})$。在 $H_0: \boldsymbol{\alpha} = \boldsymbol{0}$ 下构造 Wald 统计量：</p>
+    <p>$$W = \hat{\boldsymbol{\alpha}}&#39;,[\text{cov}(\hat{\boldsymbol{\alpha}})]^{-1},\hat{\boldsymbol{\alpha}} \xrightarrow{d} \chi^2_N \tag{A.6}$$</p>
+    <p>现在推导 $\text{cov}(\hat{\boldsymbol{\alpha}})$。在恰好识别、$\varepsilon_{it}$ IID 正态的条件下，$\hat{\alpha}_i = \bar{R}_i^e - \hat{\boldsymbol{\beta}}_i&#39;\bar{\boldsymbol{\lambda}}$，其中 $\bar{R}_i^e$ 和 $\bar{\boldsymbol{\lambda}}$ 是时序均值。利用 $\hat{\alpha}<em>i$ 的定义和 $\varepsilon</em>{it}$ 的正态性，可以证明：</p>
+    <p>$$\text{cov}(\hat{\boldsymbol{\alpha}}) = \frac{1}{T}\boldsymbol{\Sigma}\left(1 + \bar{\boldsymbol{\lambda}}&#39;\hat{\boldsymbol{\Sigma}}_\lambda^{-1}\bar{\boldsymbol{\lambda}}\right) \tag{A.7}$$</p>
+    <p>其中 $\boldsymbol{\Sigma} = \text{cov}(\boldsymbol{\varepsilon}<em>t)$（$N \times N$ 残差协方差矩阵），$\hat{\boldsymbol{\Sigma}}</em>\lambda$ 是因子收益率的样本协方差矩阵。</p>
+    <p>代入式（A.6），并利用有限样本下 $F$ 分布与 $\chi^2$ 分布的关系做精确修正：</p>
+    <p>$$\frac{T - N - K}{N}\left(1 + \bar{\boldsymbol{\lambda}}&#39;\hat{\boldsymbol{\Sigma}}<em>\lambda^{-1}\bar{\boldsymbol{\lambda}}\right)^{-1}\hat{\boldsymbol{\alpha}}&#39;\hat{\boldsymbol{\Sigma}}^{-1}\hat{\boldsymbol{\alpha}} \sim F</em>{N,,T-N-K}$$</p>
+    <p>这正是第4.1节的 <strong>GRS 统计量</strong>（式（2.16））。</p>
+    <p><strong>小结：GRS 检验 = 时序回归 GMM 估计量的 Wald 检验 + IID 正态下的有限样本精确分布修正。</strong></p>
+    <hr>
+    <h2>2. 截面回归（第4.2节）</h2>
+    <h3>2.1 问题设定</h3>
+    <p>第一步时序回归（与上节相同）得到 $\hat{\boldsymbol{\beta}}_i$。第二步将 $\hat{\boldsymbol{\beta}}_i$ 视为已知，在截面上估计 $\boldsymbol{\lambda}$。</p>
+    <h3>2.2 构造矩条件</h3>
+    <p>截面回归也可以放入 GMM。关键是把两步合在一起。总共有两组矩条件：</p>
+    <p><strong>第一组（$N(1+K)$ 个矩）：</strong> 时序回归的 OLS 正规方程——与第1节完全相同。</p>
+    <p><strong>第二组（$K$ 个矩）：</strong> 截面回归 OLS 的一阶条件。定义截面残差 $\alpha_{it} = R_{it}^e - \hat{\boldsymbol{\beta}}_i&#39;\boldsymbol{\lambda}_t$。OLS 要求 $\hat{\boldsymbol{\beta}}<em>i$ 与 $\alpha</em>{it}$ 在截面上正交，写成时序均值的矩条件：</p>
+    <p>$$E!\left[\frac{1}{N}\sum_{i=1}^N \hat{\boldsymbol{\beta}}<em>i(R</em>{it}^e - \hat{\boldsymbol{\beta}}_i&#39;\boldsymbol{\lambda}_t)\right] = \boldsymbol{0}$$</p>
+    <p>即 $E[\hat{\boldsymbol{\beta}}&#39;(\boldsymbol{R}_t^e - \hat{\boldsymbol{\beta}}\boldsymbol{\lambda}_t)] = \boldsymbol{0}$，这正是 $(\hat{\boldsymbol{\beta}}&#39;\hat{\boldsymbol{\beta}})^{-1}\hat{\boldsymbol{\beta}}&#39;E_T[\boldsymbol{R}^e]$ 的一阶条件。</p>
+    <p>总的参数向量 $\boldsymbol{b} = (\alpha_1, \boldsymbol{\beta}_1&#39;, \cdots, \alpha_N, \boldsymbol{\beta}_N&#39;, \boldsymbol{\lambda}&#39;)&#39;$，参数个数 $p = N(1+K) + K$。矩的个数 $n = N(1+K) + K = p$，仍是恰好识别。</p>
+    <h3>2.3 推导标准误——Shanken 修正的来源</h3>
+    <p>关键在于 $\hat{\boldsymbol{\lambda}}$ 的方差。由于第二步用了第一步估计的 $\hat{\boldsymbol{\beta}}_i$（生成的回归变量），$\hat{\boldsymbol{\lambda}}$ 的方差中会出现来自 $\hat{\boldsymbol{\beta}}_i$ 估计误差的额外项。</p>
+    <p>在 GMM 框架下，$\hat{\boldsymbol{\lambda}}$ 只是总参数向量 $\hat{\boldsymbol{b}}$ 的一部分。GMM 自动地对全部参数联合计算协方差矩阵，天然包含了两步之间的误差传播。从式（A.1）出发，取出 $\hat{\boldsymbol{\lambda}}$ 对应的分块，并在 IID 假设下化简，最终得到：</p>
+    <p>$$\text{cov}(\hat{\boldsymbol{\lambda}}) = \frac{1}{T}\left[(\hat{\boldsymbol{\beta}}&#39;\hat{\boldsymbol{\beta}})^{-1}\hat{\boldsymbol{\beta}}&#39;\boldsymbol{\Sigma}\hat{\boldsymbol{\beta}}(\hat{\boldsymbol{\beta}}&#39;\hat{\boldsymbol{\beta}})^{-1}(1 + \boldsymbol{\lambda}&#39;\boldsymbol{\Sigma}_f^{-1}\boldsymbol{\lambda}) + \boldsymbol{\Sigma}_f\right]$$</p>
+    <p>这正是第2.7节的 <strong>Shanken 修正</strong>公式（式（2.24））。其中 $(1 + \boldsymbol{\lambda}&#39;\boldsymbol{\Sigma}_f^{-1}\boldsymbol{\lambda})$ 这个修正系数并非人为添加，而是 GMM 联合估计两步参数时自然产生的结果。</p>
+    <p><strong>小结：Shanken 修正不是一个独立的&quot;补丁&quot;，而是 GMM 对两步回归估计自动给出的正确标准误。</strong></p>
+    <h3>2.4 推导 $\chi^2$ 检验</h3>
+    <p>$H_0: \boldsymbol{\alpha} = \boldsymbol{0}$。样本矩中对应 $\alpha_i$ 的部分就是截面回归残差。利用 GMM 的过度识别检验（式（A.3）），或直接用 Wald 统计量：</p>
+    <p>$$\hat{\boldsymbol{\alpha}}&#39;,[\text{cov}(\hat{\boldsymbol{\alpha}})]^{-1},\hat{\boldsymbol{\alpha}} \sim \chi^2_{N-K}$$</p>
+    <p>这正是第4.2节式（2.30）和（2.31）。OLS 和 GLS 版本的区别仅在于选择了不同的 $\boldsymbol{W}$（或 $\boldsymbol{a}$）：OLS 对应 $\boldsymbol{W} = \boldsymbol{I}$，GLS 对应 $\boldsymbol{W} = \boldsymbol{\Sigma}^{-1}$。</p>
+    <hr>
+    <h2>3. Fama–MacBeth 回归（第4.4节）</h2>
+    <h3>3.1 问题设定</h3>
+    <p>和截面回归相同的两步结构，但第二步在每个 $t$ 做一次截面 OLS，共 $T$ 次，再将 $T$ 个估计取平均。</p>
+    <h3>3.2 GMM 视角</h3>
+    <p>Fama–MacBeth 的本质是：对于每个 $t$，用 $N$ 个资产的截面数据 $(R_{1t}^e, \cdots, R_{Nt}^e)$ 和 $\hat{\boldsymbol{\beta}}_i$，跑一次截面 OLS 得到 $\hat{\boldsymbol{\lambda}}_t$。然后：</p>
+    <p>$$\hat{\boldsymbol{\lambda}} = \frac{1}{T}\sum_{t=1}^T \hat{\boldsymbol{\lambda}}_t$$</p>
+    <p>这就是一个<strong>样本均值</strong>。而 GMM 的核心正是处理样本均值的方差。</p>
+    <p>将每一期的截面 OLS 估计量写出来：</p>
+    <p>$$\hat{\boldsymbol{\lambda}}_t = (\hat{\boldsymbol{\beta}}&#39;\hat{\boldsymbol{\beta}})^{-1}\hat{\boldsymbol{\beta}}&#39;\boldsymbol{R}_t^e$$</p>
+    <p>定义 $\boldsymbol{u}_t = \hat{\boldsymbol{\lambda}}_t - \boldsymbol{\lambda}$（围绕真值的偏差）。当 $\hat{\boldsymbol{\beta}}$ 在时序上不变时，$\hat{\boldsymbol{\lambda}}$ 的方差就是 $\boldsymbol{u}_t$ 的样本均值的方差。这正是第9.1节的基本问题。</p>
+    <h3>3.3 推导标准误</h3>
+    <p><strong>Fama–MacBeth 的做法：</strong> 直接用 $T$ 个 $\hat{\boldsymbol{\lambda}}_t$ 的时序样本方差估计 $\text{var}(\hat{\boldsymbol{\lambda}})$：</p>
+    <p>$$\text{cov}(\hat{\boldsymbol{\lambda}}) = \frac{1}{T^2}\sum_{t=1}^T (\hat{\boldsymbol{\lambda}}_t - \hat{\boldsymbol{\lambda}})(\hat{\boldsymbol{\lambda}}_t - \hat{\boldsymbol{\lambda}})&#39;$$</p>
+    <p>这等价于用 $\hat{\boldsymbol{\lambda}}_t$ 的样本方差除以 $T$，即 $\hat{S}/T$ 的最简单版本——假设 $\hat{\boldsymbol{\lambda}}_t$ <strong>无自相关</strong>（$j \neq 0$ 时 $\text{cov}(\boldsymbol{u}<em>t, \boldsymbol{u}</em>{t-j}) = 0$）。</p>
+    <p>在 GMM 的谱密度矩阵语言下：</p>
+    <p>$$S_{\text{FM}} = E[\boldsymbol{u}_t\boldsymbol{u}_t&#39;] = \text{var}(\hat{\boldsymbol{\lambda}}_t)$$</p>
+    <p>$$\text{var}(\hat{\boldsymbol{\lambda}}) = S_{\text{FM}} / T$$</p>
+    <p><strong>Fama–MacBeth 排除截面相关性的机制：</strong> 传统截面回归对时序平均 $E_T[\boldsymbol{R}^e]$ 做一次回归，$\alpha_i$ 之间的截面相关性直接影响标准误。Fama–MacBeth 在每个 $t$ 独立做截面回归，截面相关性被&quot;封装&quot;在每期的 $\hat{\boldsymbol{\lambda}}_t$ 内部，然后通过 $\hat{\boldsymbol{\lambda}}_t$ 的时序波动自然地反映出来。在 GMM 框架下，这对应于选择了一个特殊的分块结构的 $S$ 矩阵，使截面相关性不出现在 $\text{var}(\hat{\boldsymbol{\lambda}})$ 的表达式中。</p>
+    <h3>3.4 不足之处的 GMM 解释</h3>
+    <p><strong>时序自相关：</strong> Fama–MacBeth 用的 $S_{\text{FM}}$ 只包含 $j=0$ 项。如果 $\hat{\boldsymbol{\lambda}}<em>t$ 存在时序自相关，需要用完整的谱密度矩阵（即 Newey–West 版本的 $S$）代替。这就是第4.4节提到的&quot;对 $\alpha</em>{it}$ 时序相关性无能为力&quot;的数学本质。</p>
+    <p><strong>生成回归变量：</strong> $\hat{\boldsymbol{\beta}}_i$ 是估计值。Fama–MacBeth 在计算 $\text{var}(\hat{\boldsymbol{\lambda}})$ 时没有考虑 $\hat{\boldsymbol{\beta}}_i$ 的误差。在完整的 GMM 框架下（把两步合在一起），这个误差会自动传播到 $\text{cov}(\hat{\boldsymbol{\lambda}})$ 中，产生 Shanken 修正项。</p>
+    <p><strong>小结：Fama–MacBeth = GMM 框架下对 $S$ 做了&quot;无时序自相关&quot;的简化估计 + 忽略了生成回归变量的误差传播。</strong></p>
+    <hr>
+    <h2>4. 异象的时序回归检验 + Newey–West（第6.2节）</h2>
+    <h3>4.1 问题设定</h3>
+    <p>异象收益率 $R_t^e$ 对 $K$ 个因子做时序回归：</p>
+    <p>$$R_t^e = \alpha + \boldsymbol{\beta}&#39;\boldsymbol{\lambda}_t + \varepsilon_t$$</p>
+    <p>检验 $H_0: \alpha = 0$。</p>
+    <h3>4.2 GMM 矩条件</h3>
+    <p>这是单个资产的时序回归，和第1节中的一个资产完全一样。矩条件：</p>
+    <p>$$\boldsymbol{f}(\boldsymbol{x}_t, \boldsymbol{b}) = \boldsymbol{z}_t \varepsilon_t = \begin{pmatrix} 1 \ \boldsymbol{\lambda}_t \end{pmatrix}(R_t^e - \alpha - \boldsymbol{\beta}&#39;\boldsymbol{\lambda}_t)$$</p>
+    <p>$n = 1 + K$ 个矩，$p = 1 + K$ 个参数（$\alpha$ 和 $\boldsymbol{\beta}$），恰好识别。</p>
+    <h3>4.3 推导标准误</h3>
+    <p>$$\boldsymbol{d} = -E[\boldsymbol{z}<em>t\boldsymbol{z}<em>t&#39;], \quad S = \sum</em>{j=-\infty}^{\infty} E[\boldsymbol{z}<em>t\boldsymbol{z}</em>{t-j}&#39;\varepsilon_t\varepsilon</em>{t-j}]$$</p>
+    <p>$$\text{var}(\hat{\boldsymbol{b}}) = \frac{1}{T}(E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;])^{-1} S, (E[\boldsymbol{z}_t\boldsymbol{z}_t&#39;])^{-1}$$</p>
+    <p>这就是第2.5节的 <strong>Newey–West 三明治公式</strong>（式（2.64））：$\hat{\boldsymbol{V}}_{\text{OLS}} = T(\boldsymbol{X}&#39;\boldsymbol{X})^{-1}\boldsymbol{S}(\boldsymbol{X}&#39;\boldsymbol{X})^{-1}$。</p>
+    <p>$S$ 的样本估计就是式（2.63）的 Newey–West 估计量。取出 $\hat{\alpha}$ 对应的对角线元素开方，即为 $\text{s.e.}(\hat{\alpha})$，计算 $t$-值完成检验。</p>
+    <p><strong>小结：Newey–West 调整后的 $t$-值 = GMM 框架下使用完整谱密度矩阵 $S$ 计算的 Wald 检验 $t$-值。</strong></p>
+    <hr>
+    <h2>5. 对单一收益率序列的检验（第2.6节）</h2>
+    <h3>5.1 问题设定</h3>
+    <p>检验因子（或异象）收益率序列 ${\lambda_t}$ 的均值是否显著不为零。</p>
+    <h3>5.2 GMM 矩条件</h3>
+    <p>这是最简单的 GMM。只有 $n = 1$ 个矩、$p = 1$ 个参数（均值 $\mu$）：</p>
+    <p>$$f(x_t, \mu) = \lambda_t - \mu$$</p>
+    <p>矩条件 $E[\lambda_t - \mu] = 0$ 意味着 $\mu = E[\lambda_t]$。</p>
+    <h3>5.3 推导</h3>
+    <p>$$d = \frac{\partial f}{\partial \mu} = -1, \quad S = \sum_{j=-\infty}^{\infty} E[(\lambda_t - \mu)(\lambda_{t-j} - \mu)]$$</p>
+    <p>$$\text{var}(\hat{\mu}) = \frac{S}{T}$$</p>
+    <p>$S$ 的 Newey–West 估计量就是第2.6节式（2.66）：</p>
+    <p>$$\hat{S} = \frac{1}{T}\left{\sum_{t=1}^T \hat{\varepsilon}<em>t^2 + 2\sum</em>{j=1}^J \sum_{t=j+1}^T w_j \hat{\varepsilon}<em>t \hat{\varepsilon}</em>{t-j}\right}$$</p>
+    <p>其中 $\hat{\varepsilon}_t = \lambda_t - \bar{\lambda}$。因此 $\text{s.e.}(\hat{\mu}) = \sqrt{\hat{S}/T}$（式（2.67））。</p>
+    <p><strong>小结：这是 GMM 最退化的情况——一个矩、一个参数。谱密度矩阵 $S$ 退化为标量，就是 Newey–West 调整后的&quot;长期方差&quot;。</strong></p>
+    <hr>
+    <h2>6. 截面回归的 $\chi^2$ 检验（第4.2节式（2.30）（2.31））</h2>
+    <h3>6.1 GMM 推导</h3>
+    <p>截面回归估计了 $K$ 个 $\hat{\lambda}_k$ 和 $N$ 个 $\hat{\alpha}_i$。检验 $H_0: \boldsymbol{\alpha} = \boldsymbol{0}$。</p>
+    <p>在 GMM 框架下，$\hat{\boldsymbol{\alpha}}$ 就是评估样本矩的残差。过度识别检验（式（A.3））直接给出：</p>
+    <p>$$T,\hat{\boldsymbol{\alpha}}&#39;,[\text{var}(\hat{\boldsymbol{\alpha}})]^{-1},\hat{\boldsymbol{\alpha}} \sim \chi^2_{N-K}$$</p>
+    <p>自由度 $N - K$：$N$ 个资产的定价误差被 $K$ 个因子收益率参数&quot;消耗&quot;了 $K$ 个自由度。</p>
+    <p><strong>OLS 版本：</strong> 对应 GMM 中 $\boldsymbol{W} = \boldsymbol{I}$（或等价地 $S$ 中用 $\boldsymbol{\Sigma}$ 的对角结构），$\text{cov}(\hat{\boldsymbol{\alpha}})$ 如式（2.23）（加 Shanken 修正如式（2.25）），代入得到式（2.30）。</p>
+    <p><strong>GLS 版本：</strong> 对应 GMM 中 $\boldsymbol{W} = \boldsymbol{\Sigma}^{-1}$，$\text{cov}(\hat{\boldsymbol{\alpha}}_{\text{GLS}})$ 如式（2.29），代入得到式（2.31）。</p>
+    <p><strong>小结：OLS 截面检验和 GLS 截面检验是 GMM 过度识别检验在不同权重矩阵下的特例。GLS 对应有效 GMM（$\boldsymbol{W} = S^{-1}$）。</strong></p>
+    <hr>
+    <h2>7. Fama–MacBeth 的 $\chi^2$ 检验（第4.4节式（2.44））</h2>
+    <p>直接从 Fama–MacBeth 得到 $\hat{\boldsymbol{\alpha}}$ 和 $\text{cov}(\hat{\boldsymbol{\alpha}})$（式（2.42）（2.43）），构造：</p>
+    <p>$$\hat{\boldsymbol{\alpha}}&#39;,\text{cov}(\hat{\boldsymbol{\alpha}})^{-1},\hat{\boldsymbol{\alpha}} \sim \chi^2_{N-K}$$</p>
+    <p>在 GMM 框架下，这仍然是 Wald 检验。与截面回归版本的区别仅在于 $\text{cov}(\hat{\boldsymbol{\alpha}})$ 的估计方式不同：</p>
+    <ul>
+    <li>截面回归用解析公式（依赖 $\boldsymbol{\Sigma}, \boldsymbol{\Sigma}_f$ 的估计 + Shanken 修正）。</li>
+    <li>Fama–MacBeth 直接用 $\hat{\boldsymbol{\alpha}}_t$ 的时序样本协方差（天然吸收截面相关性，但忽略时序相关性和生成变量误差）。</li>
+    </ul>
+    <hr>
+    <h2>8. 均值—方差张成检验（第7.3节）</h2>
+    <h3>8.1 GMM 矩条件</h3>
+    <p>考虑 $K$ 个因子 $R_{1t}$ 和 $N$ 个测试资产 $R_{2t}$，回归模型：</p>
+    <p>$$R_{2t} = \boldsymbol{\alpha} + \boldsymbol{\beta} R_{1t} + \boldsymbol{\varepsilon}_t$$</p>
+    <p>定义 $\boldsymbol{\delta} = \mathbf{1}_N - \boldsymbol{\beta}\mathbf{1}_K$。矩条件对应回归的 OLS 正规方程：</p>
+    <p>$$\boldsymbol{f}(\boldsymbol{x}<em>t, \boldsymbol{b}) = \begin{pmatrix} 1 \ R</em>{1t} \end{pmatrix} \otimes \boldsymbol{\varepsilon}_t$$</p>
+    <p>$n = N(1+K)$ 个矩，$p = N(1+K)$ 个参数（每个测试资产有 $1 + K$ 个回归系数），恰好识别。</p>
+    <h3>8.2 原假设与检验</h3>
+    <p>原假设 $H_0: \boldsymbol{\alpha} = \boldsymbol{0}_N,, \boldsymbol{\delta} = \boldsymbol{0}_N$ 是对 $2N$ 个参数的约束。由 $\boldsymbol{\delta} = \mathbf{1}_N - \boldsymbol{\beta}\mathbf{1}_K$，约束可统一写成 $\boldsymbol{R}\boldsymbol{b} = \boldsymbol{r}$ 的形式。</p>
+    <p>在 GMM 框架下，用 Wald 检验：</p>
+    <p>$$W = (\boldsymbol{R}\hat{\boldsymbol{b}} - \boldsymbol{r})&#39;,[\boldsymbol{R},\text{var}(\hat{\boldsymbol{b}}),\boldsymbol{R}&#39;]^{-1},(\boldsymbol{R}\hat{\boldsymbol{b}} - \boldsymbol{r}) \xrightarrow{d} \chi^2_{2N}$$</p>
+    <p>在正态 IID 假设下，这个 $\chi^2_{2N}$ 统计量恰好可以分解为两个分量 $s_1$ 和 $s_2$ 的函数（对应纵轴上两个特殊的 $r$ 值），从而退化为第7.3节式（2.76）的 Wald 形式 $W = T(s_1 + s_2)$。</p>
+    <p>类似地，似然比检验和拉格朗日乘数检验是 GMM 框架下检验约束条件的三种渐进等价方法，它们在有限样本下略有差异，但大样本下都趋于 $\chi^2_{2N}$。</p>
+    <p><strong>小结：均值—方差张成检验的三种统计量 = 对时序回归 GMM 参数施加 $H_0: \boldsymbol{\alpha} = \boldsymbol{0}, \boldsymbol{\delta} = \boldsymbol{0}$ 约束的 LR / Wald / LM 检验。</strong></p>
+    <hr>
+    <h2>总结：一张表看全部</h2>
+    <table>
+    <thead>
+    <tr>
+    <th>前文检验方法</th>
+    <th>GMM 中的身份</th>
+    <th>矩条件 $\boldsymbol{f}$</th>
+    <th>识别状态</th>
+    <th>$S$ 的处理</th>
+    <th>检验统计量来源</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+    <td><strong>时序回归 OLS</strong> (§4.1)</td>
+    <td>恰好识别 GMM</td>
+    <td>$\boldsymbol{z}<em>t\varepsilon</em>{it}$</td>
+    <td>$n = p$</td>
+    <td>IID → 经典公式</td>
+    <td>—</td>
+    </tr>
+    <tr>
+    <td><strong>GRS 检验</strong> (§4.1/§7.2)</td>
+    <td>上述 GMM 估计量的 Wald 检验</td>
+    <td>同上</td>
+    <td>$n = p$</td>
+    <td>IID 正态 → 有限样本 $F$</td>
+    <td>$F_{N,T-N-K}$</td>
+    </tr>
+    <tr>
+    <td><strong>截面回归</strong> (§4.2)</td>
+    <td>两步 GMM（恰好识别）</td>
+    <td>时序 + 截面正规方程</td>
+    <td>$n = p$</td>
+    <td>IID → Shanken 修正自动出现</td>
+    <td>—</td>
+    </tr>
+    <tr>
+    <td><strong>截面 $\chi^2$ 检验</strong> (§4.2)</td>
+    <td>过度识别检验 / Wald</td>
+    <td>同上</td>
+    <td>$n = p$</td>
+    <td>OLS: $\boldsymbol{W}=\boldsymbol{I}$；GLS: $\boldsymbol{W}=\boldsymbol{\Sigma}^{-1}$</td>
+    <td>$\chi^2_{N-K}$</td>
+    </tr>
+    <tr>
+    <td><strong>Fama–MacBeth</strong> (§4.4)</td>
+    <td>GMM + $S$ 简化估计</td>
+    <td>截面正规方程 × $T$ 期</td>
+    <td>$n = p$</td>
+    <td>忽略时序相关 + 忽略 EIV</td>
+    <td>$\chi^2_{N-K}$</td>
+    </tr>
+    <tr>
+    <td><strong>Newey–West 调整</strong> (§2.5)</td>
+    <td>GMM 对 $S$ 的 HAC 估计</td>
+    <td>任意（通用）</td>
+    <td>任意</td>
+    <td>完整 $S$（异方差 + 自相关）</td>
+    <td>—</td>
+    </tr>
+    <tr>
+    <td><strong>单序列 $t$-检验</strong> (§2.6)</td>
+    <td>最简单的 GMM（1矩1参数）</td>
+    <td>$\lambda_t - \mu$</td>
+    <td>$n=p=1$</td>
+    <td>NW → 标量 $S$</td>
+    <td>$t$</td>
+    </tr>
+    <tr>
+    <td><strong>异象时序检验</strong> (§6.2)</td>
+    <td>单资产时序回归 GMM</td>
+    <td>$\boldsymbol{z}_t\varepsilon_t$</td>
+    <td>$n=p$</td>
+    <td>NW 调整</td>
+    <td>$t_{T-K-1}$</td>
+    </tr>
+    <tr>
+    <td><strong>均值—方差张成</strong> (§7.3)</td>
+    <td>时序回归 GMM + 参数约束</td>
+    <td>$\boldsymbol{z}_t \otimes \boldsymbol{\varepsilon}_t$</td>
+    <td>$n=p$，约束 $2N$ 个</td>
+    <td>IID → LR / Wald / LM</td>
+    <td>$\chi^2_{2N}$</td>
+    </tr>
+    </tbody></table>
+    <p><strong>一切检验的底层逻辑只有一个：</strong></p>
+    <p>$$\text{var}(\text{样本均值}) = \frac{S}{T}$$</p>
+    <p>不同检验方法的区别仅在于：（1）选择了什么矩条件 $\boldsymbol{f}$；（2）选择了什么权重矩阵 $\boldsymbol{W}$（或 $\boldsymbol{a}$）；（3）对 $S$ 做了什么近似（IID、仅异方差、HAC 完整版）。GMM 提供了统一的语言和推导框架，将看似各异的方法串联在一起。</p>
+    <!-- NOTE_CONTENT_END -->
+  </article>
+</main>
+</body>
+</html>

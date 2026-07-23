@@ -3,15 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>笔记 · SylphyZ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <title>学习笔记 · SylphyZ</title>
+  <meta name="description" content="SylphyZ 的学习笔记目录，涵盖量化金融、资产定价、因子投资与生成模型。">
+  <meta name="author" content="SylphyZ">
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="canonical" href="https://sylphyz.github.io/notebook/">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="学习笔记 · SylphyZ">
+  <meta property="og:description" content="量化金融、资产定价、因子投资与生成模型学习笔记。">
+  <meta property="og:url" content="https://sylphyz.github.io/notebook/">
+  <meta property="og:image" content="https://sylphyz.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SYLPHYZ · NOTES · VISION · MODELS">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root {
       --ink: #1a1612;
       --paper: #f5f0e8;
-      --accent: #8b6f47;
-      --accent-light: #c4a882;
-      --muted: #9a9080;
+      --accent: #765a35;
+      --accent-light: #786241;
+      --muted: #6f675b;
       --rule: #d4c9b8;
     }
 
@@ -20,7 +33,7 @@
     body {
       background: var(--paper);
       color: var(--ink);
-      font-family: "Noto Serif SC", serif;
+      font-family: ui-serif, "Noto Serif SC", "Songti SC", STSong, serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -66,7 +79,7 @@
     }
 
     .page-title {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-size: clamp(2rem, 6vw, 3.5rem);
       font-weight: 300;
       letter-spacing: 0.06em;
@@ -89,6 +102,51 @@
 
     .book-section {
       margin-bottom: 48px;
+      scroll-margin-top: 28px;
+    }
+
+    .book-jump {
+      position: fixed;
+      top: 156px;
+      left: max(24px, calc(50% - 570px));
+      width: 190px;
+      padding-left: 18px;
+      border-left: 1px solid var(--rule);
+    }
+
+    .book-jump-title {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.66rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .book-jump-list {
+      list-style: none;
+    }
+
+    .book-jump a {
+      display: grid;
+      grid-template-columns: 1.6em 1fr;
+      gap: 6px;
+      padding: 8px 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .book-jump a:hover {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .book-jump-index {
+      color: var(--accent-light);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-variant-numeric: tabular-nums;
     }
 
     .book-title {
@@ -213,7 +271,7 @@
     }
 
     .pdf-title {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--ink);
@@ -243,25 +301,85 @@
       color: var(--accent);
     }
 
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 1120px) {
+      .book-jump {
+        position: static;
+        width: auto;
+        margin: -24px 0 48px;
+        padding: 14px 16px;
+        border: 1px solid var(--rule);
+        background: rgba(255,255,255,0.3);
+      }
+
+      .book-jump-title {
+        margin-bottom: 6px;
+      }
+
+      .book-jump-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px 20px;
+      }
+    }
+
     @media (max-width: 600px) {
       .wrap { padding: 32px 20px 80px; }
       .note-item a { padding: 14px 40px 14px 16px; }
+      .book-jump { margin-top: -28px; }
+      .book-jump-list { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="wrap">
-  <a class="back-link" href="../index.html">&larr; 返回主页</a>
+<main class="wrap">
+  <nav aria-label="面包屑"><a class="back-link" href="../index.html">&larr; 返回主页</a></nav>
 
   <header>
-    <div class="page-title">NoteBook</div>
+    <h1 class="page-title">Notebook</h1>
     <p class="page-sub">学习笔记整理</p>
     <div class="divider"></div>
   </header>
 
-  <div class="book-section">
-    <div class="book-title">Bodie《Investments》第13版</div>
+  <aside class="book-jump" aria-labelledby="book-jump-title">
+    <p class="book-jump-title" id="book-jump-title">快速定位</p>
+    <ol class="book-jump-list">
+      <li>
+        <a href="#bodie-heading">
+          <span class="book-jump-index">01</span>
+          <span>Bodie<br>《Investments》</span>
+        </a>
+      </li>
+      <li>
+        <a href="#ang-heading">
+          <span class="book-jump-index">02</span>
+          <span>Andrew Ang<br>《Asset Management》</span>
+        </a>
+      </li>
+      <li>
+        <a href="#shichuan-heading">
+          <span class="book-jump-index">03</span>
+          <span>石川<br>《因子投资方法与实践》</span>
+        </a>
+      </li>
+    </ol>
+  </aside>
+
+  <section class="book-section" aria-labelledby="bodie-heading">
+    <h2 class="book-title" id="bodie-heading">Bodie《Investments》第13版</h2>
     <ul class="note-list">
       <li class="note-item">
         <a href="Bodie%E3%80%8AInvestments%E3%80%8B/Chapter5_%E9%A3%8E%E9%99%A9%E6%94%B6%E7%9B%8A%E4%B8%8E%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95_%E6%80%BB%E7%BB%93.html">
@@ -306,10 +424,10 @@
         </a>
       </li>
     </ul>
-  </div>
+  </section>
 
-  <div class="book-section">
-    <div class="book-title">Andrew Ang《Asset Management》</div>
+  <section class="book-section" aria-labelledby="ang-heading">
+    <h2 class="book-title" id="ang-heading">Andrew Ang《Asset Management》</h2>
     <ul class="note-list">
       <li class="note-item">
         <a href="Andrew%20Ang%20%E3%80%8AAsset%20Management%E3%80%8B/ch3_mean_variance_investing.html">
@@ -354,9 +472,78 @@
         </a>
       </li>
     </ul>
-  </div>
+  </section>
 
-</div>
+  <section class="book-section" aria-labelledby="shichuan-heading">
+    <h2 class="book-title" id="shichuan-heading">石川《因子投资方法与实践》</h2>
+    <ul class="note-list">
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch1_因子投资基础.html">
+          <span class="note-title">第 1 章 · 因子投资基础</span>
+          <p class="note-desc">收益率 · 风险 · 资产定价 · 因子模型 · 因子投资</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch2_reorganized.html">
+          <span class="note-title">第 2 章 · 因子投资方法论（重编版）</span>
+          <p class="note-desc">因子构建 · 组合排序 · 截面回归 · 时间序列检验</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch2.5_gmm_unifies_all.html">
+          <span class="note-title">专题 · 用 GMM 统一因子投资检验</span>
+          <p class="note-desc">矩条件 · GMM · Alpha 检验 · 风险价格 · 模型比较</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch3_主流因子解读.html">
+          <span class="note-title">第 3 章 · 主流因子解读</span>
+          <p class="note-desc">市场 · 规模 · 价值 · 动量 · 盈利 · 投资因子</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch4_多因子模型.html">
+          <span class="note-title">第 4 章 · 多因子模型</span>
+          <p class="note-desc">Fama-French · q-factor · 模型检验 · 因子冗余</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch5_异象研究_完整版.html">
+          <span class="note-title">第 5 章 · 异象研究</span>
+          <p class="note-desc">市场异象 · 数据挖掘 · 多重检验 · 样本外验证</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch6_因子研究现状.html">
+          <span class="note-title">第 6 章 · 因子研究现状（完整版）</span>
+          <p class="note-desc">因子动物园 · 复制危机 · 机器学习 · 可解释性</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/第6章_因子研究现状_学习笔记.html">
+          <span class="note-title">第 6 章 · 从因子动物园到机器学习</span>
+          <p class="note-desc">学习导读 · 研究演进 · 关键争议 · 实证前沿</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+      <li class="note-item">
+        <a href="石川《因子投资方法与实践》/ch7_因子投资实践.html">
+          <span class="note-title">第 7 章 · 因子投资实践</span>
+          <p class="note-desc">因子选择 · 组合构建 · 交易成本 · 风险管理</p>
+          <span class="note-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+</main>
 
 </body>
 </html>

@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SylphyZ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+  <title>不梦秋深 · SylphyZ</title>
+  <meta name="description" content="不梦秋深的个人主页：计算机视觉、生成模型、量化金融学习笔记与小游戏。">
+  <meta name="author" content="SylphyZ">
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="canonical" href="https://sylphyz.github.io/">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="SylphyZ">
+  <meta property="og:title" content="不梦秋深 · SylphyZ">
+  <meta property="og:description" content="计算机视觉、生成模型、量化金融学习笔记与小游戏。">
+  <meta property="og:url" content="https://sylphyz.github.io/">
+  <meta property="og:image" content="https://sylphyz.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SYLPHYZ · NOTES · VISION · MODELS">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root {
       --ink: #1a1612;
       --paper: #f5f0e8;
-      --accent: #8b6f47;
-      --accent-light: #c4a882;
-      --muted: #9a9080;
+      --accent: #765a35;
+      --accent-light: #786241;
+      --muted: #6f675b;
       --rule: #d4c9b8;
     }
 
@@ -20,7 +35,7 @@
     body {
       background: var(--paper);
       color: var(--ink);
-      font-family: "Noto Serif SC", serif;
+      font-family: ui-serif, "Noto Serif SC", "Songti SC", STSong, serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -61,7 +76,7 @@
     }
 
     .name-zh {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 300;
       letter-spacing: 0.08em;
@@ -166,7 +181,7 @@
     .note-card:hover::before { transform: scaleY(1); }
 
     .card-title {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--ink);
@@ -236,17 +251,52 @@
 
     .footer-links a:hover { color: var(--accent); }
 
+    .footer-note a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 12px;
+      z-index: 10;
+      padding: 8px 12px;
+      color: var(--paper);
+      background: var(--ink);
+      text-decoration: none;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
     @media (max-width: 600px) {
       .wrap { padding: 48px 24px 80px; }
       .note-card { padding: 20px 48px 20px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="wrap">
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<main class="wrap" id="main-content">
   <header>
-    <div class="name-zh">不梦秋深</div>
+    <h1 class="name-zh">不梦秋深</h1>
     <div class="name-sub">电子科技大学</div>
     <div class="divider"></div>
     <p class="bio">
@@ -264,11 +314,11 @@
     </div>
   </header>
 
-  <section>
-    <div class="section-label">笔记</div>
+  <section aria-labelledby="notes-heading">
+    <h2 class="section-label" id="notes-heading">笔记</h2>
     <a class="note-card" href="notebook/publish.pdf">
       <div class="card-tag">PDF</div>
-      <div class="card-title">博士期间学习笔记</div>
+      <h3 class="card-title">博士期间学习笔记</h3>
       <p class="card-desc">
         Flow Matching · Mean Flow · SDE · Fourier 分析 · 高斯过程
       </p>
@@ -276,19 +326,19 @@
     </a>
     <a class="note-card" href="notebook/index.html" style="margin-top: -1px;">
       <div class="card-tag">量化笔记</div>
-      <div class="card-title">Quantitative Finance</div>
+      <h3 class="card-title">Quantitative Finance</h3>
       <p class="card-desc">
-        Bodie《Investments》 · Andrew Ang《Asset Management》
+        Bodie · Andrew Ang · 石川《因子投资方法与实践》
       </p>
       <span class="card-arrow">→</span>
     </a>
   </section>
 
-  <section>
-    <div class="section-label">游戏</div>
+  <section aria-labelledby="games-heading">
+    <h2 class="section-label" id="games-heading">游戏</h2>
     <a class="note-card" href="games.html">
       <div class="card-tag">摸鱼专区</div>
-      <div class="card-title">Games</div>
+      <h3 class="card-title">Games</h3>
       <p class="card-desc">
         贪吃蛇 · 俄罗斯方块 · 2048
       </p>
@@ -297,12 +347,12 @@
   </section>
 
   <footer>
-    <span class="footer-note">© 2025 不梦秋深 · zhh.aca@foxmail.com</span>
+    <span class="footer-note">© 2025–2026 不梦秋深 · <a href="mailto:zhh.aca@foxmail.com">zhh.aca@foxmail.com</a></span>
     <div class="footer-links">
-      <a href="https://github.com/SylphyZ">GitHub</a>
+      <a href="https://github.com/SylphyZ" rel="me">GitHub</a>
     </div>
   </footer>
-</div>
+</main>
 
 </body>
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面未找到 · SylphyZ</title>
+  <meta name="description" content="这个页面不存在，返回 SylphyZ 的个人主页继续浏览。">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <style>
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #765a35;
+      --muted: #6f675b;
+      --rule: #d4c9b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,160,120,0.08) 27px, rgba(180,160,120,0.08) 28px),
+        var(--paper);
+      font-family: ui-serif, "Noto Serif SC", "Songti SC", STSong, serif;
+    }
+    main {
+      width: min(100%, 560px);
+      padding: 48px;
+      border: 1px solid var(--rule);
+      background: rgba(255,255,255,0.45);
+    }
+    .code {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font: 300 clamp(3rem, 14vw, 6rem)/1 "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      letter-spacing: 0.08em;
+    }
+    h1 { margin: 0 0 16px; font-size: 1.35rem; font-weight: 400; }
+    p { margin: 0 0 28px; color: var(--muted); line-height: 1.9; }
+    a {
+      display: inline-block;
+      padding: 9px 16px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { color: var(--paper); background: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    @media (max-width: 520px) { main { padding: 32px 24px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="code" aria-hidden="true">404</p>
+    <h1>这一页不在笔记里</h1>
+    <p>地址可能已经变化，也可能只是写错了。回到主页后，可以继续查看学习笔记和小游戏。</p>
+    <a href="/">返回主页</a>
+  </main>
+</body>
+</html>
