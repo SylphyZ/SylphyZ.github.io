@@ -30,7 +30,7 @@ SylphyZ.github.io/
     │   ├── Ch3, Ch6 ~ Ch8, Ch10, Ch14 笔记 (.html)
     │   └── images/
     └── 石川《因子投资方法与实践》/
-        ├── 第1章 ~ 第7章及 GMM 专题笔记 (.html)
+        ├── 第1章 ~ 第7章及 GMM 专题笔记 (.html，第6章保留完整版)
         └── images/
 ```
 
@@ -55,3 +55,8 @@ npm run check
 ```
 
 `build:notes` 会从本地各文章同名的 `.md` 文件生成静态正文、图片懒加载属性和 `sitemap.xml`。Markdown 源文件由 `.gitignore` 排除，不上传至 GitHub；生成后的 HTML 可直接阅读，不依赖 Markdown CDN。
+
+## Contributors
+
+- [SylphyZ](https://github.com/SylphyZ) — 内容创作、学习笔记与网站维护
+- **Codex（OpenAI）** — 页面优化、静态笔记生成、可访问性与站点校验
