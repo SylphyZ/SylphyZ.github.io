@@ -160,8 +160,12 @@ function buildMetadata(title, description, url) {
   ].join("\n");
 }
 
-const markdownFiles = walk(notebookDir).filter((filePath) =>
-  filePath.endsWith(".md"),
+const excludedNoteBasenames = new Set(["第6章_因子研究现状_学习笔记"]);
+const isExcludedNote = (filePath) =>
+  excludedNoteBasenames.has(path.basename(filePath, path.extname(filePath)));
+
+const markdownFiles = walk(notebookDir).filter(
+  (filePath) => filePath.endsWith(".md") && !isExcludedNote(filePath),
 );
 const templatePath = path.join(
   notebookDir,
@@ -188,7 +192,9 @@ for (const markdownPath of markdownFiles) {
 
 const articleFiles = walk(notebookDir).filter(
   (filePath) =>
-    filePath.endsWith(".html") && path.basename(filePath) !== "index.html",
+    filePath.endsWith(".html") &&
+    path.basename(filePath) !== "index.html" &&
+    !isExcludedNote(filePath),
 );
 
 for (const htmlPath of articleFiles) {
