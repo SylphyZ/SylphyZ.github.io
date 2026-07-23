@@ -289,7 +289,7 @@
     <p>无风险资产的效用：$\sigma = 0$，所以 $U = E(r) - 0 = E(r)$。无风险资产的效用就等于它的收益率本身，不受 $A$ 影响。</p>
     <hr>
     <h3>1.3 用效用打分的具体例子</h3>
-    <p>书中 Table 6.1 给出了三个风险组合（无风险利率 $r_f = 2%$）：</p>
+    <p>书中 Table 6.1 给出了三个风险组合（无风险利率 $r_f = 2\%$）：</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_table6_1.jpg" alt="Table 6.1：三个风险组合的风险溢价、期望收益和标准差"></p>
     <p>我们来手动算一下 $A=2$ 的投资者对各组合的打分：</p>
     <p><strong>对组合 H</strong>（$E(r)=0.10$，$\sigma=0.20$）：</p>
@@ -384,7 +384,7 @@
     <p>书中用了一个具体例子：总资产 $300,000，配置如下：</p>
     <ul>
     <li>$90,000 在货币市场基金（无风险）</li>
-    <li>$210,000 在风险资产：$113,400 股票 + $96,600 长期债券</li>
+    <li>\$210,000 在风险资产：\$113,400 股票 + \$96,600 长期债券</li>
     </ul>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_portfolio_example.jpg" alt="完整组合的构建例子"></p>
     <p>风险组合内部比例：$w_E = 113400/210000 = 0.54$（54% 股票），$w_B = 96600/210000 = 0.46$（46% 债券）。</p>
@@ -392,7 +392,7 @@
     <h3>2.3 调整 $y$ 时内部比例不变</h3>
     <p>这是一个非常重要的概念。书中 Example 6.2 详细演示：</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_example6_2.jpg" alt="Example 6.2：降低 y 时保持内部比例不变"></p>
-    <p>假设把 $y$ 从 0.7 降到 0.56，需要卖出 $42,000 的风险资产。按原来的比例卖：股票卖 $0.54 \times 42000 = $22,680$，债券卖 $0.46 \times 42000 = $19,320$。卖完之后验证内部比例：$w_E = (113400-22680)/(210000-42000) = 0.54$，没变！</p>
+    <p>假设把 $y$ 从 0.7 降到 0.56，需要卖出 \$42,000 的风险资产。按原来的比例卖：股票卖 $0.54 \times 42000 = \$22,680$，债券卖 $0.46 \times 42000 = \$19,320$。卖完之后验证内部比例：$w_E = (113400-22680)/(210000-42000) = 0.54$，没变！</p>
     <p><strong>这意味着：</strong> 你可以把风险组合 $P$ 整体当作<strong>一个单一的风险资产</strong>来对待。调整 $y$ 就像调节一个旋钮——往左拧更保守，往右拧更激进。但不管怎么拧，$P$ 内部的&quot;配方&quot;不变。问题变成了<strong>只有两个东西之间的选择</strong>。</p>
     <hr>
     <h3>2.4 完整组合的期望收益和标准差</h3>
@@ -404,7 +404,7 @@
     <p>标准差：</p>
     <p>$\sigma_C = y \cdot \sigma_P \tag{6.4}$</p>
     <p>完整组合的波动全部来自风险部分，与 $y$ 成正比。这么简单是因为无风险资产标准差为零且跟风险资产无相关性。统计学规则：随机变量乘以常数，标准差也乘以同样的常数。</p>
-    <p>代入数值（$r_f = 2%$，$E(r_P) = 10%$，$\sigma_P = 22%$）：</p>
+    <p>代入数值（$r_f = 2\%$，$E(r_P) = 10\%$，$\sigma_P = 22\%$）：</p>
     <table>
     <thead>
     <tr>
@@ -446,8 +446,8 @@
     <p>把不同 $y$ 值对应的 $(\sigma_C, E(r_C))$ 画在 $E(r)$-$\sigma$ 平面上。</p>
     <p>两个端点：</p>
     <ul>
-    <li>$y=0$：$(\sigma_C=0, E(r_C)=2%)$，就是无风险资产 $F$，在纵轴上</li>
-    <li>$y=1$：$(\sigma_C=22%, E(r_C)=10%)$，就是风险组合 $P$</li>
+    <li>$y=0$：$(\sigma_C=0, E(r_C)=2\%)$，就是无风险资产 $F$，在纵轴上</li>
+    <li>$y=1$：$(\sigma_C=22\%, E(r_C)=10\%)$，就是风险组合 $P$</li>
     </ul>
     <p>因为两个公式都是 $y$ 的线性函数，中间的点全部落在一条直线上，从 $F$ 连到 $P$。这条直线就叫 <strong>资本配置线（Capital Allocation Line, CAL）</strong>。</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_6_3_CAL.jpg" alt="Figure 6.3：资本配置线 CAL"></p>
@@ -459,19 +459,19 @@
     <p>$S_C = \frac{y[E(r_P)-r_f]}{y\sigma_P} = \frac{E(r_P)-r_f}{\sigma_P}$</p>
     <p>所以不管怎么分配，Sharpe ratio 都由风险组合 $P$ 本身决定，跟 $y$ 无关。</p>
     <p>CAL 的方程：</p>
-    <p>$E(r_C) = r_f + \frac{E(r_P)-r_f}{\sigma_P} \cdot \sigma_C = 2% + \frac{8}{22}\sigma_C \tag{6.6}$</p>
+    <p>$E(r_C) = r_f + \frac{E(r_P)-r_f}{\sigma_P} \cdot \sigma_C = 2\% + \frac{8}{22}\sigma_C \tag{6.6}$</p>
     <p><strong>CAL 的直觉含义：</strong> CAL 就是你面前所有可行选择的菜单。所有选择的&quot;性价比&quot;（Sharpe ratio）都一样，你不是在选性价比，你是在选<strong>你愿意承受多大的风险</strong>。投资者希望 CAL 越陡越好（斜率越大，同样的风险对应更高的收益）。</p>
     <hr>
     <h3>3.3 杠杆（Leverage）：$y &gt; 1$ 的情况</h3>
     <p>$y &gt; 1$ 意味着 $1-y &lt; 0$——你在无风险资产上的头寸是负的，即<strong>借钱</strong>投资。</p>
-    <p>书中 Example 6.3：本金 $300,000，借 $120,000，共 $420,000 投入 $P$。</p>
+    <p>书中 Example 6.3：本金 \$300,000，借 \$120,000，共 \$420,000 投入 $P$。</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_leverage.jpg" alt="Example 6.3：杠杆"></p>
     <p>$y = 420000/300000 = 1.4, \quad 1-y = -0.4$
-    $E(r_C) = 2 + 1.4 \times 8 = 13.2%, \quad \sigma_C = 1.4 \times 22 = 30.8%$
+    $E(r_C) = 2 + 1.4 \times 8 = 13.2\%, \quad \sigma_C = 1.4 \times 22 = 30.8\%$
     $S = (13.2-2)/30.8 = 0.36 \quad \text{Sharpe ratio 没变！}$</p>
     <p>这个点仍在 CAL 延长线上，在 $P$ 的右上方。</p>
     <h3>3.4 借贷利率不同时的折点</h3>
-    <p>现实中借款利率 $r_f^B$ 通常高于无风险利率 $r_f$。书中假设 $r_f^B = 4%$。</p>
+    <p>现实中借款利率 $r_f^B$ 通常高于无风险利率 $r_f$。书中假设 $r_f^B = 4\%$。</p>
     <ul>
     <li>贷出区间（$y \leq 1$）：斜率 $= (10-2)/22 = 8/22 = 0.36$</li>
     <li>借入区间（$y &gt; 1$）：斜率 $= (10-4)/22 = 6/22 = 0.27$</li>
@@ -479,19 +479,19 @@
     <p>CAL 在 $P$ 点出现 <strong>折点（kink）</strong>，借入段更平坦——杠杆的&quot;性价比&quot;更差。</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_6_4_kink.jpg" alt="Figure 6.4：借贷利率不同时 CAL 在 P 点出现折点"></p>
     <p><strong>Concept Check 6.5：</strong> 如果 $E(r_P)$ 从 10% 增到 12%，其他不变。贷出段斜率 $=(12-2)/22 = 10/22 = 0.45$，借入段 $=(12-4)/22 = 8/22 = 0.36$。都变陡了，因为风险组合更有吸引力了。</p>
-    <p><strong>实际操作：</strong> 通过券商的 <strong>保证金账户（margin account）</strong> 加杠杆。法规规定保证金购买不能超过购买价值的 50%，所以账户净值 $300,000 最多借 $300,000，$y$ 最大 2.0。</p>
+    <p><strong>实际操作：</strong> 通过券商的 <strong>保证金账户（margin account）</strong> 加杠杆。法规规定保证金购买不能超过购买价值的 50%，所以账户净值 \$300,000 最多借 \$300,000，$y$ 最大 2.0。</p>
     <hr>
     <h2>四、最优配置（Optimal Allocation）</h2>
     <h3>4.1 代数求解</h3>
     <p>投资者要选择 $y$，使得完整组合的效用最大：</p>
-    <p>$\max_y ; U = r_f + y[E(r_P)-r_f] - \frac{1}{2}A,y^2,\sigma_P^2$</p>
+    <p>$\max_y \; U = r_f + y[E(r_P)-r_f] - \frac{1}{2}A\,y^2\,\sigma_P^2$</p>
     <p>当 $y$ 从 0 开始增加，期望收益增加的好处大于风险增加的惩罚，效用上升。但超过某个点后，风险惩罚增长得更快（因为它是 $y^2$ 的函数，而收益只是 $y$ 的线性函数），效用开始下降。</p>
     <p>Table 6.4 和 Figure 6.5 展示了 $A=4$ 时效用随 $y$ 的变化：</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/fig_table6_4.jpg" alt="Table 6.4 和 Figure 6.5：效用随 y 先升后降"></p>
     <p>用微积分求解：对 $U$ 关于 $y$ 求导令其为零：</p>
-    <p>$\frac{dU}{dy} = [E(r_P) - r_f] - A,y,\sigma_P^2 = 0$</p>
+    <p>$\frac{dU}{dy} = [E(r_P) - r_f] - A\,y\,\sigma_P^2 = 0$</p>
     <p>解出<strong>最优风险资产配置比例</strong>：</p>
-    <p>$y^* = \frac{E(r_P) - r_f}{A,\sigma_P^2} \tag{6.7}$</p>
+    <p>$y^* = \frac{E(r_P) - r_f}{A\,\sigma_P^2} \tag{6.7}$</p>
     <p>这是本章最重要的结果之一。</p>
     <h3>4.2 $y^*$ 的三个决定因素</h3>
     <table>
@@ -521,8 +521,8 @@
     <h3>4.3 数值例子（Example 6.4）</h3>
     <p>$y^* = \frac{0.10-0.02}{4 \times 0.22^2} = \frac{0.08}{0.1936} = 0.41$</p>
     <p>即 41% 放在风险组合，59% 放在无风险资产。</p>
-    <p>$E(r_C) = 2 + 0.41 \times 8 = 5.28%$
-    $\sigma_C = 0.41 \times 22 = 9.02%$
+    <p>$E(r_C) = 2 + 0.41 \times 8 = 5.28\%$
+    $\sigma_C = 0.41 \times 22 = 9.02\%$
     $S = 3.28/9.02 = 0.36 \quad \text{Sharpe ratio 不变}$</p>
     <h3>4.4 图形理解：无差异曲线与 CAL 的切点</h3>
     <p>将无差异曲线和 CAL 画在同一张图上。投资者要在 CAL 上找到能触及的最高无差异曲线。</p>
@@ -530,7 +530,7 @@
     <p>书中画了四条无差异曲线（$U = 0.02, 0.028, 0.03653, 0.044$）和 CAL：</p>
     <ul>
     <li>$U = 0.02$ 和 $0.028$：跟 CAL <strong>相交</strong>——还有更好的选择</li>
-    <li>$U = 0.03653$：跟 CAL <strong>相切</strong>——这就是最优点，切点处 $\sigma_C=9.02%$，$E(r_C)=5.28%$</li>
+    <li>$U = 0.03653$：跟 CAL <strong>相切</strong>——这就是最优点，切点处 $\sigma_C=9.02\%$，$E(r_C)=5.28\%$</li>
     <li>$U = 0.044$：跟 CAL <strong>不相交</strong>——想要但够不到</li>
     </ul>
     <p>代数方法和图形方法殊途同归，最优解完全一致。</p>

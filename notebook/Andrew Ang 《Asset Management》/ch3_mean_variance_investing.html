@@ -258,7 +258,7 @@
     </ol>
     <h3>2.4 分散化的数学原理</h3>
     <p>两资产组合的方差（公式3.1）：</p>
-    <p>$\text{var}(r_p) = w_{US}^2 , \text{var}(r_{US}) + w_{JP}^2 , \text{var}(r_{JP}) + 2 , w_{US} , w_{JP} , \rho_{US,JP} , \sigma_{US} , \sigma_{JP}$</p>
+    <p>$\text{var}(r_p) = w_{US}^2 \, \text{var}(r_{US}) + w_{JP}^2 \, \text{var}(r_{JP}) + 2 \, w_{US} \, w_{JP} \, \rho_{US,JP} \, \sigma_{US} \, \sigma_{JP}$</p>
     <p>其中 $w_{US} + w_{JP} = 1$（组合权重之和为100%）。关键在第三项（交叉项）：当相关系数 $\rho_{US,JP}$ 较低时，这个交叉项很小甚至为负，组合方差就会被显著压低。美日的相关系数只有 <strong>35%</strong>（2000年后为59%，仍远低于1），所以混合持有能大幅降低风险。</p>
     <p>经济直觉也很简单：相关性低意味着日本更可能在美国表现差的时候表现好，像一份&quot;保险&quot;——而且这份保险不仅不花钱，还能提高收益。当美国表现差时（如1980年代），日本可能表现好；反过来也一样。分散化的优势意味着我们不能孤立地看单个资产，必须考虑资产之间如何互动。<strong>这是本章最重要的收获。</strong></p>
     <p>莎士比亚在《威尼斯商人》中就表达了分散化的思想——商人Antonio说他的货物不押在同一艘船上，也不只去同一个地方，所以不用担心。</p>
@@ -292,8 +292,8 @@
     </ol>
     <h3>2.7 前沿的数学构造方法</h3>
     <p>书中给出了前沿的正式构造方法（公式3.2）：</p>
-    <p>$\min_{{w_i}} \text{var}(r_p) \quad \text{s.t.} \quad E(r_p) = \mu^* \quad \text{and} \quad \sum_i w_i = 1$</p>
-    <p>意思是：给定一个目标收益 $\mu^<em>$，找到方差最小的那个组合权重。然后不断改变 $\mu^</em>$，把每个目标收益对应的最小方差点连起来，就是前沿。Figure 3.6 画了这个过程——分别取 $\mu^* = 10%$ 和 $\mu^* = 12%$，找到对应的最小方差点（标记为X），连起来就是前沿。</p>
+    <p>$\min_{\{w_i\}} \text{var}(r_p) \quad \text{s.t.} \quad E(r_p) = \mu^* \quad \text{and} \quad \sum_i w_i = 1$</p>
+    <p>意思是：给定一个目标收益 $\mu^*$，找到方差最小的那个组合权重。然后不断改变 $\mu^*$，把每个目标收益对应的最小方差点连起来，就是前沿。Figure 3.6 画了这个过程——分别取 $\mu^* = 10\%$ 和 $\mu^* = 12\%$，找到对应的最小方差点（标记为X），连起来就是前沿。</p>
     <p>这是一个<strong>二次规划问题（Quadratic Programming）</strong>，有非常高效的算法可以求解，这也是均值-方差框架如此流行的一个重要原因。</p>
     <h3>2.8 加约束：禁止做空</h3>
     <p><img loading="lazy" decoding="async" width="1225" height="1850" src="images/ch3/fig3_6_and_fig3_7_constrained.jpg" alt="Figure 3.6 &amp; 3.7: 前沿构造与做空约束"></p>
@@ -351,7 +351,7 @@
     <p>分散化告诉我们应该选前沿上的组合，但前沿上有无数个点，具体选哪个？这取决于投资者的<strong>风险厌恶程度 $\gamma$</strong>。</p>
     <h3>4.1 没有无风险资产的情形</h3>
     <p>投资者的目标是最大化均值-方差效用（公式3.3）：</p>
-    <p>$\max_{{w_i}} E(r_p) - \frac{\gamma}{2} \text{var}(r_p)$</p>
+    <p>$\max_{\{w_i\}} E(r_p) - \frac{\gamma}{2} \text{var}(r_p)$</p>
     <p>$\gamma$ 是风险厌恶系数，因人而异。$\gamma$ 越大，越怕风险，越偏好低波动的组合。</p>
     <p>Figure 3.8 用三张子图解释了求解过程：</p>
     <p><img loading="lazy" decoding="async" width="811" height="671" src="images/ch3/fig3_8_optimal_portfolio.jpg" alt="Figure 3.8: 无差异曲线与最优组合"></p>

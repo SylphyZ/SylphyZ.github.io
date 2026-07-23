@@ -220,8 +220,8 @@
     <h2>7.1 收益率模型：获取&quot;阿尔法&quot;</h2>
     <h3>7.1.1 基本术语</h3>
     <p>在进入方法论之前，必须先厘清一个术语问题。业界量化研究员嘴里常说的**&quot;阿尔法因子&quot;**，在本书基于式（1.3）的统一框架下其实不够准确。</p>
-    <p><strong>式（1.3）</strong> 是本书的核心框架，它将股票的预期收益率分解为两部分：一部分由股票暴露在定价因子上的风险补偿驱动（$\beta&#39;\lambda$），另一部分是无法被定价模型解释的异象收益（$\alpha$）。在这个框架里，&quot;阿尔法&quot;和&quot;因子&quot;各有严格的所指——阿尔法指的是异象收益，因子指的是定价因子这种投资组合。但业界口中的&quot;阿尔法因子&quot;指的既不是异象也不是组合，而是<strong>变量</strong>，是像<strong>账面市值比（Book-to-Market Ratio，简称BM，即每股净资产与每股价格之比）</strong> 或<strong>特质性波动率（Idiosyncratic Volatility，简称IVOL，即个股收益率中无法被市场因子解释的部分的波动率）</strong> 这样用来构建因子的原材料。</p>
-    <p>更微妙的是：BM这个变量对应的是价值因子，属于 $\beta&#39;\lambda$ 部分；IVOL对应的是特质性波动率异象，属于 $\alpha$ 部分。业界把两类变量都笼统叫&quot;阿尔法因子&quot;，但&quot;阿尔法&quot;这个词本身就带着偏向 $\alpha$ 的色彩，无形中把BM这类对应定价因子的变量给矮化了。因此本章改用**&quot;收益率预测变量&quot;（return predictors）** 这个中性称呼。</p>
+    <p><strong>式（1.3）</strong> 是本书的核心框架，它将股票的预期收益率分解为两部分：一部分由股票暴露在定价因子上的风险补偿驱动（$\beta'\lambda$），另一部分是无法被定价模型解释的异象收益（$\alpha$）。在这个框架里，&quot;阿尔法&quot;和&quot;因子&quot;各有严格的所指——阿尔法指的是异象收益，因子指的是定价因子这种投资组合。但业界口中的&quot;阿尔法因子&quot;指的既不是异象也不是组合，而是<strong>变量</strong>，是像<strong>账面市值比（Book-to-Market Ratio，简称BM，即每股净资产与每股价格之比）</strong> 或<strong>特质性波动率（Idiosyncratic Volatility，简称IVOL，即个股收益率中无法被市场因子解释的部分的波动率）</strong> 这样用来构建因子的原材料。</p>
+    <p>更微妙的是：BM这个变量对应的是价值因子，属于 $\beta'\lambda$ 部分；IVOL对应的是特质性波动率异象，属于 $\alpha$ 部分。业界把两类变量都笼统叫&quot;阿尔法因子&quot;，但&quot;阿尔法&quot;这个词本身就带着偏向 $\alpha$ 的色彩，无形中把BM这类对应定价因子的变量给矮化了。因此本章改用**&quot;收益率预测变量&quot;（return predictors）** 这个中性称呼。</p>
     <h3>7.1.2 寻找预测变量</h3>
     <p>寻找预测变量有三个方向。第一是从常见行情和财务数据中挖掘新异象，但这条路越来越难。第二是改造旧变量——比如经典BM有个时代性缺陷：新经济公司把大量投入砸在研发和广告上，这些投入明明在塑造未来盈利能力，会计上却不计入净资产。把研发和广告支出加回净资产重新算BM，改进后的变量超额收益明显更高（Liu et al. 2019）。这说明<strong>好变量不是挖出来的化石，而是需要随经济结构演化的活物</strong>。第三是利用另类数据，7.8.1节会专门讨论。</p>
     <h3>7.1.3 挑选预测变量</h3>
@@ -372,22 +372,22 @@
     <p>接下来做<strong>一元截面回归</strong>：</p>
     <p>$$R_{it} = c_t + b_t z_{it-1} + \varepsilon_{it}, \quad i = 1, \cdots, N$$</p>
     <p>每期（比如每月）做一次。然后用最近 $T$ 期（月频通常取12、24或36个月）的回归系数取平均作为下一期系数的估计：</p>
-    <p>$$\hat{b}<em>{t+1} = \frac{1}{T}\sum</em>{\tau=t-T+1}^{t} b_\tau, \qquad \hat{c}<em>{t+1} = \frac{1}{T}\sum</em>{\tau=t-T+1}^{t} c_\tau$$</p>
+    <p>$$\hat{b}_{t+1} = \frac{1}{T}\sum_{\tau=t-T+1}^{t} b_\tau, \qquad \hat{c}_{t+1} = \frac{1}{T}\sum_{\tau=t-T+1}^{t} c_\tau$$</p>
     <p>最后代入 $t$ 时刻最新的Z-Score，得到 $t+1$ 时刻的预测：</p>
-    <p>$$\hat{R}<em>{it+1} = \hat{c}</em>{t+1} + \hat{b}<em>{t+1} z</em>{it}$$</p>
+    <p>$$\hat{R}_{it+1} = \hat{c}_{t+1} + \hat{b}_{t+1} z_{it}$$</p>
     <h4>Grinold经验法则（α三要素）</h4>
-    <p>从截面回归出发，两边减去基准收益率 $R_{Bt}$，定义超额收益 $\alpha_{it} \equiv R_{it} - R_{Bt}$。对回归式做OLS估计，由于Z-Score截面均值为0，回归截距等于超额收益的截面均值。预测超额收益为 $\hat{\alpha}_{it} = \bar{\alpha}_t + \hat{b}<em>t z</em>{it-1}$。</p>
+    <p>从截面回归出发，两边减去基准收益率 $R_{Bt}$，定义超额收益 $\alpha_{it} \equiv R_{it} - R_{Bt}$。对回归式做OLS估计，由于Z-Score截面均值为0，回归截距等于超额收益的截面均值。预测超额收益为 $\hat{\alpha}_{it} = \bar{\alpha}_t + \hat{b}_t z_{it-1}$。</p>
     <p>第一项 $\bar{\alpha}_t$ 对所有股票都一样（等权重基准下严格为零），所以<strong>个股超额收益的预测完全由第二项决定</strong>。对斜率 $\hat{b}_t$ 做代数拆解——OLS斜率等于协方差除以方差：</p>
-    <p>$$\hat{b}<em>t = \frac{cov(z</em>{it-1}, \alpha_{it})}{\sigma^2(z_{it-1})} = \rho(z_{it-1}, \alpha_{it}) \cdot \frac{\sigma(\alpha_{it})}{\sigma(z_{it-1})}$$</p>
+    <p>$$\hat{b}_t = \frac{cov(z_{it-1}, \alpha_{it})}{\sigma^2(z_{it-1})} = \rho(z_{it-1}, \alpha_{it}) \cdot \frac{\sigma(\alpha_{it})}{\sigma(z_{it-1})}$$</p>
     <p>Z-Score标准差为1，分母消失；$\rho$ 就是IC的定义；$\sigma(\alpha_{it})$ 是超额收益的截面波动率。于是斜率变成两个量的乘积：$\hat{b}_t = IC_t \times \sigma(\alpha_t)$。代回预测式，得到 <strong>Grinold（1994）超额收益经验法则</strong>：</p>
-    <p>$$\boxed{\hat{\alpha}<em>{it} = IC_t \times \sigma(\alpha_t) \times z</em>{it-1}}$$</p>
+    <p>$$\boxed{\hat{\alpha}_{it} = IC_t \times \sigma(\alpha_t) \times z_{it-1}}$$</p>
     <p>这个公式不是天外飞来的假设，它就是&quot;标准化得分 + 截面回归&quot;的另一副面孔。三要素各自的含义对应三条提升业绩的路径：<strong>IC</strong> 是你的预测能力（提升研究质量）；<strong>$\sigma(\alpha_t)$</strong> 是市场提供的机会集（股票之间收益分化越大，同样预测能力能兑现的收益越多，所以选股策略在分化剧烈的市场里如鱼得水）；<strong>$z_{it-1}$</strong> 是这只股票在你体系里的相对位置（决定你看好的股票押多重）。三者是乘法关系，任何一项为零，超额收益就归零。</p>
     <hr>
     <h2>7.2 风险模型：以Barra为例</h2>
     <h3>为什么需要风险模型</h3>
     <p>收益率模型告诉你&quot;哪只涨得多&quot;，但股票收益是你&quot;想&quot;的事，风险是你&quot;不想&quot;但必须面对的事。你以为选出来的10只股票各有美好未来，但如果它们碰巧同属一个行业、暴露在同一宏观因子下，逆风时10只一起跌。</p>
     <p>理论上你需要计算N只股票的协方差矩阵，里面有 $N(N-1)/2$ 个两两相关性。当N是几千时，这个数字大到天文级别，而且历史样本永远不够——这就是<strong>维数灾难</strong>。多因子模型的思路优雅极了：假设几千只股票都被少数几个共同因子驱动，一旦估计出因子间的协方差，再叠加个股自己的&quot;噪音&quot;，整个协方差矩阵就出来了：</p>
-    <p>$$\Sigma = \beta \Sigma_\lambda \beta&#39; + \Sigma_\varepsilon$$</p>
+    <p>$$\Sigma = \beta \Sigma_\lambda \beta' + \Sigma_\varepsilon$$</p>
     <p>左边是N阶的协方差矩阵。右边第一项 <strong>因子部分</strong>：$\beta$ 是 $N \times K$ 的因子暴露矩阵，$\Sigma_\lambda$ 是K阶的因子协方差矩阵，通过降维把&quot;股票对股票&quot;的关系转化成&quot;股票对因子 × 因子 × 因子对股票&quot;的间接映射。第二项 <strong>特质性部分</strong> $ \Sigma_\varepsilon $ 代表单只股票的&quot;个性&quot;，假设这些个性之间互不相关，所以是对角阵。</p>
     <h3>Barra CNE5的结构</h3>
     <p><strong>Barra</strong> 是全球最著名的商业风险模型提供商（已被MSCI收购），CNE5是专门针对中国A股市场的多因子模型。其结构是 <strong>1个国家因子 + P个行业因子 + Q个风格因子</strong>，共 $K = 1 + P + Q$ 个因子。</p>
@@ -412,21 +412,21 @@
     <h3>7.3.1 错位的收益与风险模型</h3>
     <p>7.1造出了收益预测，7.2造出了风险估计，7.3本该是把两块砖砌成一座房子。但作者一上来就抛出一个让很多人措手不及的问题：<strong>你的收益模型和买来的Barra风险模型，两套模型的因子对不上，怎么办？</strong></p>
     <p>这个**错位（Misalignment）**问题在海外已讨论十几年，在国内几乎没人提。你的收益模型里有一组预测变量（暴露矩阵 $\beta_\alpha$），Barra里有另一套风险因子（暴露矩阵 $\beta_R$），二者天然不可能一一对应。比如你的收益模型里有个高频量价信号，Barra的风格因子里压根没有对应的东西。</p>
-    <p>把收益模型的预测超额收益 $R_\alpha$ 在Barra风险因子所张成的超平面上做正交分解：一部分是 $R_\alpha$ 在风险因子空间内的投影 $\tilde{R}<em>\alpha$（可以被Barra解释），另一部分是垂直于该超平面的残差 $\mu</em>\perp$（Barra完全解释不了）。</p>
+    <p>把收益模型的预测超额收益 $R_\alpha$ 在Barra风险因子所张成的超平面上做正交分解：一部分是 $R_\alpha$ 在风险因子空间内的投影 $\tilde{R}_\alpha$（可以被Barra解释），另一部分是垂直于该超平面的残差 $\mu_\perp$（Barra完全解释不了）。</p>
     <p>均值-方差优化的无约束最优解为：</p>
     <p>$$\omega^* \propto \frac{1}{\sigma_s^2} \mu_\perp + \frac{1}{\sigma_s^2 + \sigma_{R\alpha}^2} \tilde{R}_\alpha$$</p>
-    <p>$\mu_\perp$ 的系数分母只有 $\sigma_s^2$（特质性风险），而 $\tilde{R}<em>\alpha$ 的系数分母是 $\sigma_s^2 + \sigma</em>{R\alpha}^2$（特质性风险 + 因子风险）。<strong>优化器会给 $\mu_\perp$ 更大的权重，因为它看起来&quot;没有风险&quot;——但它只是恰好位于Barra看不到的方向上。</strong> 盈亏同源，它绝非无风险。优化器误以为未被风险模型覆盖的收益是&quot;免费的午餐&quot;，于是过度配置——这就是错位导致的风险被系统性低估。</p>
+    <p>$\mu_\perp$ 的系数分母只有 $\sigma_s^2$（特质性风险），而 $\tilde{R}_\alpha$ 的系数分母是 $\sigma_s^2 + \sigma_{R\alpha}^2$（特质性风险 + 因子风险）。<strong>优化器会给 $\mu_\perp$ 更大的权重，因为它看起来&quot;没有风险&quot;——但它只是恰好位于Barra看不到的方向上。</strong> 盈亏同源，它绝非无风险。优化器误以为未被风险模型覆盖的收益是&quot;免费的午餐&quot;，于是过度配置——这就是错位导致的风险被系统性低估。</p>
     <p>作者打了一个很直观的比喻：你和一个盲人合作寻宝。你能看到金银财宝的分布（收益模型），盲人能通过回声定位感知周围的地形（风险模型）。但有些地方你能看到闪光，盲人却感知不到任何障碍——你以为那里安全且富饶，于是大步走过去，实际上可能是悬崖。</p>
     <p>解决思路有两条。<strong>改造风险模型</strong>从简单到复杂有三种做法：剔除相似因子、替换因子暴露、联合构建新风险模型——但商业模型是黑箱，改不了。<strong>更务实的思路是改进优化过程</strong>——直接在目标函数里给 $\mu_\perp$ 额外惩罚（Bender et al. 2009）。作者特别指出：国内券商金工报告普遍忽视错位问题，&quot;使用某多因子模型选股 + Barra风控&quot;的展示中几乎不做任何处理，这是一个值得持续关注的定量问题。</p>
     <h3>7.3.2 目标函数</h3>
     <p>假设错位已处理，来看优化器里该放什么目标函数。最著名的当然是Markowitz（1952）的<strong>均值-方差优化</strong>：</p>
-    <p>$$\max_\omega \left( \omega&#39; \mu - \frac{\zeta}{2} \omega&#39; \Sigma \omega \right)$$</p>
+    <p>$$\max_\omega \left( \omega' \mu - \frac{\zeta}{2} \omega' \Sigma \omega \right)$$</p>
     <p>$\zeta$ 是风险厌恶系数。无约束最优解 $\omega_{mvo} \propto \Sigma^{-1} \mu$。它的致命缺陷是<strong>最优权重对输入参数极其敏感</strong>，而偏偏预期收益率 $\mu$ 又是最难估计的。</p>
     <p>为了规避对 $\mu$ 的依赖，人们发展出三种<strong>仅以 $\Sigma$ 为输入</strong>的目标函数：</p>
     <ul>
-    <li><p><strong>最小方差</strong>（式7.60）：$\min_\omega \omega&#39; \Sigma \omega$，最优解 $\omega_{mv} \propto \Sigma^{-1} \mathbf{1}$。完全无视收益，只追求波动最小。它在实践中常常出人意料地好——因为最小化方差的过程天然倾向于低配高波动股票，而高波动股票往往被高估（低波动异象）。</p>
+    <li><p><strong>最小方差</strong>（式7.60）：$\min_\omega \omega' \Sigma \omega$，最优解 $\omega_{mv} \propto \Sigma^{-1} \mathbf{1}$。完全无视收益，只追求波动最小。它在实践中常常出人意料地好——因为最小化方差的过程天然倾向于低配高波动股票，而高波动股票往往被高估（低波动异象）。</p>
     </li>
-    <li><p><strong>最大多样化</strong>（式7.62）：最大化 $\omega&#39; \sigma / \sqrt{\omega&#39; \Sigma \omega}$。衡量&quot;加权平均波动率&quot;与&quot;组合实际波动率&quot;的比值，比值越大说明分散化越充分。</p>
+    <li><p><strong>最大多样化</strong>（式7.62）：最大化 $\omega' \sigma / \sqrt{\omega' \Sigma \omega}$。衡量&quot;加权平均波动率&quot;与&quot;组合实际波动率&quot;的比值，比值越大说明分散化越充分。</p>
     </li>
     <li><p><strong>风险平价</strong>（式7.64-65）：让投资组合中每只股票对组合的风险贡献相等，也叫<strong>等风险贡献（Equal Risk Contribution）</strong> 组合。桥水基金的全天候策略让这个概念名声大噪。一般情况下没有解析解，需要数值求解。</p>
     </li>
@@ -536,9 +536,9 @@
     <p>实验传递的信息很重要：<strong>没有免费的午餐，但也没有必要为复杂性本身付费</strong>。等权重只有在&quot;一无所知&quot;时才是理性选择；一旦你对收益、波动或相关性有任何靠谱的信息，都应该把它用起来。</p>
     <h3>7.3.4 约束条件</h3>
     <p>真实交易中，没有约束的优化是灾难性的。常见的约束有七种，按逻辑分三组。</p>
-    <p><strong>资金与仓位层面</strong>：卖空约束（$\omega \geq 0$）、杠杆约束（$\omega&#39; \mathbf{1} = 1$）、上下限约束（$L \leq \omega \leq U$），还可以扩展到行业中性（$H\omega = h$，即组合的行业分布和基准完全一致）。</p>
+    <p><strong>资金与仓位层面</strong>：卖空约束（$\omega \geq 0$）、杠杆约束（$\omega' \mathbf{1} = 1$）、上下限约束（$L \leq \omega \leq U$），还可以扩展到行业中性（$H\omega = h$，即组合的行业分布和基准完全一致）。</p>
     <p><strong>交易层面</strong>：换手率约束（$|\omega_i - \omega_i^0| \leq \phi_i$），这对大资金尤其重要——船大难掉头，高换手直接吃掉超额收益。持仓数量约束（$N_L \leq \sum \delta_i \leq N_U$），太少不够分散，太多因子暴露被稀释。</p>
-    <p><strong>风险层面</strong>：因子暴露约束（限制组合在某因子上的暴露范围，若设成相对基准的主动暴露为零就是<strong>风格中性组合</strong>）。跟踪误差约束（$(\omega - \omega_B)&#39; \Sigma (\omega - \omega_B)^{1/2} \leq \sigma_{TE}$），直接控制组合相对基准的主动风险波动率。</p>
+    <p><strong>风险层面</strong>：因子暴露约束（限制组合在某因子上的暴露范围，若设成相对基准的主动暴露为零就是<strong>风格中性组合</strong>）。跟踪误差约束（$(\omega - \omega_B)' \Sigma (\omega - \omega_B)^{1/2} \leq \sigma_{TE}$），直接控制组合相对基准的主动风险波动率。</p>
     <p>加了这些约束后，解析解通常不存在，需要数值方法求解。股票数量多时找到全局最优很难，约束参数设得不合理甚至会出现无解的情况——风控永远是妥协的艺术。</p>
     <h3>7.3.5 交易成本模型</h3>
     <p>理论和实盘之间最后一道鸿沟是交易成本，分为显性（手续费、买卖价差）和隐性（市场冲击成本）。</p>
@@ -1545,7 +1545,7 @@
     <p>Menchero and Davis（2011）提出了一个既数学精确又业务直观的替代方案——<strong>风险归因三要素公式</strong>：</p>
     <p>$$\sigma(R) = \sum_{m=1}^{M} x_m \cdot \sigma(r_m) \cdot \rho(r_m, R)$$</p>
     <p>这个公式的优美之处在于它同时解决了前两种方法的困境。和独立风险法相比，它通过 $\rho(r_m, R)$ 引入了收益源与投资组合的相关性，使得各项贡献加总恰好等于组合总风险。和MCR相比，它把抽象的偏导数翻译成了三个有血有肉的业务概念：</p>
-    <p>$$风险贡献_m = \underbrace{x_m}<em>{暴露} \times \underbrace{\sigma(r_m)}</em>{波动率} \times \underbrace{\rho(r_m, R)}_{相关性}$$</p>
+    <p>$$风险贡献_m = \underbrace{x_m}_{暴露} \times \underbrace{\sigma(r_m)}_{波动率} \times \underbrace{\rho(r_m, R)}_{相关性}$$</p>
     <p><strong>暴露 $x_m$</strong>：完全由基金经理决定，反映了投资偏好。它可以为正（主动承担该风险）也可以为负（主动对冲）。</p>
     <p><strong>波动率 $\sigma(r_m)$</strong>：收益源m自身的&quot;脾气&quot;。波动越大，对组合风险的潜在影响也越大。</p>
     <p><strong>相关性 $\rho(r_m, R)$</strong>：收益源m和投资组合收益率之间的&quot;同步程度&quot;。相关性越高，m的波动传导到组合里的确定性就越大。</p>

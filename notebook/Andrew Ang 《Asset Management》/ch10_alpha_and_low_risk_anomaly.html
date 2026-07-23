@@ -297,10 +297,10 @@
     <p><strong>CAPM风险调整基准</strong>：对策略做CAPM回归：</p>
     <p>$r_t - r^f_t = 0.0344 + 0.7272(r^{R1000}_t - r^f_t) + \varepsilon_t$</p>
     <p>发现 $\beta = 0.73 \neq 1$。正确的基准应该是什么？把CAPM回归展开：</p>
-    <p>$r_t - r^f_t = \alpha + \beta,r^{R1000}_t - \beta,r^f_t + \varepsilon_t$</p>
-    <p>$r_t = \alpha + (1 - \beta),r^f_t + \beta,r^{R1000}_t + \varepsilon_t$</p>
+    <p>$r_t - r^f_t = \alpha + \beta\,r^{R1000}_t - \beta\,r^f_t + \varepsilon_t$</p>
+    <p>$r_t = \alpha + (1 - \beta)\,r^f_t + \beta\,r^{R1000}_t + \varepsilon_t$</p>
     <p>拿掉 $\alpha$（管理人的超额贡献，不属于被动可复制部分）和 $\varepsilon_t$（OLS残差，均值为零，每期随机偏离），剩下的就是复制组合：</p>
-    <p>$r^{bmk}_t = (1-\beta),r^f_t + \beta,r^{R1000}_t = 0.27,r^f_t + 0.73,r^{R1000}_t$</p>
+    <p>$r^{bmk}_t = (1-\beta)\,r^f_t + \beta\,r^{R1000}_t = 0.27\,r^f_t + 0.73\,r^{R1000}_t$</p>
     <p>权重之和 $0.27 + 0.73 = 1$，这就是1美元资本的分配方式：27美分放无风险资产，73美分放Russell 1000。相对于这个风险调整基准，Alpha = 3.44%/年，IR = 0.78。</p>
     <p><strong>差异的来源</strong>：朴素基准假设 $\beta = 1$，但策略实际 $\beta = 0.73$。用 $\beta = 1$ 的基准去衡量一个 $\beta = 0.73$ 的策略，把&quot;少承担的风险&quot;也算进了策略的表现里，从而低估了真正的风险调整Alpha。一旦意识到策略只用了73%的市场风险敞口就产生了那些收益，风险调整表现就好得多了。</p>
     <h3>2.3 理想基准的四个特征</h3>
@@ -327,10 +327,10 @@
     <p>CAPM应用于资产 $i$：</p>
     <p>$E(r_i) - r_f = \beta_i(E(r_m) - r_f) \tag{10.6}$</p>
     <p>假设 $\beta_i = 1.3$，展开：</p>
-    <p>$E(r_i) = -0.3,r_f + 1.3,E(r_m) \tag{10.7}$</p>
+    <p>$E(r_i) = -0.3\,r_f + 1.3\,E(r_m) \tag{10.7}$</p>
     <p>左边是1份资产 $i$ 的预期收益，右边是做空0.3份无风险资产 + 做多1.3份市场组合，权重之和 $-0.3 + 1.3 = 1$。CAPM的复制组合解读：<strong>Beta就是复制组合的权重</strong>。$\beta &gt; 1$ 需要借钱杠杆化市场敞口；$\beta &lt; 1$ 把一部分钱放在无风险资产里降低敞口。</p>
     <p>Alpha就是实际收益超出复制组合的部分：</p>
-    <p>$E(r_i) = \alpha_i + \underbrace{[-0.3,r_f + 1.3,E(r_m)]}_{E(r^{bmk})} \tag{10.8}$</p>
+    <p>$E(r_i) = \alpha_i + \underbrace{[-0.3\,r_f + 1.3\,E(r_m)]}_{E(r^{bmk})} \tag{10.8}$</p>
     <h3>4.2 Buffett案例：CAPM回归</h3>
     <p>取Berkshire Hathaway 1990年至2012年5月的月度收益，做CAPM回归：</p>
     <p>$r_{it} - r^f_t = \alpha + \beta(r_{mt} - r^f_t) + \varepsilon_{it} \tag{10.9}$</p>
@@ -358,7 +358,7 @@
     <td align="left"></td>
     </tr>
     </tbody></table>
-    <p>Alpha = 0.72%/月，年化8.6%，$t = 2.02 &gt; 2$，在95%置信水平下显著。这个Alpha叫做<strong>Jensen&#39;s alpha</strong>，源自Michael Jensen 1968年的开创性研究。Beta = 0.51意味着Buffett的市场风险只有市场的一半。隐含复制组合为0.49份T-bills + 0.51份市场组合。Adj $R^2 = 14%$ 对单只股票来说已经较高（大多数低于10%）。</p>
+    <p>Alpha = 0.72%/月，年化8.6%，$t = 2.02 &gt; 2$，在95%置信水平下显著。这个Alpha叫做<strong>Jensen&#39;s alpha</strong>，源自Michael Jensen 1968年的开创性研究。Beta = 0.51意味着Buffett的市场风险只有市场的一半。隐含复制组合为0.49份T-bills + 0.51份市场组合。Adj $R^2 = 14\%$ 对单只股票来说已经较高（大多数低于10%）。</p>
     <p>Figure 10.2展示了Berkshire Hathaway在三种基准下的累计超额收益。注意实线（CAPM基准）的斜率在2000年代中期之后明显变平——Berkshire的市值从1990年代初不到100亿美元增长到2012年的2200亿以上。Buffett自己2011年承认：&quot;丰收的年份再也不会回来了。我们目前管理的巨额资本消灭了取得出色业绩的一切可能。&quot;规模消灭超额收益，与Grinold基本法则中IC随规模递减的预测一致。</p>
     <p><img loading="lazy" decoding="async" width="805" height="589" src="images/ch10/fig10_2_brk_cumulative_excess_returns.jpg" alt="Figure 10.2 Berkshire Hathaway累计超额收益"></p>
     <h3>4.3 Buffett案例：Fama-French三因子回归</h3>
@@ -366,7 +366,7 @@
     <p><strong>SMB（Small Minus Big）</strong>：做多小盘股、做空大盘股，捕捉规模效应。</p>
     <p><strong>HML（High Minus Low）</strong>：做多高账面市值比（价值股）、做空低账面市值比（成长股），捕捉价值效应。</p>
     <p>回归方程扩展为：</p>
-    <p>$r_{it} - r^f_t = \alpha + \beta(r_{mt} - r^f_t) + s,SMB_t + h,HML_t + \varepsilon_{it} \tag{10.10}$</p>
+    <p>$r_{it} - r^f_t = \alpha + \beta(r_{mt} - r^f_t) + s\,SMB_t + h\,HML_t + \varepsilon_{it} \tag{10.10}$</p>
     <p>Berkshire Hathaway的估计结果：</p>
     <table>
     <thead>
@@ -408,7 +408,7 @@
     <p>隐含复制组合：0.33份T-bills + 0.67份市场组合 - 0.50份SMB + 0.38份HML。Adj $R^2$ 从14%跳到27%，拟合大幅改善。</p>
     <h3>4.4 Buffett案例：加入动量因子</h3>
     <p>Buffett公开表示不做动量投资，关注的是公司基本面而非价格趋势。加入UMD（Up Minus Down）因子：</p>
-    <p>$r_{it} - r^f_t = \alpha + \beta(r_{mt} - r^f_t) + s,SMB_t + h,HML_t + u,UMD_t + \varepsilon_{it} \tag{10.11}$</p>
+    <p>$r_{it} - r^f_t = \alpha + \beta(r_{mt} - r^f_t) + s\,SMB_t + h\,HML_t + u\,UMD_t + \varepsilon_{it} \tag{10.11}$</p>
     <table>
     <thead>
     <tr>
@@ -456,7 +456,7 @@
     <p>因子基准不一定要包含无风险资产。只要因子载荷之和等于1，任何一组可交易资产都可以构成复制组合基准。</p>
     <h3>5.1 CalPERS案例</h3>
     <p>CalPERS是美国最大的公共养老金（2011年管理2460亿美元）。基准回归：</p>
-    <p>$r_{it} = \alpha + \beta_s,r_{st} + \beta_b,r_{bt} + \varepsilon_{it} \tag{10.12}$</p>
+    <p>$r_{it} = \alpha + \beta_s\,r_{st} + \beta_b\,r_{bt} + \varepsilon_{it} \tag{10.12}$</p>
     <p>施加约束 $\beta_s + \beta_b = 1$，保证右边也是1份资本的配置。用CalPERS 1990至2011年的年度收益估计：</p>
     <table>
     <thead>
@@ -468,7 +468,7 @@
     </thead>
     <tbody><tr>
     <td align="left">Alpha</td>
-    <td align="left">$-1.11%$/年</td>
+    <td align="left">$-1.11\%$/年</td>
     <td align="left">$-1.16$</td>
     </tr>
     <tr>
@@ -487,7 +487,7 @@
     <td align="left"></td>
     </tr>
     </tbody></table>
-    <p>Adj $R^2 = 90%$：CalPERS的收益几乎完全被32%债券+68%股票的被动组合解释。Alpha = $-1.11%$/年（点估计为负），但 $|t| = 1.16 &lt; 2$，不显著。</p>
+    <p>Adj $R^2 = 90\%$：CalPERS的收益几乎完全被32%债券+68%股票的被动组合解释。Alpha = $-1.11\%$/年（点估计为负），但 $|t| = 1.16 &lt; 2$，不显著。</p>
     <p>费用问题让情况更糟：CalPERS 2011年费用率超过0.50%（年报推算超0.80%），是同行中位数0.29%的3到4倍，是最大30%养老金0.15%的5到6倍。管理股债指数组合在CalPERS的规模下费用远低于0.10%。</p>
     <p>Figure 10.3展示了CalPERS的累计超额收益。2000-2007年有所改善，但2008年金融危机中彻底崩塌——CalPERS在2008-2009年没有再平衡，反而在价格低时卖出了股票。</p>
     <p><img loading="lazy" decoding="async" width="821" height="678" src="images/ch10/fig10_3_calpers_cumulated_excess_returns.jpg" alt="Figure 10.3 CalPERS累计超额收益"></p>
@@ -516,11 +516,11 @@
     </tr>
     <tr>
     <td align="left">Alpha</td>
-    <td align="left">$-0.51%$</td>
+    <td align="left">$-0.51\%$</td>
     <td align="left">$-1.02$</td>
-    <td align="left">$-0.43%$</td>
+    <td align="left">$-0.43\%$</td>
     <td align="left">$-0.90$</td>
-    <td align="left">$-1.50%$</td>
+    <td align="left">$-1.50\%$</td>
     <td align="left">$-1.05$</td>
     </tr>
     <tr>
@@ -579,8 +579,8 @@
     <tbody><tr>
     <td align="left">Alpha</td>
     <td align="left">0.00%</td>
-    <td align="left">$-0.27%$</td>
-    <td align="left">$-0.14%$</td>
+    <td align="left">$-0.27\%$</td>
+    <td align="left">$-0.14\%$</td>
     <td align="left">0.22%</td>
     </tr>
     <tr>
@@ -619,10 +619,10 @@
     <td align="left">$-0.06$</td>
     </tr>
     </tbody></table>
-    <p>LSVEX的Alpha精确为零，HML载荷高达0.51——纯粹的价值因子暴露，没有超出因子的Alpha。FMAGX的Alpha = $-0.27%$/月（年化 $-3.24%$），$t = -2.23$，<strong>统计显著为负</strong>。BRK的Alpha为正但不显著（$t = 0.57$）——仅仅因为样本起点从1990推后到2001，Buffett的Alpha就从显著变成不显著。检测Alpha的统计困难远比大多数人想象的大。</p>
+    <p>LSVEX的Alpha精确为零，HML载荷高达0.51——纯粹的价值因子暴露，没有超出因子的Alpha。FMAGX的Alpha = $-0.27\%$/月（年化 $-3.24\%$），$t = -2.23$，<strong>统计显著为负</strong>。BRK的Alpha为正但不显著（$t = 0.57$）——仅仅因为样本起点从1990推后到2001，Buffett的Alpha就从显著变成不显著。检测Alpha的统计困难远比大多数人想象的大。</p>
     <h3>6.2 不做空的风格分析</h3>
     <p>用三只SPDR ETF做可交易基准：SPY（S&amp;P 500）、SPYV（S&amp;P 500价值）、SPYG（S&amp;P 500成长）。</p>
-    <p>$r_{t+1} = \alpha_t + \beta_{SPY,t},SPY_{t+1} + \beta_{SPYV,t},SPYV_{t+1} + \beta_{SPYG,t},SPYG_{t+1} + \varepsilon_{t+1} \tag{10.14}$</p>
+    <p>$r_{t+1} = \alpha_t + \beta_{SPY,t}\,SPY_{t+1} + \beta_{SPYV,t}\,SPYV_{t+1} + \beta_{SPYG,t}\,SPYG_{t+1} + \varepsilon_{t+1} \tag{10.14}$</p>
     <p>约束 $\beta_{SPY,t} + \beta_{SPYV,t} + \beta_{SPYG,t} = 1$，权重非负（不做空），用过去60个月数据滚动估计。</p>
     <p>Figure 10.5展示了结果。Panel A是时变风格权重：LSVEX始终是市场+价值的稳定组合；FMAGX逐渐从混合变成纯成长；GSCGX从市场+成长演变为纯成长；BRK最有意思——2006年强烈价值取向，金融危机期间切换到成长风格，危机消退后又回到价值。Panel B是累计超额收益：LSVEX为零（被ETF完全复制），FMAGX向下（持续毁灭价值），GSCGX为零，BRK是唯一有向上趋势的。</p>
     <p><img loading="lazy" decoding="async" width="1225" height="1850" src="images/ch10/fig10_5_style_analysis_no_short.jpg" alt="Figure 10.5 风格分析（不做空）"></p>
@@ -722,8 +722,8 @@
     <p><img loading="lazy" decoding="async" width="749" height="563" src="images/ch10/fig10_12_bab_factor_diagram.jpg" alt="Figure 10.12 BAB因子的构造逻辑"></p>
     <p><strong>VOL因子</strong>：类似BAB但按波动率缩放：</p>
     <p>$VOL_{t+1} = \sigma_{target} \times \left(\frac{r_{L,t+1} - r_f}{\sigma_{L,t}} - \frac{r_{H,t+1} - r_f}{\sigma_{H,t}}\right) \tag{10.18}$</p>
-    <p>目标波动率 $\sigma_{target} = 15%$。波动率因子的优势：各档之间有明显收益差异（不仅是Sharpe比率差异），可以直接交易。</p>
-    <p><strong>比较</strong>（Figure 10.13）：VOL累计收益更高，Sharpe比率略高（0.6 vs 0.5）。最重要的发现是BAB和VOL的相关系数只有 $-9%$——Beta异象和波动率异象在统计上几乎独立。</p>
+    <p>目标波动率 $\sigma_{target} = 15\%$。波动率因子的优势：各档之间有明显收益差异（不仅是Sharpe比率差异），可以直接交易。</p>
+    <p><strong>比较</strong>（Figure 10.13）：VOL累计收益更高，Sharpe比率略高（0.6 vs 0.5）。最重要的发现是BAB和VOL的相关系数只有 $-9\%$——Beta异象和波动率异象在统计上几乎独立。</p>
     <p><img loading="lazy" decoding="async" width="821" height="594" src="images/ch10/fig10_13_bab_vol_cumulated_returns.jpg" alt="Figure 10.13 BAB与VOL因子累计收益"></p>
     <p>四因子回归结果：</p>
     <table>
@@ -854,12 +854,12 @@
     </tr>
     <tr>
     <td align="left">(10.10)</td>
-    <td align="left">加入 $s,SMB + h,HML$</td>
+    <td align="left">加入 $s\,SMB + h\,HML$</td>
     <td align="left">Fama-French三因子回归</td>
     </tr>
     <tr>
     <td align="left">(10.11)</td>
-    <td align="left">加入 $u,UMD$</td>
+    <td align="left">加入 $u\,UMD$</td>
     <td align="left">四因子回归</td>
     </tr>
     <tr>

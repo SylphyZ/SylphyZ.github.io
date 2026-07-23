@@ -41,6 +41,25 @@ function normalizeFootnotes(markdown) {
     .replace(/\[\^([^\]]+)\]/g, "<sup>注 $1</sup>");
 }
 
+function renderMarkdown(markdown) {
+  const mathSegments = [];
+  const stashMath = (value) => {
+    const token = `MATHSEGMENT${mathSegments.length}PLACEHOLDER`;
+    mathSegments.push({ token, value });
+    return token;
+  };
+
+  const protectedMarkdown = normalizeFootnotes(markdown)
+    .replace(/\$\$[\s\S]*?\$\$/g, stashMath)
+    .replace(/\$(?!\$)(?:\\.|[^$\n])+\$/g, stashMath);
+
+  let html = marked.parse(protectedMarkdown);
+  for (const { token, value } of mathSegments) {
+    html = html.replaceAll(token, () => escapeHtml(value));
+  }
+  return html;
+}
+
 function getImageDimensions(filePath) {
   const buffer = fs.readFileSync(filePath);
 
@@ -194,7 +213,7 @@ for (const htmlPath of articleFiles) {
     "SylphyZ 的学习笔记";
   const description = stripMarkdown(descriptionSource).slice(0, 150);
   const rendered = enrichImages(
-    marked.parse(normalizeFootnotes(markdown)),
+    renderMarkdown(markdown),
     path.dirname(htmlPath),
   );
   const noteBlock = [
@@ -281,6 +300,8 @@ for (const htmlPath of articleFiles) {
       '<main class="wrap">\n  <nav aria-label="面包屑">',
     )
     .replace("\n</div>\n</body>", "\n</main>\n</body>")
+    .replaceAll("\t", "  ")
+    .replace(/[ ]+$/gm, "")
     .replace(/\n{3,}/g, "\n\n");
 
   fs.writeFileSync(htmlPath, html, "utf8");

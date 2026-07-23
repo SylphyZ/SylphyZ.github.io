@@ -317,7 +317,7 @@
     <p>注意方向：CMA是Conservative Minus Aggressive。投资维度上&quot;好&quot;意味着保守而非激进。</p>
     <h4>规模因子的新构建方式</h4>
     <p>在五因子模型中，BM、ROE、总资产变化率分别与市值做了三组双重排序，共得到18个组合。如果还只用BM那一组来构建SMB就不合理了。因此Fama and French（2015）综合三组：</p>
-    <p>$$\text{SMB} = \frac{1}{3}(\text{SMB}<em>{\text{BM}} + \text{SMB}</em>{\text{ROE}} + \text{SMB}_{\text{INV}})$$</p>
+    <p>$$\text{SMB} = \frac{1}{3}(\text{SMB}_{\text{BM}} + \text{SMB}_{\text{ROE}} + \text{SMB}_{\text{INV}})$$</p>
     <p>其中每个子SMB的计算方式都和三因子模型中一样，只是来自不同的双重排序。</p>
     <p><img loading="lazy" decoding="async" width="1654" height="311" src="images/ch4/page-08.jpg" alt="公式(4.12)-(4.15)规模因子构建"></p>
     <p>值得注意的是，按DDM推导，代表投资的变量应该是账面价值的变化 $dB_{t+\tau}$，而非总资产变化。Fama and French（2015）坦言他们比较了两种方法，发现用总资产变化率排序时截面收益差异更大，所以选了总资产。这是一个&quot;理论说一套、实证做一套&quot;的地方，后来被Hou et al.（2019b）批评过。</p>
@@ -383,7 +383,7 @@
     <p>$$\text{PERF} = \frac{1}{2}(\text{S/L} + \text{B/L}) - \frac{1}{2}(\text{S/H} + \text{B/H})$$</p>
     <h4>规模因子的特殊构建</h4>
     <p>Stambaugh-Yuan模型的规模因子与其他模型差异最大。分别用管理和表现两个变量与市值双重排序共得到12个组合，但构建规模因子时<strong>丢掉了高组和低组共8个组合</strong>，只保留4个中间组：</p>
-    <p>$$\text{SMB} = \frac{1}{2}(\text{S/M}<em>{\text{MGMT}} + \text{S/M}</em>{\text{PERF}}) - \frac{1}{2}(\text{B/M}<em>{\text{MGMT}} + \text{B/M}</em>{\text{PERF}})$$</p>
+    <p>$$\text{SMB} = \frac{1}{2}(\text{S/M}_{\text{MGMT}} + \text{S/M}_{\text{PERF}}) - \frac{1}{2}(\text{B/M}_{\text{MGMT}} + \text{B/M}_{\text{PERF}})$$</p>
     <p>理由是：由于套利不对称性（做空困难），被高估股票的错误定价难以消除，且错误定价在小市值股票中更突出。传统方法无法在规模因子的多空两头对称地消除错误定价的影响，造成规模因子有被高估的偏差。实证表明这种新方法构建的规模因子有更高的风险溢价。</p>
     <hr>
     <h3>4.1.7 Daniel-Hirshleifer-Sun 三因子模型</h3>
@@ -403,7 +403,7 @@
     <h4>PEAD因子：捕捉有限注意力</h4>
     <p>PEAD（Post-Earnings-Announcement-Drift）即盈余惯性。大量实证显示，业绩超预期公司的股票在未来6到9个月内能获得更高收益，因为投资者的有限注意力导致对最新业绩数据反应不足。</p>
     <p>Daniel et al.（2020）以上市公司最近一个财报的披露日期为时间零点，计算 $[-2, 1]$ 窗口内（即披露前两个交易日到披露后一个交易日）的累计超额收益率（CAR, Cumulative Abnormal Return）：</p>
-    <p>$$\text{CAR}<em>i = \sum</em>{d=-2}^{1}(R_{id} - R_{Md})$$</p>
+    <p>$$\text{CAR}_i = \sum_{d=-2}^{1}(R_{id} - R_{Md})$$</p>
     <p>其中 $R_{id}$ 是公司 $i$ 在第 $d$ 日的收益率，$R_{Md}$ 是同期市场收益率。CAR越大说明业绩超预期越多。由于投资者反应不足，CAR和未来收益率正相关。</p>
     <p>用CAR和市值进行 $2\times3$ 双重排序（图4.7），CAR用NYSE的20%/80%分位数：</p>
     <p><img loading="lazy" decoding="async" width="1654" height="417" src="images/ch4/page-16.jpg" alt="图4.7 CAR和市值双重排序"></p>
@@ -476,14 +476,14 @@
     <h3>4.2.2 回归结果</h3>
     <p><img loading="lazy" decoding="async" width="1654" height="523" src="images/ch4/page-19.jpg" alt="表4.3 Fama-MacBeth回归结果"></p>
     <h4>显著被定价的因子（4个）</h4>
-    <p><strong>规模因子</strong>：月均收益率 $-0.52%$，$t$ 值 $-3.68$。负号意味着市值越大收益率越低，即小市值效应。</p>
-    <p><strong>价值因子</strong>：月均收益率 $1.88%$，$t$ 值 $3.40$。BM越高的公司收益率越高，价值效应显著。</p>
-    <p><strong>盈利因子</strong>：月均收益率 $2.36%$，$t$ 值 $4.75$。ROE(TTM)越高收益率越高。收益率看着很高，但ROE截面标准差很小（0.12），用影响系数校正后就合理了。</p>
-    <p><strong>换手率因子</strong>：月均收益率 $-1.13%$，$t$ 值 $-7.75$。换手率越高收益率越低，即低换手率效应。$t$ 值绝对值在所有因子中最高。</p>
+    <p><strong>规模因子</strong>：月均收益率 $-0.52\%$，$t$ 值 $-3.68$。负号意味着市值越大收益率越低，即小市值效应。</p>
+    <p><strong>价值因子</strong>：月均收益率 $1.88\%$，$t$ 值 $3.40$。BM越高的公司收益率越高，价值效应显著。</p>
+    <p><strong>盈利因子</strong>：月均收益率 $2.36\%$，$t$ 值 $4.75$。ROE(TTM)越高收益率越高。收益率看着很高，但ROE截面标准差很小（0.12），用影响系数校正后就合理了。</p>
+    <p><strong>换手率因子</strong>：月均收益率 $-1.13\%$，$t$ 值 $-7.75$。换手率越高收益率越低，即低换手率效应。$t$ 值绝对值在所有因子中最高。</p>
     <h4>不显著的因子（3个）</h4>
-    <p><strong>市场因子</strong>：月均收益率 $-0.17%$，$t$ 值 $-0.44$，不显著。与Black CAPM模型一致。</p>
-    <p><strong>动量因子</strong>：月均收益率 $0.33%$，$t$ 值 $1.30$，不显著。动量在A股不如美股有效。</p>
-    <p><strong>投资因子</strong>：月均收益率 $0.10%$，$t$ 值 $0.72$，非常不显著。且收益率为正（总资产增长率高的公司收益率反而更高），和理论预测的负相关方向相反。</p>
+    <p><strong>市场因子</strong>：月均收益率 $-0.17\%$，$t$ 值 $-0.44$，不显著。与Black CAPM模型一致。</p>
+    <p><strong>动量因子</strong>：月均收益率 $0.33\%$，$t$ 值 $1.30$，不显著。动量在A股不如美股有效。</p>
+    <p><strong>投资因子</strong>：月均收益率 $0.10\%$，$t$ 值 $0.72$，非常不显著。且收益率为正（总资产增长率高的公司收益率反而更高），和理论预测的负相关方向相反。</p>
     <h4>影响系数：不同因子的可比性</h4>
     <p>由于没有标准化，收益率的绝对大小受因子暴露标准差的影响。Bali et al.（2016）提出的<strong>影响系数</strong>（impact coefficient）解决了这个问题：</p>
     <p>$$\text{影响系数} = \text{因子月均收益率} \times \text{因子暴露标准差}$$</p>
@@ -499,27 +499,27 @@
     </thead>
     <tbody><tr>
     <td>换手率</td>
-    <td>$-1.13%$</td>
+    <td>$-1.13\%$</td>
     <td>0.61</td>
-    <td>$-0.69%$</td>
+    <td>$-0.69\%$</td>
     </tr>
     <tr>
     <td>规模</td>
-    <td>$-0.52%$</td>
+    <td>$-0.52\%$</td>
     <td>1.02</td>
-    <td>$-0.53%$</td>
+    <td>$-0.53\%$</td>
     </tr>
     <tr>
     <td>价值</td>
-    <td>$1.88%$</td>
+    <td>$1.88\%$</td>
     <td>0.24</td>
-    <td>$0.45%$</td>
+    <td>$0.45\%$</td>
     </tr>
     <tr>
     <td>盈利</td>
-    <td>$2.36%$</td>
+    <td>$2.36\%$</td>
     <td>0.12</td>
-    <td>$0.28%$</td>
+    <td>$0.28\%$</td>
     </tr>
     </tbody></table>
     <p>换手率和规模的影响系数最大，价值紧随其后。盈利因子影响系数虽然最小，但标准误极低，$t$ 值反而最高（4.75），说明它&quot;影响力&quot;不大但极其稳定。</p>
@@ -556,7 +556,7 @@
     <p>四因子模型分别用BM和ROE(TTM)与市值进行 $2\times3$ 双重排序：</p>
     <p>$$\text{LSL-HML} = \frac{1}{2}(\text{S/H} + \text{B/H}) - \frac{1}{2}(\text{S/L} + \text{B/L})$$</p>
     <p>$$\text{LSL-RMW} = \frac{1}{2}(\text{S/R} + \text{B/R}) - \frac{1}{2}(\text{S/W} + \text{B/W})$$</p>
-    <p>$$\text{LSL-SMB} = \frac{1}{2}(\text{SMB}<em>{\text{BM}} + \text{SMB}</em>{\text{ROE}})$$</p>
+    <p>$$\text{LSL-SMB} = \frac{1}{2}(\text{SMB}_{\text{BM}} + \text{SMB}_{\text{ROE}})$$</p>
     <p>前缀LSL是三位作者姓氏首字母。</p>
     <h4>因子收益率和相关性分析</h4>
     <p><img loading="lazy" decoding="async" width="1654" height="929" src="images/ch4/page-24.jpg" alt="表4.4 两模型中风格因子的月均收益率和相关系数"></p>

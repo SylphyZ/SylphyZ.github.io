@@ -234,7 +234,7 @@
     <p><strong>本节核心结论：分散化能消除公司特有风险，但无法消除系统性风险。</strong></p>
     <hr>
     <h2>7.2 两种风险资产的组合 (Portfolios of Two Risky Assets)</h2>
-    <p>上一节讲的是直觉，这一节开始定量。书中用两只共同基金作为例子：一只债券基金 $D$（specializing in long-term debt）和一只股票基金 $E$（specializing in equity）。Table 7.1 列出了它们的参数：$E(r_D) = 8%$，$\sigma_D = 12%$；$E(r_E) = 13%$，$\sigma_E = 20%$；两者的相关系数 $\rho_{DE} = 0.30$。</p>
+    <p>上一节讲的是直觉，这一节开始定量。书中用两只共同基金作为例子：一只债券基金 $D$（specializing in long-term debt）和一只股票基金 $E$（specializing in equity）。Table 7.1 列出了它们的参数：$E(r_D) = 8\%$，$\sigma_D = 12\%$；$E(r_E) = 13\%$，$\sigma_E = 20\%$；两者的相关系数 $\rho_{DE} = 0.30$。</p>
     <blockquote>
     <p>📖 参见书中 <strong>Table 7.1</strong>（p.204）</p>
     <p><img loading="lazy" decoding="async" width="1588" height="325" src="images/p204_table7_1.jpg" alt="Table 7.1 - 两只基金的描述性统计"></p>
@@ -277,7 +277,7 @@
     <p><strong>本节核心结论：只要两种资产不是完全正相关，分散化就能在不牺牲期望收益的前提下降低风险。相关系数越低，效果越好。</strong></p>
     <hr>
     <h2>7.3 股票、债券与国库券的资产配置 (Asset Allocation with Stocks, Bonds, and Bills)</h2>
-    <p>上一节我们只在两种风险资产之间做选择。现在加入第三种——无风险国库券 (T-bills)，$r_f = 5%$。问题变成：如何在三者之间分配资金？</p>
+    <p>上一节我们只在两种风险资产之间做选择。现在加入第三种——无风险国库券 (T-bills)，$r_f = 5\%$。问题变成：如何在三者之间分配资金？</p>
     <h3>用 Sharpe 比率挑选最优风险组合</h3>
     <p>回顾 Chapter 6 的结论：投资者通过把无风险资产和某个风险组合混合来构造完整组合，混合的轨迹是一条从 $r_f$ 出发穿过该风险组合的直线——<strong>资本配置线 (Capital Allocation Line, CAL)</strong>。CAL 的斜率就是<strong>夏普比率 (Sharpe Ratio)</strong>：</p>
     <p>$S_p = \frac{E(r_p) - r_f}{\sigma_p}$</p>
@@ -292,7 +292,7 @@
     <p>对于两种风险资产加一个无风险资产的情形，最大化 Sharpe 比率可以得到显式公式（注意使用超额收益 $R = r - r_f$）：</p>
     <p>$w_D = \frac{E(R_D)\sigma_E^2 - E(R_E)\text{Cov}(R_D, R_E)}{E(R_D)\sigma_E^2 + E(R_E)\sigma_D^2 - [E(R_D) + E(R_E)]\text{Cov}(R_D, R_E)} \tag{7.13}$</p>
     <p>$w_E = 1 - w_D$</p>
-    <p>代入数据（$E(R_D) = 3%$，$E(R_E) = 8%$，$\sigma_D^2 = 144$，$\sigma_E^2 = 400$，$\text{Cov} = 72$），得到 $w_D = 0.40$，$w_E = 0.60$。最优风险组合的期望收益为 11%，标准差为 14.2%，Sharpe 比率为 0.42。</p>
+    <p>代入数据（$E(R_D) = 3\%$，$E(R_E) = 8\%$，$\sigma_D^2 = 144$，$\sigma_E^2 = 400$，$\text{Cov} = 72$），得到 $w_D = 0.40$，$w_E = 0.60$。最优风险组合的期望收益为 11%，标准差为 14.2%，Sharpe 比率为 0.42。</p>
     <h3>从最优风险组合到最优完整组合</h3>
     <p>找到 $P$ 之后，每个投资者根据自己的风险厌恶系数 $A$ 决定在 $P$ 和国库券之间如何分配：</p>
     <p>$y = \frac{E(r_P) - r_f}{A\sigma_P^2} \tag{7.14}$</p>
@@ -337,8 +337,8 @@
     <p>当 $n \to \infty$ 时，第一项趋向零（公司特有风险被消除），第二项趋向 $\overline{\text{Cov}}$（系统性风险残留）。</p>
     <p>如果所有证券有相同的标准差 $\sigma$ 和两两相关系数 $\rho$，则更简洁：</p>
     <p>$\sigma_p^2 = \frac{1}{n}\sigma^2 + \frac{n-1}{n}\rho\sigma^2 \tag{7.21}$</p>
-    <p>极限值 $\sigma_p \to \sqrt{\rho},\sigma$ 就是不可分散的系统性标准差。</p>
-    <p>Table 7.4 用 $\sigma = 50%$ 给出了数值例子。$\rho = 0$ 时，100 只股票的标准差降到 5%；$\rho = 0.40$ 时，100 只股票的标准差为 31.86%，已非常接近极限值 $\sqrt{0.4} \times 50 = 31.62%$。</p>
+    <p>极限值 $\sigma_p \to \sqrt{\rho}\,\sigma$ 就是不可分散的系统性标准差。</p>
+    <p>Table 7.4 用 $\sigma = 50\%$ 给出了数值例子。$\rho = 0$ 时，100 只股票的标准差降到 5%；$\rho = 0.40$ 时，100 只股票的标准差为 31.86%，已非常接近极限值 $\sqrt{0.4} \times 50 = 31.62\%$。</p>
     <blockquote>
     <p>📖 参见书中 <strong>Table 7.4</strong>（p.223）</p>
     <p><img loading="lazy" decoding="async" width="1367" height="628" src="images/p223_table7_4.jpg" alt="Table 7.4 - 等权组合的风险缩减"></p>
@@ -354,7 +354,7 @@
     <p>$\text{Var}\left(\frac{1}{n}\sum_{i=1}^{n} x_i\right) = \frac{\sigma^2}{n} \tag{7.23}$</p>
     <p>表面上看，Eq. 7.23 说平均赔付越来越可预测。但 Eq. 7.22 告诉我们，总风险其实在增加——每多卖一张保单，总赔付的不确定性就多出 $\sigma^2$。书中用了一个很精彩的类比：这就像赌徒回到轮盘桌多转一轮，他的平均收益更可预测了，但赢输的总金额一定更不确定。</p>
     <p>单纯把多个独立风险源集中在一起，叫做<strong>风险汇聚 (Risk Pooling)</strong>。它只是故事的一半。真正降低每个人风险的是<strong>风险分担 (Risk Sharing)</strong>——保险公司发行股票给 $n$ 个投资者，随着保单池变大，同时也有更多人来分摊，每个人对任何单一保单的敞口在缩小。</p>
-    <p>映射到投资组合：真正的分散化是把<strong>固定的投资预算</strong>分配到多个资产上，限制对任何单一风险源的敞口。持有 $100,000 的 Microsoft 想要分散化，正确做法是把这笔钱分散到多只股票，而不是额外拿 $100,000 去买 Amazon——后者只是增加了在险资金，等于保险公司多卖保单但没多发股票。</p>
+    <p>映射到投资组合：真正的分散化是把<strong>固定的投资预算</strong>分配到多个资产上，限制对任何单一风险源的敞口。持有 \$100,000 的 Microsoft 想要分散化，正确做法是把这笔钱分散到多只股票，而不是额外拿 \$100,000 去买 Amazon——后者只是增加了在险资金，等于保险公司多卖保单但没多发股票。</p>
     <h3>时间分散化是幻觉</h3>
     <p>很多人相信长期持有股票更安全：虽然短期有波动，但&quot;大数定律&quot;保证正的风险溢价最终会胜出，所以长期投资者应该更大胆地配置股票。</p>
     <p>书中的反驳逻辑是：延长投资期限就相当于多卖保单——是风险汇聚，不是风险分担。你在股市中暴露的总资金量随时间增加，所以总风险也在增加。</p>
@@ -433,7 +433,7 @@
     <p>$\sigma_p^2 = \sum_{i=1}^{n} \sum_{j=1}^{n} w_i w_j \text{Cov}(r_i, r_j) \tag{7.16}$</p>
     <h3>七、等权组合与分散化极限</h3>
     <p>$\sigma_p^2 = \frac{1}{n}\bar{\sigma}^2 + \frac{n-1}{n}\overline{\text{Cov}} \tag{7.20}$</p>
-    <p>同质情形：$\sigma_p^2 = \dfrac{1}{n}\sigma^2 + \dfrac{n-1}{n}\rho\sigma^2$，极限 $\sigma_p \to \sqrt{\rho},\sigma$ (7.21)</p>
+    <p>同质情形：$\sigma_p^2 = \dfrac{1}{n}\sigma^2 + \dfrac{n-1}{n}\rho\sigma^2$，极限 $\sigma_p \to \sqrt{\rho}\,\sigma$ (7.21)</p>
     <h3>八、风险汇聚 vs. 风险分担</h3>
     <table>
     <thead>
@@ -445,12 +445,12 @@
     </thead>
     <tbody><tr>
     <td>总风险（风险汇聚）</td>
-    <td>$\text{Var}!\left(\sum x_i\right) = n\sigma^2$</td>
+    <td>$\text{Var}\!\left(\sum x_i\right) = n\sigma^2$</td>
     <td>增大</td>
     </tr>
     <tr>
     <td>人均风险（风险分担）</td>
-    <td>$\text{Var}!\left(\frac{1}{n}\sum x_i\right) = \frac{\sigma^2}{n}$</td>
+    <td>$\text{Var}\!\left(\frac{1}{n}\sum x_i\right) = \frac{\sigma^2}{n}$</td>
     <td>减小</td>
     </tr>
     </tbody></table>

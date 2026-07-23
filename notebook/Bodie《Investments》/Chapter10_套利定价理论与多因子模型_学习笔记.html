@@ -240,15 +240,15 @@
     <h3>1.3 一个具体的例子（Example 10.1）</h3>
     <p>假设宏观因子 $F$ 代表GDP增长的意外变化。市场共识是今年GDP增长4%。某股票的 $\beta = 1.2$。</p>
     <p>如果GDP实际只增长了3%，那么：</p>
-    <p>$F = 3% - 4% = -1%$</p>
+    <p>$F = 3\% - 4\% = -1\%$</p>
     <p>这是一个&quot;坏消息&quot;——GDP比预期少增长了1个百分点。这个坏消息对股票的影响是：</p>
-    <p>$\beta_i \times F = 1.2 \times (-1%) = -1.2%$</p>
+    <p>$\beta_i \times F = 1.2 \times (-1\%) = -1.2\%$</p>
     <p>也就是说，<strong>仅仅因为GDP不及预期</strong>，这只股票的收益就比你原来的预期低了1.2个百分点。再加上公司自身的随机事件 $e_i$，就得到了实际收益与预期收益的总偏差。</p>
-    <p>反过来，如果GDP增长了5%（$F = +1%$），这只股票会比预期多赚 $1.2%$。</p>
+    <p>反过来，如果GDP增长了5%（$F = +1\%$），这只股票会比预期多赚 $1.2\%$。</p>
     <h3>1.4 因子模型和CAPM是什么关系？</h3>
     <p>这是一个非常关键的问题。我们把两个公式放在一起对比。</p>
     <p><strong>CAPM告诉你的是：</strong> 在均衡状态下，一只股票的<strong>期望</strong>超额收益应该是多少。</p>
-    <p>$E(R_i) = \beta_i , E(R_M)$</p>
+    <p>$E(R_i) = \beta_i \, E(R_M)$</p>
     <p>这是一个<strong>定价理论</strong>——它回答的是&quot;$E(R_i)$ 应该等于多少&quot;。</p>
     <p><strong>因子模型告诉你的是：</strong> 一只股票的<strong>实际</strong>超额收益等于什么。</p>
     <p>$R_i = E(R_i) + \beta_i F + e_i$</p>
@@ -362,7 +362,7 @@
     <p>在推导APT之前，我们需要先搞清楚一个最基本的概念：<strong>套利（arbitrage）</strong>。整个APT的推导都建立在一个假设上——市场不允许套利机会持续存在。</p>
     <h3>3.1 什么是套利？</h3>
     <p>套利是指：<strong>不需要投入任何自有资金（零净投资），不承担任何风险（零风险），却能赚取确定的利润（正利润）。</strong></p>
-    <p>教材给了一个最简单的例子：假设微软的股票在NYSE（纽约证券交易所）卖$310，但在NASDAQ只卖$305。你可以：</p>
+    <p>教材给了一个最简单的例子：假设微软的股票在NYSE（纽约证券交易所）卖\$310，但在NASDAQ只卖\$305。你可以：</p>
     <ul>
     <li>在NASDAQ以$305<strong>买入</strong></li>
     <li><strong>同时</strong>在NYSE以$310<strong>卖出</strong></li>
@@ -403,7 +403,7 @@
     <h3>3.4 套利论证 vs CAPM的均衡论证——一个重要区别</h3>
     <p>这一点是理解APT相对于CAPM优势的关键。</p>
     <p><strong>CAPM的逻辑（dominance argument）：</strong> 如果某只股票定价不合理，<strong>很多投资者</strong>会各自做出<strong>小幅度</strong>的组合调整（多买一点被低估的，少买一点被高估的）。这些小幅调整<strong>汇总起来</strong>才能形成足够的买卖压力，推动价格回到均衡。这需要假设<strong>大量投资者</strong>都是均值-方差优化者。</p>
-    <p><strong>APT的逻辑（no-arbitrage argument）：</strong> 如果存在套利机会——零风险、零投入、正利润——那<strong>每一个发现它的投资者</strong>都想把头寸做到<strong>无限大</strong>。为什么？因为没有风险也不需要本金，做100股赚$500，做100万股赚$500万，不做白不做。所以只需要<strong>少数几个</strong>套利者就能产生<strong>巨大的</strong>买卖压力，迅速恢复均衡。根本不需要假设所有人都是均值-方差优化者。</p>
+    <p><strong>APT的逻辑（no-arbitrage argument）：</strong> 如果存在套利机会——零风险、零投入、正利润——那<strong>每一个发现它的投资者</strong>都想把头寸做到<strong>无限大</strong>。为什么？因为没有风险也不需要本金，做100股赚\$500，做100万股赚\$500万，不做白不做。所以只需要<strong>少数几个</strong>套利者就能产生<strong>巨大的</strong>买卖压力，迅速恢复均衡。根本不需要假设所有人都是均值-方差优化者。</p>
     <p><strong>结论：由无套利推导出的定价关系，比由均衡论证推导出的更强、更可靠。</strong></p>
     <hr>
     <h2>四、充分分散的组合——消灭非系统性风险</h2>
@@ -421,10 +421,10 @@
     </ul>
     <h3>4.3 分散化的数学魔力</h3>
     <p>非系统性方差具体等于多少？因为各公司的 $e_i$ 互不相关（张三公司的丑闻和李四公司的新产品没关系），所以没有交叉项：</p>
-    <p>$\sigma^2(e_P) = \sum w_i^2 , \sigma^2(e_i)$</p>
+    <p>$\sigma^2(e_P) = \sum w_i^2 \, \sigma^2(e_i)$</p>
     <p>注意权重是 $w_i^2$（<strong>平方</strong>），不是 $w_i$。</p>
     <p>如果组合是<strong>等权重的</strong>，即每只股票都投 $w_i = 1/n$：</p>
-    <p>$\sigma^2(e_P) = \sum \left(\frac{1}{n}\right)^2 \sigma^2(e_i) = \frac{1}{n} \cdot \frac{\sum \sigma^2(e_i)}{n} = \frac{1}{n} , \bar{\sigma}^2(e_i) \tag{10.4}$</p>
+    <p>$\sigma^2(e_P) = \sum \left(\frac{1}{n}\right)^2 \sigma^2(e_i) = \frac{1}{n} \cdot \frac{\sum \sigma^2(e_i)}{n} = \frac{1}{n} \, \bar{\sigma}^2(e_i) \tag{10.4}$</p>
     <p>其中 $\bar{\sigma}^2(e_i)$ 是所有股票非系统性方差的<strong>平均值</strong>。</p>
     <p><strong>关键结论：</strong> 非系统性方差 = 平均非系统性方差 <strong>÷ n</strong>。$n$ 越大，$\sigma^2(e_P)$ 越小。当 $n$ 足够大时，$\sigma^2(e_P) \to 0$——非系统性风险被彻底消灭了。</p>
     <h3>4.4 Figure 10.1：眼见为实</h3>
@@ -462,13 +462,13 @@
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/page-09.jpg" alt="Figure 10.3: 相同Beta不同期望收益的套利机会"></p>
     <p>假设有两个充分分散的组合，$\beta$ 都等于1，但期望收益不同：</p>
     <ul>
-    <li>组合A：$E(r_A) = 10%$，$\beta_A = 1$</li>
-    <li>组合B：$E(r_B) = 8%$，$\beta_B = 1$</li>
+    <li>组合A：$E(r_A) = 10\%$，$\beta_A = 1$</li>
+    <li>组合B：$E(r_B) = 8\%$，$\beta_B = 1$</li>
     </ul>
     <p>因为都是充分分散的，它们的收益分别是（没有 $e_P$ 项）：</p>
-    <p>$R_A = 10% + 1.0 \times F$</p>
-    <p>$R_B = 8% + 1.0 \times F$</p>
-    <p>现在构造套利策略：买入$100万的A（多头），同时卖空$100万的B（空头）。</p>
+    <p>$R_A = 10\% + 1.0 \times F$</p>
+    <p>$R_B = 8\% + 1.0 \times F$</p>
+    <p>现在构造套利策略：买入\$100万的A（多头），同时卖空\$100万的B（空头）。</p>
     <table>
     <thead>
     <tr>
@@ -478,20 +478,20 @@
     </thead>
     <tbody><tr>
     <td>多头A</td>
-    <td>$(10% + F) \times $100$万</td>
+    <td>$(10\% + F) \times \$100$万</td>
     </tr>
     <tr>
     <td>空头B</td>
-    <td>$-(8% + F) \times $100$万</td>
+    <td>$-(8\% + F) \times \$100$万</td>
     </tr>
     <tr>
     <td><strong>合计</strong></td>
-    <td>$2% \times $100$万 $= $2$万</td>
+    <td>$2\% \times \$100$万 $= \$2$万</td>
     </tr>
     </tbody></table>
     <p>检查这个策略的三个特征：</p>
     <ul>
-    <li><strong>净投资</strong>：买入$100万，卖空收到$100万 → <strong>零</strong></li>
+    <li><strong>净投资</strong>：买入\$100万，卖空收到\$100万 → <strong>零</strong></li>
     <li><strong>风险</strong>：多头的 $F$ 和空头的 $-F$ 完全抵消 → <strong>零</strong></li>
     <li><strong>利润</strong>：不管 $F$ 等于多少，确定赚$2万 → <strong>正</strong></li>
     </ul>
@@ -501,11 +501,11 @@
     <p>相同 $\beta$ 必须有相同期望收益。那不同 $\beta$ 呢？</p>
     <h4>Figure 10.4</h4>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/page-10.jpg" alt="Figure 10.4: 风险溢价必须与Beta成正比"></p>
-    <p>假设 $r_f = 4%$，组合A（$\beta = 1$, $E(r) = 10%$），组合C（$\beta = 0.5$, $E(r) = 6%$）。</p>
+    <p>假设 $r_f = 4\%$，组合A（$\beta = 1$, $E(r) = 10\%$），组合C（$\beta = 0.5$, $E(r) = 6\%$）。</p>
     <p>组合C落在从无风险资产到A的连线<strong>下方</strong>。这意味着什么？我们来构造套利。</p>
     <p>构造一个新组合D：50%投在A上，50%投在无风险资产上。</p>
     <p>$\beta_D = 0.5 \times 0 + 0.5 \times 1.0 = 0.5$</p>
-    <p>$E(r_D) = 0.5 \times 4% + 0.5 \times 10% = 7%$</p>
+    <p>$E(r_D) = 0.5 \times 4\% + 0.5 \times 10\% = 7\%$</p>
     <p>现在比较D和C：</p>
     <table>
     <thead>
@@ -528,10 +528,10 @@
     </tbody></table>
     <p>$\beta$ 相同，但D的期望收益更高！根据5.1的结论，这构成套利机会（买D、卖空C，赚1%的无风险利润）。</p>
     <p>所以C的定价是不合理的。<strong>为了排除套利，所有充分分散组合的期望收益必须落在从 $r_f$ 出发的一条直线上。</strong></p>
-    <p>从Figure 10.4可以看出，这条线从 $r_f = 4%$ 出发，经过A（$\beta = 1$, $E(r) = 10%$）。风险溢价与 $\beta$ 严格成正比：$\beta = 0$ 时风险溢价为零，$\beta = 0.5$ 时风险溢价应该是3%（$E(r) = 7%$），$\beta = 1$ 时风险溢价是6%（$E(r) = 10%$）。</p>
+    <p>从Figure 10.4可以看出，这条线从 $r_f = 4\%$ 出发，经过A（$\beta = 1$, $E(r) = 10\%$）。风险溢价与 $\beta$ 严格成正比：$\beta = 0$ 时风险溢价为零，$\beta = 0.5$ 时风险溢价应该是3%（$E(r) = 7\%$），$\beta = 1$ 时风险溢价是6%（$E(r) = 10\%$）。</p>
     <h3>5.3 APT的SML</h3>
     <p>写成公式：</p>
-    <p>$E(R_P) = \beta_P , E(R_M) \tag{10.6}$</p>
+    <p>$E(R_P) = \beta_P \, E(R_M) \tag{10.6}$</p>
     <p>或等价地：</p>
     <p>$E(r_P) = r_f + \beta_P \left[E(r_M) - r_f\right]$</p>
     <p><strong>等一下，这不就是CAPM的SML吗？</strong> 形式确实完全一样！但推导的路径截然不同。而且APT用的是一个可观测的充分分散市场指数，而不是CAPM中不可观测的&quot;所有资产的市场组合&quot;。</p>
@@ -585,7 +585,7 @@
     </tbody></table>
     <h3>6.3 各自的优劣</h3>
     <p><strong>APT的优势：</strong> 假设更弱、更现实——你不需要相信所有投资者都在做复杂的均值-方差优化，只要相信有一些聪明的套利者在市场中寻找机会就够了。而且APT不需要那个理论上包含所有资产（股票、债券、房地产、人力资本……）但实际上无法观测的&quot;市场组合&quot;。</p>
-    <p><strong>APT的劣势：</strong> 结论不够&quot;干净&quot;——它不能排除少量个股偏离SML。而且&quot;充分分散&quot;在实践中只能近似达到。比如一个等权重的1000只股票组合，如果每只股票的残差标准差是40%，组合的残差标准差仍有 $40%/\sqrt{1000} = 1.26%$——很小，但不是零。</p>
+    <p><strong>APT的劣势：</strong> 结论不够&quot;干净&quot;——它不能排除少量个股偏离SML。而且&quot;充分分散&quot;在实践中只能近似达到。比如一个等权重的1000只股票组合，如果每只股票的残差标准差是40%，组合的残差标准差仍有 $40\%/\sqrt{1000} = 1.26\%$——很小，但不是零。</p>
     <h3>6.4 殊途同归</h3>
     <p>尽管路径不同，两个模型最终到达了同一个目的地。教材的总结是：两者都强调了<strong>系统性风险与公司特有风险的区分</strong>，这是所有现代风险-收益模型的核心。</p>
     <hr>
@@ -616,15 +616,15 @@
     <p>$E(r_Q) = r_f + \beta_{P1}\left[E(r_1) - r_f\right] + \beta_{P2}\left[E(r_2) - r_f\right] \tag{10.8}$</p>
     <p>因为Q和P有完全相同的因子暴露，如果 $E(r_P) \neq E(r_Q)$，就能构造零投资、零风险、正利润的套利。无套利条件要求 $E(r_P) = E(r_Q)$。</p>
     <p><strong>用文字理解这个公式：</strong></p>
-    <p>$E(r_P) = \underbrace{r_f}<em>{\text{无风险利率}} + \underbrace{\beta</em>{P1} \left[E(r_1) - r_f\right]}<em>{\text{因子1的风险补偿}} + \underbrace{\beta</em>{P2} \left[E(r_2) - r_f\right]}_{\text{因子2的风险补偿}}$</p>
+    <p>$E(r_P) = \underbrace{r_f}_{\text{无风险利率}} + \underbrace{\beta_{P1} \left[E(r_1) - r_f\right]}_{\text{因子1的风险补偿}} + \underbrace{\beta_{P2} \left[E(r_2) - r_f\right]}_{\text{因子2的风险补偿}}$</p>
     <p>你的期望收益 = 无风险利率 + 你承担的每种系统性风险<strong>各自应得的补偿</strong>。每种风险的补偿 = 你对该风险的<strong>暴露程度</strong>（$\beta$）× 市场对该风险给出的<strong>单位价格</strong>（因子风险溢价）。</p>
     <h3>7.4 Example 10.3：具体计算</h3>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/page-13.jpg" alt="Example 10.3 &amp; 10.4: 多因子SML的计算与套利"></p>
     <p>假设：</p>
     <ul>
-    <li>$r_f = 4%$</li>
-    <li>因子组合1：$E(r_1) = 10%$，风险溢价 $= 10% - 4% = 6%$</li>
-    <li>因子组合2：$E(r_2) = 12%$，风险溢价 $= 12% - 4% = 8%$</li>
+    <li>$r_f = 4\%$</li>
+    <li>因子组合1：$E(r_1) = 10\%$，风险溢价 $= 10\% - 4\% = 6\%$</li>
+    <li>因子组合2：$E(r_2) = 12\%$，风险溢价 $= 12\% - 4\% = 8\%$</li>
     </ul>
     <p>现在有一个充分分散的组合A，$\beta_{A1} = 0.5$，$\beta_{A2} = 0.75$。它的期望收益应该是多少？</p>
     <table>
@@ -638,33 +638,33 @@
     <tbody><tr>
     <td>无风险利率</td>
     <td>$r_f$</td>
-    <td>$4%$</td>
+    <td>$4\%$</td>
     </tr>
     <tr>
     <td>因子1的风险补偿</td>
-    <td>$\beta_{A1} \times [E(r_1) - r_f] = 0.5 \times 6%$</td>
-    <td>$3%$</td>
+    <td>$\beta_{A1} \times [E(r_1) - r_f] = 0.5 \times 6\%$</td>
+    <td>$3\%$</td>
     </tr>
     <tr>
     <td>因子2的风险补偿</td>
-    <td>$\beta_{A2} \times [E(r_2) - r_f] = 0.75 \times 8%$</td>
-    <td>$6%$</td>
+    <td>$\beta_{A2} \times [E(r_2) - r_f] = 0.75 \times 8\%$</td>
+    <td>$6\%$</td>
     </tr>
     <tr>
     <td><strong>总期望收益</strong></td>
     <td></td>
-    <td><strong>$13%$</strong></td>
+    <td><strong>$13\%$</strong></td>
     </tr>
     </tbody></table>
     <h3>7.5 Example 10.4：如果定价不对怎么办？</h3>
     <p>假设组合A的实际期望收益是12%而不是模型预测的13%（A被高估了，太贵了，期望收益偏低）。</p>
     <p>构造组合Q，使其因子暴露和A完全一样：投0.5在因子组合1上，0.75在因子组合2上，$-0.25$ 在无风险资产上（即借入25%的资金）。Q的期望收益是13%。</p>
-    <p>套利策略：买入$1的Q（期望赚13%），卖空$1的A（期望付出12%）。净投资为零，因子风险完全抵消（两者的 $\beta$ 完全相同），确定赚1%。</p>
-    <p>这就是套利机会。市场会迅速通过买Q卖A的压力把A的价格压低（即提高A的期望收益），直到 $E(r_A) = 13%$。</p>
+    <p>套利策略：买入\$1的Q（期望赚13%），卖空\$1的A（期望付出12%）。净投资为零，因子风险完全抵消（两者的 $\beta$ 完全相同），确定赚1%。</p>
+    <p>这就是套利机会。市场会迅速通过买Q卖A的压力把A的价格压低（即提高A的期望收益），直到 $E(r_A) = 13\%$。</p>
     <h3>7.6 Concept Check 10.3</h3>
     <p>用上面的因子组合数据，$\beta_1 = 0.2$，$\beta_2 = 1.4$ 的组合，均衡期望收益是多少？</p>
-    <p>$E(r) = 4% + 0.2 \times (10% - 4%) + 1.4 \times (12% - 4%)$
-    $= 4% + 0.2 \times 6% + 1.4 \times 8% = 4% + 1.2% + 11.2% = 16.4%$</p>
+    <p>$E(r) = 4\% + 0.2 \times (10\% - 4\%) + 1.4 \times (12\% - 4\%)$
+    $= 4\% + 0.2 \times 6\% + 1.4 \times 8\% = 4\% + 1.2\% + 11.2\% = 16.4\%$</p>
     <hr>
     <h2>八、Fama-French三因子模型——把理论用于实证</h2>
     <p>APT的理论框架告诉我们：期望收益由多个因子的 $\beta$ 决定。但APT本身<strong>不告诉你具体应该用哪些因子</strong>。实证研究中最有影响力的尝试是Fama和French的三因子模型。</p>
@@ -678,7 +678,7 @@
     <p>这两个现象提示我们：除了市场风险之外，还有<strong>其他系统性风险源</strong>在影响期望收益。</p>
     <h3>8.3 三因子模型</h3>
     <p>Fama和French提出：</p>
-    <p>$R_{it} = \alpha_i + \beta_{iM} R_{Mt} + \beta_{iSMB} \cdot \text{SMB}<em>t + \beta</em>{iHML} \cdot \text{HML}<em>t + e</em>{it} \tag{10.9}$</p>
+    <p>$R_{it} = \alpha_i + \beta_{iM} R_{Mt} + \beta_{iSMB} \cdot \text{SMB}_t + \beta_{iHML} \cdot \text{HML}_t + e_{it} \tag{10.9}$</p>
     <p>三个因子分别是：</p>
     <table>
     <thead>
@@ -716,12 +716,12 @@
     <li>加入额外因子后，三因子模型的 $R^2$ 从0.283提升到0.352，残差标准差从15.171%降到14.675%——解释力明显提升</li>
     </ul>
     <h3>8.5 用三因子模型估计期望收益</h3>
-    <p>历史平均的因子风险溢价大约是：市场 $8.8%$，SMB $3.0%$，HML $4.2%$。假设 $r_f = 2%$。</p>
+    <p>历史平均的因子风险溢价大约是：市场 $8.8\%$，SMB $3.0\%$，HML $4.2\%$。假设 $r_f = 2\%$。</p>
     <p><strong>三因子模型的估计：</strong></p>
-    <p>$E(r_X) = 2% + 1.771 \times 8.8% + 0.369 \times 3.0% + 1.249 \times 4.2%$
-    $= 2% + 15.58% + 1.11% + 5.25% = 23.9%$</p>
+    <p>$E(r_X) = 2\% + 1.771 \times 8.8\% + 0.369 \times 3.0\% + 1.249 \times 4.2\%$
+    $= 2\% + 15.58\% + 1.11\% + 5.25\% = 23.9\%$</p>
     <p><strong>单指数模型的估计：</strong></p>
-    <p>$E(r_X) = 2% + 2.030 \times 8.8% = 19.9%$</p>
+    <p>$E(r_X) = 2\% + 2.030 \times 8.8\% = 19.9\%$</p>
     <p>三因子模型给出了更高的期望收益。虽然U.S. Steel在三因子模型中的市场 $\beta$ 更低（1.771 vs 2.030），但它对HML因子的高暴露<strong>额外贡献了5.25%的风险溢价</strong>——这是单指数模型完全忽略的部分。</p>
     <h3>8.6 一个重要的注意事项</h3>
     <p>教材特别强调：<strong>计算均衡期望收益时，不要加上回归中估计出的 $\alpha$。</strong></p>
@@ -814,7 +814,7 @@
     <p><strong>单指数模型：</strong> $R_i = \alpha_i + \beta_i R_M + e_i$</p>
     <p><strong>多因子SML（双因子）：</strong></p>
     <p>$E(r_i) = r_f + \beta_{i1}\left[E(r_1) - r_f\right] + \beta_{i2}\left[E(r_2) - r_f\right]$</p>
-    <p><strong>Fama-French三因子模型：</strong> $R_{it} = \alpha_i + \beta_{iM} R_{Mt} + \beta_{iSMB} \text{SMB}<em>t + \beta</em>{iHML} \text{HML}<em>t + e</em>{it}$</p>
+    <p><strong>Fama-French三因子模型：</strong> $R_{it} = \alpha_i + \beta_{iM} R_{Mt} + \beta_{iSMB} \text{SMB}_t + \beta_{iHML} \text{HML}_t + e_{it}$</p>
     <h3>10.2 核心逻辑链</h3>
     <p>这是整章最重要的一条线，把所有内容串起来：</p>
     <ol>

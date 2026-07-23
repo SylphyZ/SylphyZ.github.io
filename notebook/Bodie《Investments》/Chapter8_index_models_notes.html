@@ -299,7 +299,7 @@
     <li><strong>截距 $\alpha_i$</strong>：当市场超额收益为零时，股票的期望超额收益。</li>
     <li><strong>残差 $e_i(t)$</strong>：每个散点到回归线的垂直距离，即那个月的公司特有意外。残差越大，散点越分散。</li>
     </ul>
-    <p>例如图中标注的 2019 年 6 月：市场超额收益 6.93%，回归线预测 U.S. Steel 应有 13.91%，但实际为 29.75%，残差 $e = 29.75% - 13.91% = 15.84%$。这说明那个月有很好的公司特有利好消息。</p>
+    <p>例如图中标注的 2019 年 6 月：市场超额收益 6.93%，回归线预测 U.S. Steel 应有 13.91%，但实际为 29.75%，残差 $e = 29.75\% - 13.91\% = 15.84\%$。这说明那个月有很好的公司特有利好消息。</p>
     <h3>3.3 指数模型与分散化</h3>
     <p>这部分回答一个核心问题：<strong>当你往组合里加入越来越多的股票，风险会怎么变化？</strong></p>
     <p>考虑一个 $n$ 只股票的等权组合（每只权重 $w_i = 1/n$）。将 $R_i = \alpha_i + \beta_i R_M + e_i$ 代入组合收益，得到：</p>
@@ -339,15 +339,15 @@
     <li><strong>Multiple R = 0.532</strong>：U.S. Steel 与市场指数的相关系数，中等偏强正相关。</li>
     <li><strong>R-Square = 0.283</strong>：市场波动只解释了 U.S. Steel 收益波动的 28.3%，剩下 71.7% 来自公司特有因素。$R^2$ 的公式正好对应风险分解：$R^2 = \frac{\beta^2\sigma_M^2}{\beta^2\sigma_M^2 + \sigma^2(e)}$，即系统风险占总风险的比例。</li>
     <li><strong>Adjusted R-Square = 0.271</strong>：对 $R^2$ 做小幅向下修正，因为我们使用的是估计值（而非真实值）来拟合。修正公式 $R_A^2 = 1 - (1 - R^2)\frac{n-1}{n-k-1}$，这里 $n = 60$，$k = 1$，修正很小。</li>
-    <li><strong>Standard Error = 15.171</strong>：残差标准差 $\sigma(e)$（%/月），即公司特有风险的大小。年化约 $15.17% \times \sqrt{12} \approx 52.6%$，非常大。</li>
+    <li><strong>Standard Error = 15.171</strong>：残差标准差 $\sigma(e)$（%/月），即公司特有风险的大小。年化约 $15.17\% \times \sqrt{12} \approx 52.6\%$，非常大。</li>
     </ul>
     <p><strong>下半部分——系数估计：</strong></p>
-    <p><strong>Alpha 的估计：</strong> 系数为 $-2.034%$/月，看起来经济上很大。但标准误为 2.052，$t$ 统计量 $= -2.034 / 2.052 = -0.991$，绝对值远小于惯用门槛 2.0。$p$ 值 $= 0.326$，远大于 5% 的显著性水平。意思是：如果真实 $\alpha$ 为零，我们有 32.6% 的概率会观测到绝对值这么大或更大的估计值。<strong>结论：不能拒绝 $\alpha = 0$。</strong> 这个 $-2%$ 很可能只是随机噪声。</p>
+    <p><strong>Alpha 的估计：</strong> 系数为 $-2.034\%$/月，看起来经济上很大。但标准误为 2.052，$t$ 统计量 $= -2.034 / 2.052 = -0.991$，绝对值远小于惯用门槛 2.0。$p$ 值 $= 0.326$，远大于 5% 的显著性水平。意思是：如果真实 $\alpha$ 为零，我们有 32.6% 的概率会观测到绝对值这么大或更大的估计值。<strong>结论：不能拒绝 $\alpha = 0$。</strong> 这个 $-2\%$ 很可能只是随机噪声。</p>
     <p><strong>Beta 的估计：</strong> 系数为 2.030，意味着市场每涨 1%，U.S. Steel 平均涨约 2%。$t = 4.785$，$p \approx 0$，高度显著——U.S. Steel 和市场确实有很强的关联。</p>
     <p>更有意义的检验是 $\beta = 1$（敏感度是否显著高于市场平均）：</p>
     <p>$t = \frac{2.030 - 1}{0.424} = 2.43 &gt; 2$</p>
     <p>可以拒绝，确认 U.S. Steel 是高敏感度的进攻型股票。不过 95% 置信区间为 $(1.182, 2.878)$，范围仍然很宽，精度不算理想。</p>
-    <p><strong>公司特有风险 vs 系统风险：</strong> 残差标准差 15.17%/月 &gt; 系统风险标准差 $\beta \times \sigma_M = 2.03 \times 4.66% = 9.46%$/月。对个股而言，公司特有风险常常大于系统风险。</p>
+    <p><strong>公司特有风险 vs 系统风险：</strong> 残差标准差 15.17%/月 &gt; 系统风险标准差 $\beta \times \sigma_M = 2.03 \times 4.66\% = 9.46\%$/月。对个股而言，公司特有风险常常大于系统风险。</p>
     <h3>4.3 典型回归结果：17 只股票样本</h3>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/p264_table8_2_index_model_estimates.jpg" alt="Table 8.2: 17 家公司的指数模型回归结果 (p.264)"></p>
     <p>几个要点：</p>
@@ -355,7 +355,7 @@
     <li><strong>平均 $\beta = 1.066$</strong>，非常接近理论值 1.0。高 $\beta$：Boeing (1.474)、U.S. Steel (2.030)、Marathon Oil (2.986)——都是对经济周期敏感的行业。低 $\beta$：Campbell Soup (0.461)、Newmont Mining (0.217)、McDonald&#39;s (0.528)——防御性行业。</li>
     <li><strong>平均 $\alpha \approx 0$</strong>。整个样本中只有两家（ExxonMobil 和 Microsoft）的 $\alpha$ 超过两倍标准误，一正一负。$\alpha$ 估计总体上统计不显著。</li>
     <li><strong>平均残差标准差 = 6.9%/月</strong>。公司特有风险巨大，再次强调了分散化的重要性。</li>
-    <li><strong>平均 $R^2 = 35%$</strong>。只有约三分之一的收益波动来自市场因素，三分之二来自公司特有因素。这也解释了为什么单只股票的 $R^2$ 往往不高，但充分分散的组合几乎只剩系统风险。</li>
+    <li><strong>平均 $R^2 = 35\%$</strong>。只有约三分之一的收益波动来自市场因素，三分之二来自公司特有因素。这也解释了为什么单只股票的 $R^2$ 往往不高，但充分分散的组合几乎只剩系统风险。</li>
     <li>最后一列 <strong>Adjusted Beta</strong> 在 §8.4 详细讨论。</li>
     </ul>
     <hr>
@@ -378,8 +378,8 @@
     <p>调整公式很简单——把样本估计值和 1 做加权平均：</p>
     <p>$\text{Adjusted beta} = \frac{2}{3}\hat{\beta} + \frac{1}{3}(1.0) \tag{8.19}$</p>
     <p>例：U.S. Steel 的 $\hat{\beta} = 2.030$，adjusted beta $= \frac{2}{3}(2.030) + \frac{1}{3}(1) = 1.687$，向 1 拉了三分之一的距离。</p>
-    <p>如果预测市场收益率 8%、$r_f = 2%$、设 $\alpha = 0$（无特殊信息），则 U.S. Steel 的预测收益率为：</p>
-    <p>$E(r_X) = r_f + \text{adjusted beta} \times [E(r_M) - r_f] = 2 + 1.687 \times 6 = 12.12%$</p>
+    <p>如果预测市场收益率 8%、$r_f = 2\%$、设 $\alpha = 0$（无特殊信息），则 U.S. Steel 的预测收益率为：</p>
+    <p>$E(r_X) = r_f + \text{adjusted beta} \times [E(r_M) - r_f] = 2 + 1.687 \times 6 = 12.12\%$</p>
     <h3>5.3 更一般的 Beta 预测</h3>
     <p>Eq. 8.19 的 $\frac{2}{3}$、$\frac{1}{3}$ 只是一个简化规则。更一般地，可以用回归来估计 $\beta$ 的时间演化：</p>
     <p>$\text{Current beta} = a + b \times (\text{Past beta}) \tag{8.20}$</p>
@@ -426,10 +426,10 @@
     <p>$w_A^* = \frac{w_A^0}{1 + (1 - \beta_A)w_A^0} \tag{8.25}$</p>
     <p>当 $\beta_A = 1$ 时不调整。当 $\beta_A &gt; 1$ 时，主动组合本身已提供较多市场暴露，会挤占指数份额，$w_A^*$ 相应增大。</p>
     <p><strong>Step 5：最终权重。</strong></p>
-    <p>$w_M^* = 1 - w_A^<em>, \quad w_i^</em> = w_A^* \times w_i$</p>
+    <p>$w_M^* = 1 - w_A^*, \quad w_i^* = w_A^* \times w_i$</p>
     <p><strong>Step 6：组合的风险溢价和方差。</strong></p>
-    <p>$E(R_P) = (w_M^* + w_A^<em>\beta_A)E(R_M) + w_A^</em>\alpha_A$</p>
-    <p>$\sigma_P^2 = (w_M^* + w_A^<em>\beta_A)^2\sigma_M^2 + [w_A^</em>\sigma(e_A)]^2$</p>
+    <p>$E(R_P) = (w_M^* + w_A^*\beta_A)E(R_M) + w_A^*\alpha_A$</p>
+    <p>$\sigma_P^2 = (w_M^* + w_A^*\beta_A)^2\sigma_M^2 + [w_A^*\sigma(e_A)]^2$</p>
     <h3>6.5 信息比率（Information Ratio）</h3>
     <p>最优组合的 Sharpe ratio 与指数的 Sharpe ratio 之间有一个漂亮的关系：</p>
     <p>$S_P^2 = S_M^2 + \left[\frac{\alpha_A}{\sigma(e_A)}\right]^2 \tag{8.26}$</p>
@@ -446,7 +446,7 @@
     <li><strong>Panel B</strong>：残差相关矩阵。同行业股票的残差相关性很高（Ford 与 GM 达 0.699），违反指数模型假设。作者故意这样选来测试模型的稳健性。</li>
     <li><strong>Panel C</strong>：指数模型协方差矩阵（用 $\beta_i\beta_j\sigma_M^2$ 计算）。</li>
     <li><strong>Panel D</strong>：$\alpha$ 预测值，都很小（实际中需大幅缩减以反映预测误差）。</li>
-    <li><strong>Panel E</strong>：最优组合计算。主动组合内部权重激进（如 Walmart 0.685），$\alpha_A = 2.42%$。但残差方差也大（$\sigma^2(e_A) = 0.0303$），所以主动组合在整体中被压缩到只有 $w_A^* = 0.1809$。最终 Sharpe ratio = 0.5165，纯指数为 0.4975。改善不大，反映了 $\alpha$ 预测值本身很小。</li>
+    <li><strong>Panel E</strong>：最优组合计算。主动组合内部权重激进（如 Walmart 0.685），$\alpha_A = 2.42\%$。但残差方差也大（$\sigma^2(e_A) = 0.0303$），所以主动组合在整体中被压缩到只有 $w_A^* = 0.1809$。最终 Sharpe ratio = 0.5165，纯指数为 0.4975。改善不大，反映了 $\alpha$ 预测值本身很小。</li>
     </ul>
     <h3>指数模型 vs Markowitz 模型的对比</h3>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/p276_figure8_4_table8_4.jpg" alt="Figure 8.4 与 Table 8.4: 两种方法的对比 (p.276)"></p>
@@ -464,7 +464,7 @@
     <p>（$R_M$ 与 $e_A$ 不相关，$R_M$ 前面系数为 1 不含 $w_A$。）</p>
     <p>最大化 Sharpe ratio 的平方：</p>
     <p>$S_P^2 = \frac{[w_A\alpha_A + E(R_M)]^2}{\sigma_M^2 + w_A^2\sigma^2(e_A)}$</p>
-    <p>对 $w_A$ 求导，令 $\frac{d(S_P^2)}{dw_A} = 0$。用商的求导法则 $N&#39;D = ND&#39;$：</p>
+    <p>对 $w_A$ 求导，令 $\frac{d(S_P^2)}{dw_A} = 0$。用商的求导法则 $N'D = ND'$：</p>
     <p>$\alpha_A[\sigma_M^2 + w_A^2\sigma^2(e_A)] = [w_A\alpha_A + E(R_M)] \cdot w_A\sigma^2(e_A)$</p>
     <p>展开并消去 $w_A^2\alpha_A\sigma^2(e_A)$ 项：</p>
     <p>$\alpha_A\sigma_M^2 = w_AE(R_M)\sigma^2(e_A)$</p>

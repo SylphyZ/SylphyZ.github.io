@@ -262,7 +262,7 @@
     <p>$y = \frac{E(r_M) - r_f}{A\sigma_M^2} \tag{9.1}$</p>
     <p>其中 $A$ 是该投资者的风险厌恶系数。</p>
     <p>在简化的 CAPM 经济中，无风险投资实际上就是投资者之间的借贷——一个人的借款对应另一个人的贷款。因此，所有投资者的净借贷之和为零，平均配置比例 $\bar{y} = 1$。令 $y = 1$，用代表性投资者的风险厌恶 $\bar{A}$ 代入并整理，得到：</p>
-    <p>$\boxed{E(R_M) = \bar{A},\sigma_M^2} \tag{9.2}$</p>
+    <p>$\boxed{E(R_M) = \bar{A}\,\sigma_M^2} \tag{9.2}$</p>
     <p>其中 $E(R_M) = E(r_M) - r_f$ 是市场风险溢价（市场超额收益的期望）。</p>
     <h3>4.2 经济含义</h3>
     <p>这个方程说：<strong>市场风险溢价同时正比于市场方差和平均风险厌恶程度</strong>。</p>
@@ -272,7 +272,7 @@
     <p><strong>(a)</strong> 平均风险厌恶系数为：</p>
     <p>$\bar{A} = \frac{E(R_M)}{\sigma_M^2} = \frac{0.089}{0.203^2} = 2.16$</p>
     <p><strong>(b)</strong> 如果 $\bar{A} = 3.5$，对应的风险溢价为：</p>
-    <p>$E(R_M) = 3.5 \times 0.203^2 = 14.4%$</p>
+    <p>$E(R_M) = 3.5 \times 0.203^2 = 14.4\%$</p>
     <hr>
     <h2>五、单个资产的预期收益——CAPM 核心公式推导</h2>
     <p>这是整章最关键的部分。问题变成：对市场组合中的某个成分（以 GE 为例），它应该提供多少风险溢价？</p>
@@ -284,15 +284,15 @@
     <p>写成公式，GE 的贡献为：</p>
     <p>$w_{\text{GE}}\Big[w_1\text{Cov}(R_1, R_{\text{GE}}) + w_2\text{Cov}(R_2, R_{\text{GE}}) + \cdots + w_n\text{Cov}(R_n, R_{\text{GE}})\Big] \tag{9.3}$</p>
     <p>方括号内的每一项 $w_i\text{Cov}(R_i, R_{\text{GE}})$ 可以改写为 $\text{Cov}(w_iR_i, R_{\text{GE}})$。然后利用协方差对第一个变量的线性性质（即 $\text{Cov}$ 关于求和可以&quot;提&quot;出来），方括号内整体化简为：</p>
-    <p>$\sum_{i=1}^{n} w_i ,\text{Cov}(R_i, R_{\text{GE}}) = \text{Cov}!\left(\sum_{i=1}^{n} w_i R_i,; R_{\text{GE}}\right) = \text{Cov}(R_M, R_{\text{GE}}) \tag{9.4}$</p>
+    <p>$\sum_{i=1}^{n} w_i \,\text{Cov}(R_i, R_{\text{GE}}) = \text{Cov}\!\left(\sum_{i=1}^{n} w_i R_i,\; R_{\text{GE}}\right) = \text{Cov}(R_M, R_{\text{GE}}) \tag{9.4}$</p>
     <p>最后一步用了 $\sum_{i=1}^{n} w_i R_i = R_M$（市场组合收益的定义）。</p>
-    <p>因此，GE 对 $\sigma_M^2$ 的贡献简化为 $w_{\text{GE}},\text{Cov}(R_{\text{GE}}, R_M)$。</p>
+    <p>因此，GE 对 $\sigma_M^2$ 的贡献简化为 $w_{\text{GE}}\,\text{Cov}(R_{\text{GE}}, R_M)$。</p>
     <p><strong>直觉</strong>：如果 GE 与整个市场的协方差大（正向联动强），它就放大了组合的整体波动，是一个&quot;增风险&quot;的成分；如果协方差小甚至为负（逆市场运动），它反而能分散风险，是一个&quot;减风险&quot;的成分。这就是为什么 CAPM 用 $\text{Cov}(R_i, R_M)$ 而不是 $\sigma_i^2$ 来度量单个资产的&quot;风险&quot;——在充分分散化的组合中，真正重要的是资产与组合的联动，而不是它自身的总波动。</p>
     <h3>5.3 均衡论证：风险-回报比必须相等</h3>
     <p>GE 对市场组合贡献了两样东西：</p>
     <ul>
-    <li><strong>收益贡献</strong>：$w_{\text{GE}},E(R_{\text{GE}})$</li>
-    <li><strong>风险贡献</strong>：$w_{\text{GE}},\text{Cov}(R_{\text{GE}}, R_M)$</li>
+    <li><strong>收益贡献</strong>：$w_{\text{GE}}\,E(R_{\text{GE}})$</li>
+    <li><strong>风险贡献</strong>：$w_{\text{GE}}\,\text{Cov}(R_{\text{GE}}, R_M)$</li>
     </ul>
     <p>两者做比值，$w_{\text{GE}}$ 约掉，就得到 GE 的<strong>风险-回报比</strong>（reward-to-risk ratio）：</p>
     <p>$\frac{E(R_{\text{GE}})}{\text{Cov}(R_{\text{GE}}, R_M)}$</p>
@@ -304,16 +304,16 @@
     <p>$\frac{E(R_{\text{GE}})}{\text{Cov}(R_{\text{GE}}, R_M)} = \frac{E(R_M)}{\sigma_M^2} \tag{9.6}$</p>
     <h3>5.4 整理得到 CAPM 公式</h3>
     <p>从 (9.6) 整理，先求出 GE 的超额收益：</p>
-    <p>$E(R_{\text{GE}}) = \frac{\text{Cov}(R_{\text{GE}}, R_M)}{\sigma_M^2},E(R_M) \tag{9.7}$</p>
+    <p>$E(R_{\text{GE}}) = \frac{\text{Cov}(R_{\text{GE}}, R_M)}{\sigma_M^2}\,E(R_M) \tag{9.7}$</p>
     <p>定义 <strong>beta</strong>：</p>
     <p>$\beta_i = \frac{\text{Cov}(R_i, R_M)}{\sigma_M^2}$</p>
     <p>于是 (9.7) 变为 $E(R_{\text{GE}}) = \beta_{\text{GE}} \cdot E(R_M)$。</p>
     <p>接下来把超额收益还原为总收益。$R_i = r_i - r_f$ 表示超额收益，所以 $E(R_i) = E(r_i) - r_f$，$E(R_M) = E(r_M) - r_f$。代入：</p>
-    <p>$E(r_{\text{GE}}) - r_f = \beta_{\text{GE}},[E(r_M) - r_f]$</p>
+    <p>$E(r_{\text{GE}}) - r_f = \beta_{\text{GE}}\,[E(r_M) - r_f]$</p>
     <p>将 $r_f$ 移到右边：</p>
-    <p>$E(r_{\text{GE}}) = r_f + \beta_{\text{GE}},[E(r_M) - r_f]$</p>
+    <p>$E(r_{\text{GE}}) = r_f + \beta_{\text{GE}}\,[E(r_M) - r_f]$</p>
     <p>这对任意资产 $i$ 都成立，写成一般形式就是 CAPM 的核心公式：</p>
-    <p>$\boxed{E(r_i) = r_f + \beta_i,[E(r_M) - r_f]} \tag{9.8}$</p>
+    <p>$\boxed{E(r_i) = r_f + \beta_i\,[E(r_M) - r_f]} \tag{9.8}$</p>
     <h3>5.5 公式的解读</h3>
     <p>公式 (9.8) 告诉我们，资产 $i$ 的总预期收益由两部分组成：</p>
     <ul>
@@ -335,7 +335,7 @@
     <h3>5.7 数值例子（Concept Check 9.3）</h3>
     <p>市场风险溢价 8%，标准差 22%。组合：25% Toyota（$\beta = 1.10$）+ 75% Ford（$\beta = 1.25$）。</p>
     <p>$\beta_P = 0.25 \times 1.10 + 0.75 \times 1.25 = 1.2125$</p>
-    <p>$E(R_P) = 1.2125 \times 8% = 9.7%$</p>
+    <p>$E(R_P) = 1.2125 \times 8\% = 9.7\%$</p>
     <hr>
     <h2>六、证券市场线 (SML) 与 Alpha</h2>
     <h3>6.1 SML 的含义</h3>
@@ -353,10 +353,10 @@
     <p>SML 给出了一个&quot;基准&quot;——给定资产的 $\beta$，它的公平预期收益应该是多少。如果投资者通过自己的分析（证券分析），认为某只股票的实际预期收益与 SML 给出的公平收益不同，这个差值就是 <strong>alpha ($\alpha$)</strong>：</p>
     <p>$\alpha_i = E(r_i)_{\text{预测}} - \big[r_f + \beta_i(E(r_M) - r_f)\big]$</p>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/figure_9_3_alpha.jpg" alt="Figure 9.3: SML与正alpha股票"></p>
-    <p><strong>教材的具体例子</strong>：$r_f = 6%$，$E(r_M) = 14%$（市场风险溢价 $= 8%$），某股票 $\beta = 1.2$。SML 预测它的公平收益应该是：</p>
-    <p>$6 + 1.2 \times (14 - 6) = 6 + 9.6 = 15.6%$</p>
-    <p>如果分析师认为它的预期收益实际是 $17%$，则：</p>
-    <p>$\alpha = 17% - 15.6% = 1.4%$</p>
+    <p><strong>教材的具体例子</strong>：$r_f = 6\%$，$E(r_M) = 14\%$（市场风险溢价 $= 8\%$），某股票 $\beta = 1.2$。SML 预测它的公平收益应该是：</p>
+    <p>$6 + 1.2 \times (14 - 6) = 6 + 9.6 = 15.6\%$</p>
+    <p>如果分析师认为它的预期收益实际是 $17\%$，则：</p>
+    <p>$\alpha = 17\% - 15.6\% = 1.4\%$</p>
     <p>Alpha 的判断标准：</p>
     <ul>
     <li>$\alpha &gt; 0$：<strong>低估 (underpriced)</strong>，位于 SML 上方，预期收益超过其风险应得，值得买入。</li>
@@ -366,10 +366,10 @@
     <p>可以说，证券分析（本书 Part Five 的内容）的核心目标就是寻找 $\alpha \neq 0$ 的证券。组合管理的起点可以是被动市场指数组合，然后增加正 $\alpha$ 股票的权重、减少负 $\alpha$ 股票的权重（Treynor-Black 模型，见 Chapter 8）。</p>
     <h3>6.4 CAPM 与资本预算</h3>
     <p>CAPM 在企业财务中的重要应用是确定投资项目的<strong>折现率（hurdle rate）</strong>。</p>
-    <p><strong>Example 9.1（资本预算）</strong>：某项目投资 1 亿美元，预计未来 8 年每年产生 2000 万税后现金流，$\beta = 0.8$，$r_f = 2%$，市场风险溢价 $8%$。CAPM 给出的折现率为 $2 + 0.8 \times 8 = 8.4%$。项目的 NPV 为：</p>
-    <p>$\text{NPV} = -100 + 20 \times \text{Annuity Factor}(8.4%,, 8\text{ years}) = -100 + 20 \times 5.660 = 13.21 \text{ (百万)}$</p>
+    <p><strong>Example 9.1（资本预算）</strong>：某项目投资 1 亿美元，预计未来 8 年每年产生 2000 万税后现金流，$\beta = 0.8$，$r_f = 2\%$，市场风险溢价 $8\%$。CAPM 给出的折现率为 $2 + 0.8 \times 8 = 8.4\%$。项目的 NPV 为：</p>
+    <p>$\text{NPV} = -100 + 20 \times \text{Annuity Factor}(8.4\%,\, 8\text{ years}) = -100 + 20 \times 5.660 = 13.21 \text{ (百万)}$</p>
     <p>NPV &gt; 0，项目值得投资。</p>
-    <p><strong>Example 9.2（受监管公用事业）</strong>：一家受监管公用事业投资了 1 亿美元，$\beta = 0.6$，$r_f = 6%$，市场风险溢价 $8%$。CAPM 给出的合理回报率为 $6 + 0.6 \times 8 = 10.8%$。监管机构据此允许公司设定价格使预期利润为 1080 万美元。</p>
+    <p><strong>Example 9.2（受监管公用事业）</strong>：一家受监管公用事业投资了 1 亿美元，$\beta = 0.6$，$r_f = 6\%$，市场风险溢价 $8\%$。CAPM 给出的合理回报率为 $6 + 0.6 \times 8 = 10.8\%$。监管机构据此允许公司设定价格使预期利润为 1080 万美元。</p>
     <h3>6.5 CAPM 与指数模型的关系——为什么均衡中 Alpha 应为零</h3>
     <p>指数模型（Chapter 8 的 Equation 8.8）描述的是<strong>已实现的</strong>超额收益：</p>
     <p>$R_i = \alpha_i + \beta_i R_M + e_i \tag{9.10}$</p>
@@ -392,7 +392,7 @@
     <p>基本 CAPM 假设所有人可以以 $r_f$ 自由借贷（假设 2b）。如果借贷受限（比如借款利率远高于贷款利率），不同投资者会选择不同的切点组合，市场组合不再是所有人的最优风险组合。</p>
     <p>Merton 和 Roll 独立发现了有效前沿组合的若干重要数学性质：(1) 两个前沿组合的任意线性组合仍在前沿上；(2) 每个投资者仍从前沿上选择，所以市场组合（作为前沿组合的加总）也在前沿上；(3) 前沿上的每个组合（除全局最小方差组合外），都有一个与之不相关的&quot;伴侣&quot;组合——即<strong>零-beta 组合 $Z$</strong>。</p>
     <p>Fischer Black (1972) 利用这些性质推导出：</p>
-    <p>$E(r_i) = E(r_Z) + \beta_i,[E(r_M) - E(r_Z)] \tag{9.13}$</p>
+    <p>$E(r_i) = E(r_Z) + \beta_i\,[E(r_M) - E(r_Z)] \tag{9.13}$</p>
     <p>和基本 CAPM 对比，唯一的变化是 <strong>$r_f$ 被替换为零-beta 组合的期望收益 $E(r_Z)$</strong>。由于 $E(r_Z) &gt; r_f$，斜率 $E(r_M) - E(r_Z) &lt; E(r_M) - r_f$，SML 变得更<strong>平坦</strong>。</p>
     <p>为什么变平坦？风险偏好高的投资者本来想借钱加杠杆买切点组合，但借贷受限做不到，就转而去买高 $\beta$（高预期收益）的股票作为替代，同时减持低 $\beta$ 股票。结果是高 $\beta$ 股票价格被推高、风险溢价被压低，低 $\beta$ 股票反之。整体效果是 SML 变平。</p>
     <h3>7.3 非交易资产：劳动收入与私人企业</h3>
@@ -425,7 +425,7 @@
     <li><strong>消费品价格变化</strong>：通胀上升 → 购买力受损 → 投资者偏好能对冲通胀的资产。类似地，能对冲能源价格不确定性的能源公司股票也会有额外需求。</li>
     </ul>
     <p>如果有 $K$ 个额外风险源，每个都有对应的对冲组合，ICAPM 的定价公式推广为：</p>
-    <p>$E(R_i) = \beta_{iM},E(R_M) + \sum_{k=1}^{K}\beta_{ik},E(R_k) \tag{9.14}$</p>
+    <p>$E(R_i) = \beta_{iM}\,E(R_M) + \sum_{k=1}^{K}\beta_{ik}\,E(R_k) \tag{9.14}$</p>
     <p>其中 $\beta_{iM}$ 是通常的市场 beta，$\beta_{ik}$ 是资产 $i$ 对第 $k$ 个对冲组合的 beta。资产的风险溢价是它在所有系统性风险源上暴露的补偿之和。基本 CAPM 是 $K = 0$ 的特例。</p>
     <h3>7.5 消费 CAPM (CCAPM)</h3>
     <p>CAPM 的逻辑加上对冲需求的考虑，提示我们可以直接围绕<strong>消费</strong>来建模。这类模型由 Mark Rubinstein (1976)、Robert Lucas (1978)、Douglas Breeden (1979) 开创。</p>
@@ -435,7 +435,7 @@
     <li>与消费增长<strong>负协方差</strong>的资产更&quot;安全&quot;——它在困难时期表现好，提供了宝贵的保险功能。</li>
     </ul>
     <p>由此推出：</p>
-    <p>$E(R_i) = \beta_{iC},\text{RP}_C \tag{9.15}$</p>
+    <p>$E(R_i) = \beta_{iC}\,\text{RP}_C \tag{9.15}$</p>
     <p>其中 $C$ 是<strong>消费跟踪组合 (consumption-tracking portfolio)</strong>——与消费增长相关性最高的组合，$\beta_{iC}$ 是资产 $i$ 对该组合的 beta，$\text{RP}_C = E(r_C) - r_f$ 是消费风险溢价。</p>
     <p>形式上和基本 CAPM 完全一样，只是市场组合被消费跟踪组合替代。CCAPM 的优点是它紧凑地将对冲需求和投资机会变化纳入了单因子框架；缺点是消费数据测量误差大、发布频率低（最多月度），远不如金融资产价格精确和及时。但一些实证研究 (Jagannathan &amp; Wang, 2007) 表明 CCAPM 在解释已实现收益方面比标准 CAPM 更成功。</p>
     <h3>7.6 流动性与 CAPM</h3>
@@ -552,12 +552,12 @@
     </tr>
     <tr>
     <td align="left">市场风险溢价</td>
-    <td align="left">$E(R_M) = \bar{A},\sigma_M^2$</td>
+    <td align="left">$E(R_M) = \bar{A}\,\sigma_M^2$</td>
     <td align="left">(9.2)</td>
     </tr>
     <tr>
     <td align="left">个股对组合方差的贡献</td>
-    <td align="left">$w_i,\text{Cov}(R_i, R_M)$</td>
+    <td align="left">$w_i\,\text{Cov}(R_i, R_M)$</td>
     <td align="left">(9.3-9.4)</td>
     </tr>
     <tr>
@@ -577,7 +577,7 @@
     </tr>
     <tr>
     <td align="left"><strong>CAPM (SML)</strong></td>
-    <td align="left">$E(r_i) = r_f + \beta_i,[E(r_M) - r_f]$</td>
+    <td align="left">$E(r_i) = r_f + \beta_i\,[E(r_M) - r_f]$</td>
     <td align="left"><strong>(9.8)</strong></td>
     </tr>
     <tr>
@@ -587,17 +587,17 @@
     </tr>
     <tr>
     <td align="left">零-Beta SML</td>
-    <td align="left">$E(r_i) = E(r_Z) + \beta_i,[E(r_M) - E(r_Z)]$</td>
+    <td align="left">$E(r_i) = E(r_Z) + \beta_i\,[E(r_M) - E(r_Z)]$</td>
     <td align="left">(9.13)</td>
     </tr>
     <tr>
     <td align="left">多因子 SML (ICAPM)</td>
-    <td align="left">$E(R_i) = \beta_{iM},E(R_M) + \displaystyle\sum_{k=1}^{K}\beta_{ik},E(R_k)$</td>
+    <td align="left">$E(R_i) = \beta_{iM}\,E(R_M) + \displaystyle\sum_{k=1}^{K}\beta_{ik}\,E(R_k)$</td>
     <td align="left">(9.14)</td>
     </tr>
     <tr>
     <td align="left">消费 CAPM</td>
-    <td align="left">$E(R_i) = \beta_{iC},\text{RP}_C$</td>
+    <td align="left">$E(R_i) = \beta_{iC}\,\text{RP}_C$</td>
     <td align="left">(9.15)</td>
     </tr>
     </tbody></table>

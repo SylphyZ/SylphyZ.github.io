@@ -226,7 +226,7 @@
     <p>$r(T) = \frac{100}{P(T)} - 1 \tag{5.1}$</p>
     <blockquote>
     <p><strong>例子</strong>：花 95 块买了一张&quot;一年后还你 100 块&quot;的票据，收益率为：
-    $r = \frac{100 - 95}{95} = \frac{5}{95} \approx 5.26%$</p>
+    $r = \frac{100 - 95}{95} = \frac{5}{95} \approx 5.26\%$</p>
     </blockquote>
     <h3>1.2 有效年利率 (Effective Annual Rate, EAR)</h3>
     <p>不同期限的投资需要统一到&quot;一年&quot;来比较。EAR 定义为每年资金增长的百分比：</p>
@@ -236,12 +236,12 @@
     </ul>
     <blockquote>
     <p><strong>例子</strong>：半年赚 2.71%，EAR 不是简单乘以 2（那只得到 5.42%），而是：
-    $(1 + 0.0271)^2 = 1.0549 \implies \text{EAR} = 5.49%$
+    $(1 + 0.0271)^2 = 1.0549 \implies \text{EAR} = 5.49\%$
     多出的 0.07% 就是前半年赚的钱在后半年&quot;钱生钱&quot;的复利效果。</p>
     </blockquote>
     <blockquote>
     <p><strong>例子</strong>：25 年总收益 329.18%（1 块钱变成 4.2918 块），等价年化：
-    $(1 + \text{EAR})^{25} = 4.2918 \implies \text{EAR} = 4.2918^{1/25} - 1 = 6%$</p>
+    $(1 + \text{EAR})^{25} = 4.2918 \implies \text{EAR} = 4.2918^{1/25} - 1 = 6\%$</p>
     </blockquote>
     <h3>1.3 年百分比利率 (Annual Percentage Rate, APR)</h3>
     <p>APR 用简单利息（不考虑复利）换算年利率：$\text{APR} = \text{单期利率} \times \text{期数}$。</p>
@@ -253,13 +253,13 @@
     <blockquote>
     <p><strong>例子</strong>：银行月利率 0.5%。</p>
     <ul>
-    <li>$\text{APR} = 0.5% \times 12 = 6%$</li>
-    <li>$\text{EAR} = 1.005^{12} - 1 = 6.17%$</li>
+    <li>$\text{APR} = 0.5\% \times 12 = 6\%$</li>
+    <li>$\text{EAR} = 1.005^{12} - 1 = 6.17\%$</li>
     </ul>
     <p>信用卡月利率 1.5%：</p>
     <ul>
-    <li>$\text{APR} = 1.5% \times 12 = 18%$</li>
-    <li>$\text{EAR} = 1.015^{12} - 1 = 19.56%$（实际负担比报价高得多）</li>
+    <li>$\text{APR} = 1.5\% \times 12 = 18\%$</li>
+    <li>$\text{EAR} = 1.015^{12} - 1 = 19.56\%$（实际负担比报价高得多）</li>
     </ul>
     </blockquote>
     <h3>1.4 连续复利 (Continuous Compounding, CC)</h3>
@@ -276,8 +276,8 @@
     <p>加法的好处：如果每期 $r_{cc}$ 服从正态分布（Normal Distribution），它们的和也服从正态分布——统计推断变得很简单。</p>
     </blockquote>
     <blockquote>
-    <p><strong>大小关系</strong>：以月利率 0.5% 为例，$\text{EAR} = 6.17%$：
-    $r_{cc} = \ln(1.0617) = 5.99%$
+    <p><strong>大小关系</strong>：以月利率 0.5% 为例，$\text{EAR} = 6.17\%$：
+    $r_{cc} = \ln(1.0617) = 5.99\%$
     始终有 $r_{cc} &lt; \text{APR} &lt; \text{EAR}$。</p>
     </blockquote>
     <hr>
@@ -297,8 +297,8 @@
     <li>一年后拿到 1100 块，但面包从 1 块涨到 1.06 块</li>
     <li>去年能买 1000 个面包，今年只能买 $1100/1.06 = 1038$ 个</li>
     <li>购买力只增长了 3.8%，不是 10%</li>
-    <li>精确：$(1.10/1.06) - 1 = 3.8%$</li>
-    <li>近似：$10% - 6% = 4%$（偏高 0.2%）</li>
+    <li>精确：$(1.10/1.06) - 1 = 3.8\%$</li>
+    <li>近似：$10\% - 6\% = 4\%$（偏高 0.2%）</li>
     </ul>
     </blockquote>
     <h3>2.2 Fisher 假说 (Fisher Hypothesis)</h3>
@@ -321,10 +321,10 @@
     <blockquote>
     <p><strong>例子</strong>：名义利率 5%，预期通胀 2%，税率 25%。</p>
     <ul>
-    <li>税后名义收益：$5% \times 0.75 = 3.75%$</li>
-    <li>税后实际收益：$3.75% - 2% = 1.75%$</li>
-    <li>如果在&quot;理想&quot;的税制下（只对实际收益征税）：$(5%-2%) \times 0.75 = 2.25%$</li>
-    <li>通胀额外吃掉了 $it = 2% \times 25% = 0.5%$ 的收益</li>
+    <li>税后名义收益：$5\% \times 0.75 = 3.75\%$</li>
+    <li>税后实际收益：$3.75\% - 2\% = 1.75\%$</li>
+    <li>如果在&quot;理想&quot;的税制下（只对实际收益征税）：$(5\%-2\%) \times 0.75 = 2.25\%$</li>
+    <li>通胀额外吃掉了 $it = 2\% \times 25\% = 0.5\%$ 的收益</li>
     </ul>
     </blockquote>
     <h3>2.5 历史实证</h3>
@@ -376,13 +376,13 @@
     <td>-52.0%</td>
     </tr>
     </tbody></table>
-    <p>以繁荣为例：$\text{HPR} = (126.50 - 100 + 4.50)/100 = 31%$</p>
+    <p>以繁荣为例：$\text{HPR} = (126.50 - 100 + 4.50)/100 = 31\%$</p>
     </blockquote>
     <h3>3.2 期望收益 (Expected Return)</h3>
     <p>$E(r) = \sum_s p(s) \cdot r(s) \tag{5.11}$</p>
     <blockquote>
     <p>代入上面的数据：
-    $E(r) = 0.25 \times 31% + 0.45 \times 14% + 0.25 \times (-6.75%) + 0.05 \times (-52%) = 9.76%$</p>
+    $E(r) = 0.25 \times 31\% + 0.45 \times 14\% + 0.25 \times (-6.75\%) + 0.05 \times (-52\%) = 9.76\%$</p>
     </blockquote>
     <h3>3.3 方差 (Variance) 与标准差 (Standard Deviation, SD)</h3>
     <p>方差度量收益率偏离均值的典型幅度——先算偏差，平方后加权求和：</p>
@@ -391,11 +391,11 @@
     <blockquote>
     <p>接着上面的例子：</p>
     <ul>
-    <li>繁荣的偏差：$31% - 9.76% = 21.24%$</li>
-    <li>严重衰退的偏差：$-52% - 9.76% = -61.76%$</li>
+    <li>繁荣的偏差：$31\% - 9.76\% = 21.24\%$</li>
+    <li>严重衰退的偏差：$-52\% - 9.76\% = -61.76\%$</li>
     </ul>
     <p>$\sigma^2 = 0.25(0.2124)^2 + 0.45(0.0424)^2 + 0.25(-0.1651)^2 + 0.05(-0.6176)^2 = 0.0380$
-    $\sigma = \sqrt{0.0380} = 19.49%$</p>
+    $\sigma = \sqrt{0.0380} = 19.49\%$</p>
     <p>意思是：实际收益率在 9.76% 上下波动，典型波动幅度约 19.49 个百分点。</p>
     </blockquote>
     <h3>3.4 风险溢价 (Risk Premium) 与超额收益 (Excess Return)</h3>
@@ -405,13 +405,13 @@
     <li>风险溢价 = 超额收益的期望值</li>
     </ul>
     <blockquote>
-    <p>无风险利率 $r_f = 4%$ 时，风险溢价 $= 9.76% - 4% = 5.76%$。这是承担风险的&quot;报酬&quot;。</p>
+    <p>无风险利率 $r_f = 4\%$ 时，风险溢价 $= 9.76\% - 4\% = 5.76\%$。这是承担风险的&quot;报酬&quot;。</p>
     </blockquote>
     <h3>3.5 Sharpe 比率 (Sharpe Ratio)</h3>
     <p>每承担一单位风险，能获得多少超额收益：</p>
     <p>$\text{Sharpe ratio} = \frac{E(r_P) - r_f}{\sigma_P} \tag{5.13}$</p>
     <blockquote>
-    <p>$\text{Sharpe} = \frac{5.76%}{19.49%} = 0.30$
+    <p>$\text{Sharpe} = \frac{5.76\%}{19.49\%} = 0.30$
     数字越高，投资的风险回报&quot;性价比&quot;越好。</p>
     </blockquote>
     <hr>
@@ -432,7 +432,7 @@
     </ul>
     <p><img loading="lazy" decoding="async" width="1588" height="2000" src="images/figure_5_4.jpg" alt="Figure 5.4: 正态分布 (均值 10%, 标准差 20%)"></p>
     <blockquote>
-    <p><strong>例子</strong>：假设股市月收益率正态分布，$\mu = 1%$，$\sigma = 6%$。</p>
+    <p><strong>例子</strong>：假设股市月收益率正态分布，$\mu = 1\%$，$\sigma = 6\%$。</p>
     <ul>
     <li>&quot;这个月亏钱&quot;意味着收益率 &lt; 0%，即偏离均值 $1/6$ 个标准差，概率约 43.4%</li>
     <li>&quot;收益率低于 -15%&quot;则偏离均值 $16/6 \approx 2.67$ 个标准差，概率仅 0.38%——非常罕见</li>
@@ -469,9 +469,9 @@
     <h3>5.3 四种实务下行风险度量</h3>
     <p><strong>① VaR (Value at Risk, 在险价值)</strong></p>
     <p>在给定概率下的最大损失门槛。1% VaR 意味着有 99% 的把握损失不超过该值。</p>
-    <p>$\text{VaR}(1%, \text{normal}) = \mu - 2.33\sigma$</p>
+    <p>$\text{VaR}(1\%, \text{normal}) = \mu - 2.33\sigma$</p>
     <blockquote>
-    <p>例：$\mu = 1%$，$\sigma = 6%$ 时，$\text{VaR}(1%) = 1% - 2.33 \times 6% = -12.98%$
+    <p>例：$\mu = 1\%$，$\sigma = 6\%$ 时，$\text{VaR}(1\%) = 1\% - 2.33 \times 6\% = -12.98\%$
     即有 99% 的概率，月亏损不超过 12.98%。</p>
     </blockquote>
     <p><strong>② ES (Expected Shortfall, 预期亏空)</strong></p>
@@ -529,9 +529,9 @@
     <blockquote>
     <p><strong>例子</strong>：过去 5 年收益率为 -11.89%、-22.10%、28.69%、10.88%、4.91%。</p>
     <ul>
-    <li>算术平均：$(-11.89 - 22.10 + 28.69 + 10.88 + 4.91)/5 = 2.10%$</li>
+    <li>算术平均：$(-11.89 - 22.10 + 28.69 + 10.88 + 4.91)/5 = 2.10\%$</li>
     <li>终值：$0.8811 \times 0.7790 \times 1.2869 \times 1.1088 \times 1.0491 = 1.0275$</li>
-    <li>几何平均：$1.0275^{1/5} - 1 = 0.54%$</li>
+    <li>几何平均：$1.0275^{1/5} - 1 = 0.54\%$</li>
     </ul>
     </blockquote>
     <h3>6.3 为什么几何平均总是更小？</h3>
@@ -679,7 +679,7 @@
     <p>上图展示了 6、20、40 个月后终值分布的演变：随着期限增长，分布越来越右偏。</p>
     <p>使用连续复利可保持正态的可加性：多期累计 $r_{cc}$ 为各期之和，仍服从正态。</p>
     <h3>8.2 长期投资更安全吗？</h3>
-    <p>假设年化连续复利收益率 $\mu = 5%$，$\sigma = 30%$：</p>
+    <p>假设年化连续复利收益率 $\mu = 5\%$，$\sigma = 30\%$：</p>
     <table>
     <thead>
     <tr>

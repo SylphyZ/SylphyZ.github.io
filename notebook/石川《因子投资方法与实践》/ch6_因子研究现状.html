@@ -373,8 +373,8 @@
     <h3>6.3.3 风险偏好中的偏差</h3>
     <p>传统经济学假设人们按照<strong>期望效用理论</strong>（expected utility theory）做决策——计算每个选项的期望效用，选最大的。但心理学家 Kahneman 和 Tversky 在 1979 年提出了<strong>前景理论</strong>（Prospect Theory），从根本上挑战了这个框架。后来 Tversky 和 Kahneman (1992) 又做了扩充，提出了<strong>累积前景理论</strong>（Cumulative Prospect Theory），给出了完整的数学表达式。这个理论后来成为行为金融学最重要的基石之一。</p>
     <h4>前景理论的基本框架</h4>
-    <p>假设你面对一个选项，它以概率 $p$ 产生结果 $x$，以概率 $q$ 产生结果 $y$，数学上记为 $(x, p; , y, q)$。在前景理论中，这个选项的价值不是期望效用 $p \cdot u(x) + q \cdot u(y)$，而是：</p>
-    <p>$$V = v(x) , \pi(p) + v(y) , \pi(q)$$</p>
+    <p>假设你面对一个选项，它以概率 $p$ 产生结果 $x$，以概率 $q$ 产生结果 $y$，数学上记为 $(x, p; \, y, q)$。在前景理论中，这个选项的价值不是期望效用 $p \cdot u(x) + q \cdot u(y)$，而是：</p>
+    <p>$$V = v(x) \, \pi(p) + v(y) \, \pi(q)$$</p>
     <p>这里有两个关键函数：$v(\cdot)$ 是<strong>价值函数</strong>（value function），替代了传统效用函数；$\pi(\cdot)$ 是<strong>权重函数</strong>（probability weighting function），把客观概率转换成人们主观感知到的权重。</p>
     <p><img loading="lazy" decoding="async" width="1486" height="739" src="images/ch6/fig6_3_prospect_theory_functions.jpeg" alt="图6.3 前景理论中的价值函数和权重函数"></p>
     <h4>价值函数的三条性质</h4>
@@ -385,7 +385,7 @@
     <p>实证研究表明，亏损带来的痛苦大约是同等盈利带来快乐的两倍。</p>
     <p><strong>第三，敏感度递减</strong>（diminishing sensitivity）。无论是盈利还是亏损，边际价值都在递减。盈利时 $v(\cdot)$ 是凹函数；亏损时 $v(\cdot)$ 是凸函数。</p>
     <p>在累积前景理论（Tversky and Kahneman 1992）中，价值函数被参数化为：</p>
-    <p>$$v(x) = \begin{cases} x^c &amp; \text{if } x \geq 0 \ -\kappa , (-x)^c &amp; \text{if } x &lt; 0 \end{cases}$$</p>
+    <p>$$v(x) = \begin{cases} x^c &amp; \text{if } x \geq 0 \\ -\kappa \, (-x)^c &amp; \text{if } x &lt; 0 \end{cases}$$</p>
     <p>其中 $c \in (0, 1)$ 控制敏感度递减的快慢，$\kappa &gt; 1$ 是损失厌恶系数。根据实验数据，参数取值为 $c = 0.88$，$\kappa = 2.25$。</p>
     <p><img loading="lazy" decoding="async" width="1468" height="806" src="images/ch6/fig6_4_cumulative_prospect_theory.jpeg" alt="图6.4 累积前景理论中的价值函数和权重函数"></p>
     <h4>权重函数</h4>
@@ -490,7 +490,7 @@
     </tr>
     </tbody></table>
     <p><img loading="lazy" decoding="async" width="1638" height="721" src="images/ch6/table6_2_sentiment_indicators.jpeg" alt="表6.2 Baker and Wurgler (2006) 投资者情绪细分指标列表"></p>
-    <p>构造过程分为两步。第一步，将每个指标的当期值和滞后一期值共 12 个变量做主成分分析，提取第一主成分作为临时指数。然后对每个指标，比较其当期和滞后项与临时指数的相关系数，挑出相关系数高的那个（当期或滞后）。例如对于 CEFD，当期 CEFD$<em>t$ 与临时指数的相关高于滞后项 CEFD$</em>{t-1}$，所以选 CEFD$_t$。这样从 12 个变量中筛选出 6 个。第二步，再用这 6 个筛选后的变量做一次主成分分析，得到最终的情绪指标。这个指标有一个很好的性质：每个细分指标前的系数符号都与理论预测一致，且第一主成分能解释 49% 的样本方差。</p>
+    <p>构造过程分为两步。第一步，将每个指标的当期值和滞后一期值共 12 个变量做主成分分析，提取第一主成分作为临时指数。然后对每个指标，比较其当期和滞后项与临时指数的相关系数，挑出相关系数高的那个（当期或滞后）。例如对于 CEFD，当期 CEFD$_t$ 与临时指数的相关高于滞后项 CEFD$_{t-1}$，所以选 CEFD$_t$。这样从 12 个变量中筛选出 6 个。第二步，再用这 6 个筛选后的变量做一次主成分分析，得到最终的情绪指标。这个指标有一个很好的性质：每个细分指标前的系数符号都与理论预测一致，且第一主成分能解释 49% 的样本方差。</p>
     <p>但这里有一个潜在问题：情绪指标和经济周期可能纠缠在一起。Baker and Wurgler (2006) 对此做了处理——用多个反映经济周期的变量对情绪基础指标做回归，取残差实现<strong>中性化</strong>，再对残差的协方差矩阵提取主成分。这样得到的排除了宏观经济影响后的情绪指标记为 $SENTIMENT_t^\perp$，它同样保持了理论一致的系数符号，且第一主成分解释 53% 的方差。</p>
     <p>近年来，Huang et al. (2015) 指出经典主成分分析方法无法区分真实的投资者情绪与共同误差对观测指标的贡献，并提出了用<strong>偏最小二乘法</strong>（Partial Least Squares, PLS）来估计情绪。新的情绪指标在样本外的预测能力显著优于 Baker and Wurgler (2006) 的方法。</p>
     <h3>6.4.2 投资者情绪与异象表现</h3>
@@ -588,7 +588,7 @@
     <p>其中 $\epsilon_i \sim N(0, SE_i^2)$，$SE_i$ 是标准误。进一步假设所有因子真实收益率满足正态分布：</p>
     <p>$$\mu_i \sim N(\mu_\mu, \sigma_\mu^2)$$</p>
     <p>用矩估计法对 $\mu_\mu$ 和 $\sigma_\mu$ 进行估计。然后用<strong>贝叶斯收缩</strong>（Bayes shrinkage）估计每个因子的真实收益率：</p>
-    <p>$$E[\mu_i \mid \bar{r}_i] = s_i \cdot \bar{r}<em>i + (1-s_i) \cdot \mu</em>\mu$$</p>
+    <p>$$E[\mu_i \mid \bar{r}_i] = s_i \cdot \bar{r}_i + (1-s_i) \cdot \mu_\mu$$</p>
     <p>收缩系数 $s_i$ 由标准误 $SE_i$ 和 $\mu_i$ 的先验标准差 $\sigma_\mu$ 决定：</p>
     <p>$$s_i = \frac{\sigma_\mu^2}{\sigma_\mu^2 + SE_i^2}$$</p>
     <p>经验贝叶斯调整后，即使是排名前 5% 的最好因子，发表后的月均收益率也仅有 0.21%（等权重）或 0.07%（市值加权）。</p>
@@ -781,11 +781,11 @@
     <p>近年来神经网络的发展催生了多种架构。<strong>深度前馈神经网络</strong>（Deep Feed-forward Network, DFN）是最基础的架构。<strong>循环神经网络</strong>（Recurrent Neural Network, RNN）引入了记忆机制，能处理序列数据。<strong>长短期记忆模型</strong>（Long Short-Term Memory, LSTM）是 RNN 的改进版，通过门控机制解决了传统 RNN 的梯度消失问题，能更好地捕捉长期依赖关系。</p>
     <h3>6.8.3 模型评估与实证研究</h3>
     <p>如何把机器学习算法评估好，是一个至关重要的问题。Gu et al. (2020) 提出使用<strong>样本外可决系数</strong> $R^2_{OS}$ 作为主要评价指标：</p>
-    <p>$$R^2_{OS} = 1 - \frac{\sum_{i,t} (R_{i,t+1} - \hat{R}<em>{i,t+1})^2}{\sum</em>{i,t} R_{i,t+1}^2}$$</p>
+    <p>$$R^2_{OS} = 1 - \frac{\sum_{i,t} (R_{i,t+1} - \hat{R}_{i,t+1})^2}{\sum_{i,t} R_{i,t+1}^2}$$</p>
     <p>分子是模型预测的均方误差，分母是用<strong>零预测</strong>作为基准的均方误差。Gu et al. (2020) 指出，对于个股收益预测，历史均值预测往往表现糟糕，因此建议用零预测作为基准。一般来说，预测模型的样本外 $R^2_{OS}$ 超过 0.5% 就表明模型是有价值的。</p>
     <p>除了 $R^2_{OS}$，Gu et al. (2020) 还参照 Diebold and Mariano (2002) 构建了统计量来比较两个模型的相对表现：</p>
-    <p>$$DM_{12} = \frac{\bar{d}<em>{12}}{\hat{\sigma}</em>{\bar{d}_{12}} / \sqrt{N}}$$</p>
-    <p>其中 $d_{12,i} = (R_{i,t+1} - \hat{R}<em>{i,t+1}^{(1)})^2 - (R</em>{i,t+1} - \hat{R}<em>{i,t+1}^{(2)})^2$ 是两个模型预测误差平方的差异。$DM</em>{12}$ 越大，说明模型 1 相对模型 2 越差。</p>
+    <p>$$DM_{12} = \frac{\bar{d}_{12}}{\hat{\sigma}_{\bar{d}_{12}} / \sqrt{N}}$$</p>
+    <p>其中 $d_{12,i} = (R_{i,t+1} - \hat{R}_{i,t+1}^{(1)})^2 - (R_{i,t+1} - \hat{R}_{i,t+1}^{(2)})^2$ 是两个模型预测误差平方的差异。$DM_{12}$ 越大，说明模型 1 相对模型 2 越差。</p>
     <p>现在来到这项研究的核心结果。Gu et al. (2020) 使用了 1957 到 2016 年长达 60 年的美股数据，考虑了 94 种公司特征和 8 个宏观变量及它们的交互项，加上 74 个行业分类，总共得到 $94 \times (8+1) + 74 = 920$ 个特征。在此基础上比较了 13 个预测模型：</p>
     <table>
     <thead>
@@ -823,7 +823,7 @@
     <h3>6.8.4 主成分分析和因子选择</h3>
     <p>近年来，无监督学习中的<strong>主成分分析</strong>（Principal Component Analysis, PCA）被引入实证资产定价，用于改善传统因子估计方法。经典方法如 Fama-MacBeth 回归需要明确指定因子结构，容易受遗漏变量和测量误差影响。越来越多的研究倾向于把真实因子视为<strong>隐性因子</strong>（latent factors），利用降维手段同时估计因子暴露和因子溢价。</p>
     <p><strong>隐性因子模型</strong>的表达式为：</p>
-    <p>$$R_{it}^e = \beta_i&#39; \lambda_t + \epsilon_{it}$$</p>
+    <p>$$R_{it}^e = \beta_i' \lambda_t + \epsilon_{it}$$</p>
     <p>这和一般的多因子模型看起来一样，但特别之处在于 $\lambda_t$（因子溢价）无从观测，因子暴露 $\beta_i$ 也因此未知。PCA 通过提取资产收益协方差矩阵的主成分来估计风险溢价和风险暴露。</p>
     <p>Giglio and Xiu (2019) 在这方面做出了开创性贡献。他们证明了两个关键性质：第一，利用线性多因子模型的<strong>旋转不变性</strong>，即使只能观察到隐性因子的某个满秩变换，也不妨碍估计可观测因子的溢价。第二，只要隐性因子足够强，PCA 总能复原对因子空间的某个旋转变换（Bai 2003）。结合这两个性质，他们指出：<strong>虽然真实因子不可观测，但利用 PCA 方法仍可准确估计因子溢价</strong>。</p>
     <p>实证表明，相比 Fama-MacBeth 回归，PCA 估计量有显著优势。以动量因子为例，Fama-MacBeth 的结果高度依赖控制变量——不控制其他因子和控制 Fama-French 三因子两种情况下，动量因子的溢价符号竟然相反，且都高度显著。而 PCA 方法则能获得稳定、令人满意的估计结果。</p>
